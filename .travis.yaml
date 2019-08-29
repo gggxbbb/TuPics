@@ -1,0 +1,12 @@
+language: python
+python:
+  - '3.7'
+script:
+  - python3 run.py
+after_success:
+  - cd build/
+  - git init; git add -- *; git commit --allow-empty-message -m ""
+  - git push -f -q https://gggxbbb:$GITHUB_PASS@github.com/gggxbbb/TuPics.git master:gh-pages
+notifications:
+  email:
+    - 2331490629@qq.com
