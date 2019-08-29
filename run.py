@@ -61,3 +61,7 @@ output_pics['info']['end']= formatdate(None, usegmt=True)
 with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
     f.close()
+
+with open('build/index.html','w',encoding='utf-8') as f:
+    f.write('')
+    f.close()
