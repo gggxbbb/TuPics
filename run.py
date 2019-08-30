@@ -92,6 +92,19 @@ with open('build/index.html','w',encoding='utf-8') as f:
     f.write(index_page.render(pics=output_pics))
     f.close()
 
+with open('build/today.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(today))
+    f.close()
+
+with open('build/sort.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(sort))
+    f.close()
+
+for v in sort:
+    with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
+        f.write(json.dumps(output_pics['archive'][v['TID']]))
+        f.close()
+
 with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
     f.close()

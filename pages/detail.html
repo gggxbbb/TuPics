@@ -9,12 +9,11 @@
 
 <body>
     <h1>{{ pic.p_title }}</h1>
-    <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}">dailypics.cn</a>
+    <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">dailypics.cn</a>
+    <a href="{{ pic.PID }}.json" target="_blank">JSON</a>
     <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }} @ {{ pic.username }}</small></p>
     <p>{{ pic.p_content }}</p>
     <img src="{{ pic.local_url }}?p=0">
-    <h2>JSON</h2>
-    <a href="{{ pic.PID }}.json">JSON</a>
 </body>
 
 </html>
