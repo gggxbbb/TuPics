@@ -31,7 +31,7 @@
         {% for pic in pics.today %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                {{ pic.p_title }} @ {{ pic.T_NAME }} by {{ pic.username }}
+                {{ pic.p_title|e }} @ {{ pic.T_NAME }} by {{ pic.username|e }}
             </a>
         </li>
         {% endfor %}
@@ -43,7 +43,7 @@
         {% for pic in pics.archive[sort.TID] %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                {{ pic.p_title }} @ {{ pic.username }} on {{ pic.p_date }}
+                {{ pic.p_title|e }} @ {{ pic.username|e }} on {{ pic.p_date }}
             </a>
         </li>
         {% endfor %}
