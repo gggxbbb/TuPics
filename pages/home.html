@@ -20,7 +20,7 @@
     <ul>
         {% for pic in pics.today %}
         <li>
-            <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">
+            <a href="{{ pic.PID }}.html" target="_blank">
                 {{ pic.p_title }} @ {{ pic.T_NAME }} by {{ pic.username }}
             </a>
         </li>
@@ -32,7 +32,7 @@
     <ul>
         {% for pic in pics.archive[sort.TID] %}
         <li>
-            <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">
+            <a href="{{ pic.PID }}.html" target="_blank">
                 {{ pic.p_title }} @ {{ pic.username }} on {{ pic.p_date }}
             </a>
         </li>

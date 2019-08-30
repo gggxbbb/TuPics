@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ pic.p_title }}</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+    <h1>{{ pic.p_title }}</h1>
+    <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}">dailypics.cn</a>
+    <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }} @ {{ pic.username }}</small></p>
+    <p>{{ pic.p_content }}</p>
+    <img src="{{ pic.local_url }}?p=0">
+</body>
+
+</html>
