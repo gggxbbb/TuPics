@@ -100,6 +100,10 @@ with open('build/sort.json','w',encoding='utf-8') as f:
     f.write(json.dumps(sort))
     f.close()
 
+with open('build/sort2.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['sort_map']))
+    f.close()
+
 for v in sort:
     with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
         f.write(json.dumps(output_pics['archive'][v['TID']]))
