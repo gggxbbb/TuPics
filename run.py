@@ -2,6 +2,7 @@ import os
 import json
 from urllib import request
 from email.utils import formatdate
+from jinja2 import Template
 
 output_pics={}
 
@@ -62,6 +63,10 @@ with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
     f.close()
 
+with open('pages/home.html','r',encoding='utf-8') as f:
+    index_page = Template(f.read())
+    f.close()
+
 with open('build/index.html','w',encoding='utf-8') as f:
-    f.write('')
+    f.write(index_page.render(pics=output_pics))
     f.close()
