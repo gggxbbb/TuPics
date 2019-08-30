@@ -28,6 +28,9 @@ def buildOne(pic):
     with open('build/%s.html'%pic['PID'],'w',encoding='utf-8') as f:
         f.write(datail_page.render(pic=pic,sort=output_pics['sort_map'][pic['TID']]))
         f.close()
+    with open('build/%s.json'%pic['PID'],'w',encoding='utf-8') as f:
+        f.write(json.dumps(pic))
+        f.close()
 
 # sort_all
 output_pics['info']['sort'] = {'all':{'start':formatdate(None, usegmt=True)}}
