@@ -31,7 +31,7 @@
         {% for pic in pics.today %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                {{ pic.p_title|e }} @ {{ pic.T_NAME }} by {{ pic.username|e }}
+                {{ pic.p_title|e }} @ {{ pic.T_NAME }} by {{ pic.username|e }} on {{ pic.p_date }}
             </a>
         </li>
         {% endfor %}
