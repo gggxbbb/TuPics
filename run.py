@@ -69,6 +69,8 @@ for k in sort:
 
 # output
 
+output_pics['info']['end']= formatdate(None, usegmt=True)
+
 for v in today:
     for p in today:
         print(p['PID'])
@@ -86,8 +88,6 @@ with open('pages/home.html','r',encoding='utf-8') as f:
 with open('build/index.html','w',encoding='utf-8') as f:
     f.write(index_page.render(pics=output_pics))
     f.close()
-
-output_pics['info']['end']= formatdate(None, usegmt=True)
 
 with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
