@@ -3,6 +3,7 @@ python:
   - '3.7'
 script:
   - pip3 install Jinja2
+  - pip3 install pytz
   - python3 run.py
 after_success:
   - cd build/
