@@ -14,6 +14,8 @@
     <h2>JSON</h2>
     <ul>
         <li><a href="all.json" target="_blank">All</a></li>
+        <li><a href="info.json" target="_blank">Info</a></li>
+        <li><a href="not_updated.json" target="_blank">Not Updated</a></li>
         <li><a href="sort.json" target="_blank">Sort (Array)</a></li>
         <li><a href="sort2.json" target="_blank">Sort (Object)</a></li>
         <li><a href="today.json" target="_blank">Today</a></li>
@@ -28,6 +30,7 @@
         {% endfor %}
     </ul>
     <h2>今日图片</h2>
+    <p>{{ not_updated }}</p>
     <ul>
         {% for pic in pics.today %}
         <li>

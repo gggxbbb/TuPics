@@ -24,6 +24,7 @@ def getTime():
 output_pics={}
 output_pics['info'] = {}
 output_pics['info']['start'] = getTime()
+today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
 
 if not os.path.isdir('build'):
     os.mkdir('build')
@@ -47,11 +48,11 @@ output_pics['sort'] = sort
 output_pics['sort_map'] = {}
 output_pics['archive']={}
 print(sort)
-for k in sort:
-    print(k)
-    output_pics['sort_map'][k['TID']] = k
-    output_pics['archive'][k['TID']]=[]
-    output_pics['info']['sort'][k['TID']] = {}
+for v in sort:
+    print(v)
+    output_pics['sort_map'][v['TID']] = v
+    output_pics['archive'][v['TID']]=[]
+    output_pics['info']['sort'][v['TID']] = {}
 output_pics['info']['sort']['all']['end']=getTime()
 
 # today
@@ -61,62 +62,94 @@ today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
 output_pics['info']['today']['end']= getTime()
 
+# if GuGuGu
+GuGuGu = []
+for v in output_pics['today']:
+    if v['p_date'] == today:
+        v['if_today'] = True
+    else:
+        v['if_today'] = False
+        GuGuGu.append(output_pics['sort_map'][v['TID']])
+output_pics['not_updated'] = {'sort':GuGuGu}
+if not (len(GuGuGu) == 0):
+    GuGuGu_srt = ','.join([v['T_NAME'] for v in GuGuGu]) + '没有更新'
+else:
+    GuGuGu_srt = '所有分类均已更新'
+output_pics['not_updated']['info'] = GuGuGu_srt
+
 # sort_one
-for k in sort:
-    print(k)
-    output_pics['info']['sort'][k['TID']]['start'] = getTime()
-    first_page = getJson('https://v2.api.dailypics.cn/list/?page=1&size=15&sort=%s' % k['TID'])
+for v in sort:
+    print(v)
+    output_pics['info']['sort'][v['TID']]['start'] = getTime()
+    first_page = getJson('https://v2.api.dailypics.cn/list/?page=1&size=15&sort=%s' % v['TID'])
     max_page = first_page['maxpage']
     print(max_page)
     for pic in first_page['result']:
         output_pics['archive'][pic['TID']].append(pic)
     for p in range(1, int(max_page)):
         page = p+1
-        this_page = getJson('https://v2.api.dailypics.cn/list/?page=%s&size=15&sort=%s' % (page, k['TID']))['result']
+        this_page = getJson('https://v2.api.dailypics.cn/list/?page=%s&size=15&sort=%s' % (page, v['TID']))['result']
         print(page)
         for pic in this_page:
             output_pics['archive'][pic['TID']].append(pic)
-    output_pics['info']['sort'][k['TID']]['end'] = getTime()
+    output_pics['info']['sort'][v['TID']]['end'] = getTime()
 
 # output
-
 output_pics['info']['end']= getTime()
 
+## detail
 for v in today:
     for p in today:
         print(p['PID'])
         buildOne(p)
 
+## sort_one
 for v in sort:
     for p in output_pics['archive'][v['TID']]:
         print(p['PID'])
         buildOne(p)
 
+## home page
 with open('pages/home.html','r',encoding='utf-8') as f:
     index_page = Template(f.read())
     f.close()
 
 with open('build/index.html','w',encoding='utf-8') as f:
-    f.write(index_page.render(pics=output_pics))
+    f.write(index_page.render(pics=output_pics,not_updated=GuGuGu_srt))
     f.close()
 
+## json_today
 with open('build/today.json','w',encoding='utf-8') as f:
     f.write(json.dumps(today))
     f.close()
 
+## json_sort
 with open('build/sort.json','w',encoding='utf-8') as f:
     f.write(json.dumps(sort))
     f.close()
 
+## json_sort_map
 with open('build/sort2.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics['sort_map']))
     f.close()
 
+## json_archive
 for v in sort:
     with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
         f.write(json.dumps(output_pics['archive'][v['TID']]))
         f.close()
 
+## json_info
+with open('build/info.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['info']))
+    f.close()
+
+## json_not_updated
+with open('build/not_updated.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['not_updated']))
+    f.close()
+
+## json_all
 with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
     f.close()
