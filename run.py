@@ -46,7 +46,7 @@ output_pics['info'] = {}
 output_pics['info']['start'] = getTime()
 
 # 获取格式化的今日日期(北京时间)
-today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
+date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
 
 # 创建输出目录
 if not os.path.isdir('build'):
@@ -109,7 +109,7 @@ GuGuGu = []
 ## 遍历今日图片
 for v in output_pics['today']:
     ### 判断是否咕咕咕并存储
-    if v['p_date'] == today:
+    if (v['p_date'] == date_today):
         v['if_today'] = True
     else:
         v['if_today'] = False
@@ -118,7 +118,8 @@ for v in output_pics['today']:
 ## 将咕咕咕的分类存入主 Dict
 output_pics['not_updated'] = {'sort':GuGuGu}
 ## 输出可读的咕咕咕情况
-if not (len(GuGuGu) == 0):
+print(GuGuGu)
+if (not (len(GuGuGu) == 0)):
     ### 如果咕咕咕输出咕咕咕的分类
     GuGuGu_srt = ','.join([v['T_NAME'] for v in GuGuGu]) + '没有更新'
 else:
