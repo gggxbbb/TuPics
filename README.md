@@ -1,3 +1,2 @@
 # TuPic
-
-[Pics](https://gggxbbb.github.io/TuPics/all.json)
+一个静态的 [Pics](https://gggxbbb.github.io/TuPics)
