@@ -99,6 +99,9 @@ output_pics['info']['today']['start']= getTime()
 ## 获取今日
 today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
+## 存储备案过的地址
+for v in output_pics['today']:
+    v['main_land_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
 ## 记录结束时间
 output_pics['info']['today']['end']= getTime()
 
@@ -151,8 +154,11 @@ for v in sort:
             output_pics['archive'][pic['TID']].append(pic)
     ### 记录结束时间
     output_pics['info']['sort'][v['TID']]['end'] = getTime()
-
-# 记录结束时间
+## 存储备案过的地址
+for v in sort:
+    for pic in output_pics['archive'][v['TID']]:
+        pic['main_land_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+## 记录结束时间
 output_pics['info']['end']= getTime()
 
 # 输出今日图片的 Detail 页面
