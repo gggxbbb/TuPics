@@ -154,10 +154,12 @@ for v in sort:
             output_pics['archive'][pic['TID']].append(pic)
     ### 记录结束时间
     output_pics['info']['sort'][v['TID']]['end'] = getTime()
+
 ## 存储备案过的地址
 for v in sort:
     for pic in output_pics['archive'][v['TID']]:
-        pic['main_land_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+        pic['main_land_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+
 ## 记录结束时间
 output_pics['info']['end']= getTime()
 
