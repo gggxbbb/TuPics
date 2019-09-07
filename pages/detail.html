@@ -11,9 +11,12 @@
     <h1>{{ pic.p_title|e }}</h1>
     <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">dailypics.cn</a>
     <a href="{{ pic.PID }}.json" target="_blank">JSON</a>
+    <a href="{{ pic.local_url }}?p=0" target="_blank">Pic</a>
+    <a href="{{ pic.main_land_url }}?p=0" target="_blank">Pic (Mainland)</a>
+    <a href="{{ pic.p_link }}" target="_blank">Pic (Original)</a>
     <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }} @ {{ pic.username|e }}</small></p>
     <p>{{ pic.p_content|e|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.local_url }}?p=0" style="max-width: 100%">
+    <img src="{{ pic.mainland_url }}?p=0" style="max-width: 100%">
 </body>
 
 </html>
