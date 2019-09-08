@@ -29,6 +29,7 @@ def download(pic):
     file_path = 'build/%s.jpeg'%pic['PID']
     if os.path.isfile(file_path):
         print('%s.jpeg 已存在'%pic['PID'])
+        return 0
     req = request.Request(pic['local_url']+'?p=0', headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
     data = request.urlopen(req).read()
     with open(file_path,'wb') as f:
@@ -63,6 +64,7 @@ def buildOne(pic):
 
 
 # 获取分类
+print('sorts')
 ## 记录开始时间
 output_pics['info']['sort'] = {'all':{'start':getTime()}}
 ## 获取分类数据
@@ -88,6 +90,7 @@ output_pics['info']['sort']['all']['end']=getTime()
 
 
 # 获取今日
+print('today')
 ## 记录开始时间
 output_pics['info']['today'] = {}
 output_pics['info']['today']['start']= getTime()
@@ -104,6 +107,7 @@ output_pics['info']['today']['end']= getTime()
 
 
 # 是否咕咕咕
+print('GuGuGu')
 ## 初始化 List
 GuGuGu = []
 ## 遍历今日图片
@@ -128,10 +132,11 @@ else:
 output_pics['not_updated']['info'] = GuGuGu_srt
 
 # 单个分类
+print('sort')
 ## 遍历所有分类
 for v in sort:
     ### 打个输出，以免看着心慌
-    print(v)
+    print(v['TID'])
     ### 记录开始时间
     output_pics['info']['sort'][v['TID']]['start'] = getTime()
     ### 获取第一页和总页数
@@ -161,6 +166,8 @@ for v in sort:
 
 ## 记录结束时间
 output_pics['info']['end']= getTime()
+
+print('output')
 
 # 输出今日图片的 Detail 页面
 for p in today:
