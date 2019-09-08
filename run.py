@@ -24,6 +24,17 @@ def getTime():
     beijing_time = datetime.datetime.now(pytz.timezone('PRC'))
     return beijing_time.strftime('%Y-%m-%d %H:%M:%S')
 
+# 下载图片
+def download(pic):
+    file_path = 'build/%s.jpeg'%pic['PID']
+    if os.path.isfile(file_path):
+        print('%s.jpeg 已存在'%pic['PID'])
+    req = request.Request(url, headers=header)
+    data = request.urlopen(req).read()
+    with open(file_path,'wb') as f:
+        f.write(data)
+        f.close()
+
 # 初始化字典
 output_pics={}
 output_pics['info'] = {}
@@ -83,9 +94,11 @@ output_pics['info']['today']['start']= getTime()
 ## 获取今日
 today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
-## 存储备案过的地址
+## 存储备案过的地址并下载图片
 for v in output_pics['today']:
+    print(v)
     v['mainland_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+    download(v)
 ## 记录结束时间
 output_pics['info']['today']['end']= getTime()
 
@@ -139,10 +152,12 @@ for v in sort:
     ### 记录结束时间
     output_pics['info']['sort'][v['TID']]['end'] = getTime()
 
-## 存储备案过的地址
+## 存储备案过的地址并下载图片
 for v in sort:
     for pic in output_pics['archive'][v['TID']]:
+        print(pic)
         pic['mainland_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+        download(pic)
 
 ## 记录结束时间
 output_pics['info']['end']= getTime()
