@@ -96,7 +96,7 @@ today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
 ## 存储备案过的地址并下载图片
 for v in output_pics['today']:
-    print(v)
+    print(v['PID'])
     v['mainland_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
     download(v)
 ## 记录结束时间
@@ -155,7 +155,7 @@ for v in sort:
 ## 存储备案过的地址并下载图片
 for v in sort:
     for pic in output_pics['archive'][v['TID']]:
-        print(pic)
+        print(pic['PID'])
         pic['mainland_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
         download(pic)
 
