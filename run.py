@@ -29,7 +29,7 @@ def download(pic):
     file_path = 'build/%s.jpeg'%pic['PID']
     if os.path.isfile(file_path):
         print('%s.jpeg 已存在'%pic['PID'])
-    req = request.Request(url, headers=header)
+    req = request.Request(pic['local_url'], headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
     data = request.urlopen(req).read()
     with open(file_path,'wb') as f:
         f.write(data)
