@@ -224,3 +224,7 @@ with open('build/not_updated.json','w',encoding='utf-8') as f:
 with open('build/all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics))
     f.close()
+## 输出主 CNAME
+with open('build/CNAME','w',encoding='utf-8') as f:
+    f.write('tu.gggxbbb.tk')
+    f.close()
