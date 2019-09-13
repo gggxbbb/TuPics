@@ -55,8 +55,8 @@ def getAsp(height,width):
     while True:
         print('%s:%s'%(i_height,i_width))
         if (i_height == 1 or i_width == 1):
-            print('%s:%s'%(i_height,i_width))
-            return '%s:%s'%(i_height,i_width)
+            print('%s:%s'%(i_width,i_height))
+            return '%s:%s'%(i_width,i_height)
         if (i_height % 2 == i_width % 2):
             i_height = i_height / 2
             i_width = i_width / 2
@@ -67,8 +67,8 @@ def getAsp(height,width):
             i_height = i_height / 5
             i_width = i_width / 5
         else:
-            print('%s:%s'%(i_height,i_width))
-            return '%s:%s'%(i_height,i_width)
+            print('%s:%s'%(i_width,i_height))
+            return '%s:%s'%(i_width,i_height)
         i_height = int(i_height)
         i_width = int(i_width)
 
