@@ -1,17 +1,26 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import os
+import datetime
 import json
-import pytz  
-import datetime  
-import time
+import os
+import platform
 import random
+import time
 from urllib import request
+
+import pytz
 from jinja2 import Template
 
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
 ]
+
+# 判断是否为 Windows
+def ifWindows():
+    if(platform.system() == 'Windows'):
+        return True
+    else:
+        return False
 
 # 获取 JOSN 数据
 def getJson(url):
@@ -27,6 +36,9 @@ def getTime():
 # 下载图片
 def download(pic):
     file_path = 'build/%s.jpeg'%pic['PID']
+    if ifWindows():
+        print('%s.jpeg passing'%pic['PID'])
+        return 0
     if os.path.isfile(file_path):
         print('%s.jpeg 已存在'%pic['PID'])
         return 0
@@ -35,6 +47,30 @@ def download(pic):
     with open(file_path,'wb') as f:
         f.write(data)
         f.close()
+
+# 计算长宽比
+def getAsp(height,width):
+    i_height = int(height)
+    i_width = int(width)
+    while True:
+        print('%s:%s'%(i_height,i_width))
+        if (i_height == 1 or i_width == 1):
+            print('%s:%s'%(i_height,i_width))
+            return '%s:%s'%(i_height,i_width)
+        if (i_height % 2 == i_width % 2):
+            i_height = i_height / 2
+            i_width = i_width / 2
+        elif (i_height % 3 == i_width % 3):
+            i_height = i_height / 3
+            i_width = i_width / 3
+        elif (i_height % 5 == i_width % 5):
+            i_height = i_height / 5
+            i_width = i_width / 5
+        else:
+            print('%s:%s'%(i_height,i_width))
+            return '%s:%s'%(i_height,i_width)
+        i_height = int(i_height)
+        i_width = int(i_width)
 
 # 初始化字典
 output_pics={}
@@ -97,10 +133,11 @@ output_pics['info']['today']['start']= getTime()
 ## 获取今日
 today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
-## 存储备案过的地址并下载图片
+## 处理今日
 for v in output_pics['today']:
     print(v['PID'])
     v['mainland_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+    v['aspect_ratio'] = getAsp(v['height'],v['width'])
     download(v)
 ## 记录结束时间
 output_pics['info']['today']['end']= getTime()
@@ -157,11 +194,12 @@ for v in sort:
     ### 记录结束时间
     output_pics['info']['sort'][v['TID']]['end'] = getTime()
 
-## 存储备案过的地址并下载图片
+## 处理归档
 for v in sort:
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
         pic['mainland_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
+        pic['aspect_ratio'] = getAsp(pic['height'],pic['width'])
         download(pic)
 
 ## 记录结束时间
