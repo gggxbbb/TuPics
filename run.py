@@ -53,7 +53,7 @@ def getAsp(height,width):
     i_height = int(height)
     i_width = int(width)
     while True:
-        print('%s:%s'%(i_height,i_width))
+        #print('%s:%s'%(i_height,i_width))
         if (i_height == 1 or i_width == 1):
             print('%s:%s'%(i_width,i_height))
             return '%s:%s'%(i_width,i_height)
@@ -67,15 +67,31 @@ def getAsp(height,width):
             i_height = i_height / 5
             i_width = i_width / 5
         else:
-            print('%s:%s'%(i_width,i_height))
+            #print('%s:%s'%(i_width,i_height))
             return '%s:%s'%(i_width,i_height)
         i_height = int(i_height)
         i_width = int(i_width)
+
+def putUser(pic):
+    if not (pic['username'] in output_pics['username']):
+        output_pics['username'].append(pic['username'])
+        output_pics['users'][pic['username']] = []
+    if not pic in output_pics['users'][pic['username']]:
+        output_pics['users'][pic['username']].append(pic)
+
+def putAsp(pic):
+    if not (pic['aspect_ratio'] in output_pics['aspect_ratio']):
+        output_pics['aspect_ratio'][pic['aspect_ratio']] = []
+    if not pic in output_pics['aspect_ratio'][pic['aspect_ratio']]:
+        output_pics['aspect_ratio'][pic['aspect_ratio']].append(pic)
 
 # 初始化字典
 output_pics={}
 output_pics['info'] = {}
 output_pics['info']['start'] = getTime()
+output_pics['username'] = []
+output_pics['users'] = {}
+output_pics['aspect_ratio'] = {}
 
 # 获取格式化的今日日期(北京时间)
 date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
@@ -138,6 +154,8 @@ for v in output_pics['today']:
     print(v['PID'])
     v['mainland_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
     v['aspect_ratio'] = getAsp(v['height'],v['width'])
+    putAsp(v)
+    putUser(v)
     download(v)
 ## 记录结束时间
 output_pics['info']['today']['end']= getTime()
@@ -200,6 +218,8 @@ for v in sort:
         print(pic['PID'])
         pic['mainland_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
         pic['aspect_ratio'] = getAsp(pic['height'],pic['width'])
+        putUser(pic)
+        putAsp(pic)
         download(pic)
 
 ## 记录结束时间
@@ -243,8 +263,29 @@ with open('build/sort.json','w',encoding='utf-8') as f:
 with open('build/sort2.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics['sort_map']))
     f.close()
+## 输出 Users
+with open('build/username.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['username']))
+    f.close()
+with open('build/user-all.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['users']))
+    f.close()
+for v in output_pics['username']:
+    with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
+        f.write(json.dumps(output_pics['users'][v]))
+        f.close()
+## 输出 纵横比
+with open('build/asp-all.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['aspect_ratio']))
+    f.close()
+for v in output_pics['aspect_ratio'].keys():
+    with open(('build/asp-%s.json'%v).replace(':','-'),'w',encoding='utf-8') as f:
+        f.write(json.dumps(output_pics['aspect_ratio'][v]))
+        f.close()
 ## 输出各分类归档
-### 遍历分类
+with open('build/sort-all.json','w',encoding='utf-8') as f:
+        f.write(json.dumps(output_pics['archive']))
+        f.close()
 for v in sort:
     #### 输出归档
     with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
