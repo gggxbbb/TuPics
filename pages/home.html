@@ -56,7 +56,7 @@
     <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
         {% for k in pics['aspect_ratio'].keys() %}
-        <li><a href="asp-{{ k|replace('：','-') }}.json" target="_blank" id='asp-{{ k }}'>Aspect ratio: {{k}}</a></li>
+        <li><a href="asp-{{ k|replace(':','-') }}.json" target="_blank" id='asp-{{ k }}'>Aspect ratio: {{k}}</a></li>
         {% endfor %}
     </ul>
     <h2 id='history'>历史图片:</h2>
