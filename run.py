@@ -52,11 +52,13 @@ def download(pic):
 def getAsp(height,width):
     i_height = int(height)
     i_width = int(width)
+    if (i_height == 1 or i_width == 1):
+         #print('%s:%s'%(i_width,i_height))
+         return '%s:%s'%(i_width,i_height)
+    if (i_height == i_width):
+         return '1:1'
     while True:
         #print('%s:%s'%(i_height,i_width))
-        if (i_height == 1 or i_width == 1):
-            print('%s:%s'%(i_width,i_height))
-            return '%s:%s'%(i_width,i_height)
         if (i_height % 2 == 0 and i_width % 2 == 0):
             i_height = i_height / 2
             i_width = i_width / 2
