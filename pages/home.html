@@ -40,7 +40,7 @@
     <a href="sort2.json" target="_blank">Sort (Object)</a>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}}</a></li>
+        <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='username'>Username</h3>
@@ -48,15 +48,15 @@
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
         {% for user in pics.username %}
-        <li><a href="user-{{ user }}.json" target="_blank" id='user-{{ user }}'>User: {{user}}</a></li>
+        <li><a href="user-{{ user }}.json" target="_blank" id='user-{{ user }}'>User: {{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='aspect_ratio'>Aspect ratio</h3>
     <a href="asp.json" target="_blank">Aspect ratio (Array)</a>    
     <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
-        {% for k in pics['aspect_ratio'].keys() %}
-        <li><a href="asp-{{ k|replace(':','-') }}.json" target="_blank" id='asp-{{ k }}'>Aspect ratio: {{k}}</a></li>
+        {% for asp in pics.asp %}
+        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank" id='asp-{{ k }}'>Aspect ratio: {{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='history'>历史图片:</h2>

@@ -6,6 +6,7 @@ import os
 import platform
 import random
 import time
+from fractions import Fraction
 from urllib import request
 
 import pytz
@@ -50,29 +51,8 @@ def download(pic):
 
 # 计算长宽比
 def getAsp(height,width):
-    i_height = int(height)
-    i_width = int(width)
-    if (i_height == 1 or i_width == 1):
-         #print('%s:%s'%(i_width,i_height))
-         return '%s:%s'%(i_width,i_height)
-    if (i_height == i_width):
-         return '1:1'
-    while True:
-        #print('%s:%s'%(i_height,i_width))
-        if (i_height % 2 == 0 and i_width % 2 == 0):
-            i_height = i_height / 2
-            i_width = i_width / 2
-        elif (i_height % 3 == 0 and i_width % 3 == 0):
-            i_height = i_height / 3
-            i_width = i_width / 3
-        elif (i_height % 5 == 0 and i_width % 5 == 0):
-            i_height = i_height / 5
-            i_width = i_width / 5
-        else:
-            #print('%s:%s'%(i_width,i_height))
-            return '%s:%s'%(i_width,i_height)
-        i_height = int(i_height)
-        i_width = int(i_width)
+    f = Fraction(width,height)
+    return '%s:%s'%(f.numerator,f.denominator)
 
 def putUser(pic):
     if not (pic['username'] in output_pics['username']):
