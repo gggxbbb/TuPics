@@ -19,7 +19,7 @@
         <a href="{{ pic.mainland_url }}?p=0" target="_blank">Pic (Mainland)</a>
         <a href="{{ pic.p_link }}" target="_blank">Pic (Original)</a>
     </p>
-    <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }} @ {{ pic.username|e }}</small></p>
+    <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }}({{ pic.aspect_ratio }}) @ {{ pic.username|e }}</small></p>
     <p>{{ pic.p_content|e|replace('\n','<br/>') }}</p>
     <img src="{{ pic.PID }}.jpeg" style="max-width: 100%">
 </body>
