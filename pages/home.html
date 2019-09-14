@@ -44,7 +44,7 @@
         {% endfor %}
     </ul>
     <h3 id='username'>Username</h3>
-    <a href="username.json" target="_blank">Username (Name only)</a>
+    <a href="username.json" target="_blank">Username (Array)</a>
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
         {% for user in pics.username %}
@@ -52,6 +52,8 @@
         {% endfor %}
     </ul>
     <h3 id='aspect_ratio'>Aspect ratio</h3>
+    <a href="asp.json" target="_blank">Aspect ratio (Array)</a>    
+    <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
         {% for k in pics['aspect_ratio'].keys() %}
         <li><a href="asp-{{ k|replace('：','-') }}.json" target="_blank" id='asp-{{ k }}'>Aspect ratio: {{k}}</a></li>

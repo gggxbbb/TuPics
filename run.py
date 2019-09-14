@@ -81,6 +81,7 @@ def putUser(pic):
 
 def putAsp(pic):
     if not (pic['aspect_ratio'] in output_pics['aspect_ratio']):
+        output_pics['asp'].append(pic['aspect_ratio'])
         output_pics['aspect_ratio'][pic['aspect_ratio']] = []
     if not pic in output_pics['aspect_ratio'][pic['aspect_ratio']]:
         output_pics['aspect_ratio'][pic['aspect_ratio']].append(pic)
@@ -91,6 +92,7 @@ output_pics['info'] = {}
 output_pics['info']['start'] = getTime()
 output_pics['username'] = []
 output_pics['users'] = {}
+output_pics['asp'] = []
 output_pics['aspect_ratio'] = {}
 
 # 获取格式化的今日日期(北京时间)
@@ -275,6 +277,9 @@ for v in output_pics['username']:
         f.write(json.dumps(output_pics['users'][v]))
         f.close()
 ## 输出 纵横比
+with open('build/asp.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['asp']))
+    f.close()
 with open('build/asp-all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics['aspect_ratio']))
     f.close()
