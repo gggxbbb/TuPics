@@ -57,13 +57,13 @@ def getAsp(height,width):
         if (i_height == 1 or i_width == 1):
             print('%s:%s'%(i_width,i_height))
             return '%s:%s'%(i_width,i_height)
-        if (i_height % 2 == i_width % 2):
+        if (i_height % 2 == 0 and i_width % 2 == 0):
             i_height = i_height / 2
             i_width = i_width / 2
-        elif (i_height % 3 == i_width % 3):
+        elif (i_height % 3 == 0 and i_width % 3 == 0):
             i_height = i_height / 3
             i_width = i_width / 3
-        elif (i_height % 5 == i_width % 5):
+        elif (i_height % 5 == 0 and i_width % 5 == 0):
             i_height = i_height / 5
             i_width = i_width / 5
         else:
