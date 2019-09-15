@@ -35,7 +35,7 @@
         <li><a href="not_updated.json" target="_blank">Not Updated</a></li>
         <li><a href="today.json" target="_blank">Today</a></li>
     </ul>
-    <h3 id='sort'>Sort</h3>
+    <h3 id='sort'>Sort ({{pic.sort|length}})</h3>
     <a href="sort.json" target="_blank">Sort (Array)</a>
     <a href="sort2.json" target="_blank">Sort (Object)</a>
     <ul>
@@ -43,7 +43,7 @@
         <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h3 id='username'>Username</h3>
+    <h3 id='username'>Username ({{pic.username|length}})</h3>
     <a href="username.json" target="_blank">Username (Array)</a>
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
@@ -51,7 +51,7 @@
         <li><a href="user-{{ user }}.json" target="_blank" id='user-{{ user }}'>User: {{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h3 id='aspect_ratio'>Aspect ratio</h3>
+    <h3 id='aspect_ratio'>Aspect ratio ({{pic.asp|length}})</h3>
     <a href="asp.json" target="_blank">Aspect ratio (Array)</a>    
     <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
