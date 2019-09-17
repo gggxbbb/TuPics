@@ -21,7 +21,7 @@
     </p>
     <p><small>{{ pic.p_date }} {{ sort.T_NAME }} {{ pic.width }}*{{ pic.height }}({{ pic.aspect_ratio }}) @ {{ pic.username|e }}</small></p>
     <p>{{ pic.p_content|e|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.PID }}.jpeg" style="max-width: 100%">
+    <img src="{{ pic.file_name }}" style="max-width: 100%">
 </body>
 
 </html>
