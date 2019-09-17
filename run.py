@@ -38,10 +38,10 @@ def getTime():
 def download(pic):
     file_path = 'build/%s'%pic['file_name']
     if ifWindows():
-        print('%s passing'%pic['PID'])
+        print('%s passing'%file_path)
         return 0
     if os.path.isfile(file_path):
-        print('%s 已存在'%pic['PID'])
+        print('%s 已存在'%file_path)
         return 0
     req = request.Request(pic['local_url']+'?p=0', headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
     data = request.urlopen(req).read()
@@ -138,7 +138,7 @@ for v in output_pics['today']:
     print(v['PID'])
     v['mainland_url'] = v['local_url'].replace('img.dpic.dev','images.dailypics.cn')
     v['aspect_ratio'] = getAsp(v['height'],v['width'])
-    v['info'] = getJson(v['local_url'].replace('dev/','dev/list?md5='))['info']
+    v['info'] = getJson(v['local_url'].replace('dev/','dev/info?md5='))['info']
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     putAsp(v)
     putUser(v)
@@ -204,7 +204,7 @@ for v in sort:
         print(pic['PID'])
         pic['mainland_url'] = pic['local_url'].replace('img.dpic.dev','images.dailypics.cn')
         pic['aspect_ratio'] = getAsp(pic['height'],pic['width'])
-        pic['info'] = getJson(pic['local_url'].replace('dev/','dev/list?md5='))['info']
+        pic['info'] = getJson(pic['local_url'].replace('dev/','dev/info?md5='))['info']
         pic['file_name'] = pic['PID'] + '.' + pic['info']['format'].lower()
         putUser(pic)
         putAsp(pic)
