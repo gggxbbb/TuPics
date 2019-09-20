@@ -27,7 +27,7 @@
         <br/>
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
     </p>
-    <p>{{ pic.p_content|e|replace('\n','<br/>') }}</p>
+    <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
     <img src="{{ pic.file_name }}" style="max-width: 100%">
 </body>
 
