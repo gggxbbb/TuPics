@@ -49,7 +49,7 @@
     <h2 id='sort'>分类 ({{pics.sort|length}})</h2>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='username'>用户 ({{pics.username|length}})</h2>
