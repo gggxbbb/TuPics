@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+    <h1>{{ title }}</h1>
+    {% for pic in pics %}
+<div>
+    <h2>{{ pic.p_title|e }}</h2>
+    <p>
+        <a href="{{ pic.PID }}.html" target="_blank">Detail</a>
+        <small>{{ pic.p_date }} {{ sort.T_NAME }} @{{ pic.username|e }}</small>
+    </p>
+    <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
+    <img src="{{ pic.file_name }}" style="max-width: 100%">
+<hr/>
+</div>
+    {% endfor %}
+</body>
+
+</html>
