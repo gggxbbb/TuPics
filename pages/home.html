@@ -49,19 +49,19 @@
     <h2 id='sort'>分类 ({{pics.sort|length}})</h2>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='username'>用户 ({{pics.username|length}})</h2>
     <ul>
         {% for user in pics.username %}
-        <li><a href="user-{{ user }}.html" target="_blank" id='user-{{ user }}'>User: {{user}} ({{ pics.users[user]|length }})</a></li>
+        <li><a href="user-{{ user }}.html" target="_blank" id='user-{{ user }}'>{{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='asp'>长宽比 ({{pics.asp|length}})</h2>
     <ul>
         {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank" id='asp-{{ asp }}'>Aspect ratio: {{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank" id='asp-{{ asp }}'>{{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='json'>JSON</h2>
@@ -80,6 +80,7 @@
         {% endfor %}
     </ul>
     <h3 id='json-username'>Username ({{pics.username|length}})</h3>
+
     <a href="username.json" target="_blank">Username (Array)</a>
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
