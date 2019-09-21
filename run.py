@@ -102,7 +102,7 @@ def buildOne(pic):
         f.close()
 def buildArchive(pics,title,name):
     with open('build/%s.html'%name,'w',encoding='utf-8') as f:
-        f.write(datail_page.render(pic=pics,sort=output_pics['sort_map'],title=title))
+        f.write(archive_page.render(pic=pics,sort=output_pics['sort_map'],title=title))
         f.close()
 
 
