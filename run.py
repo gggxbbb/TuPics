@@ -88,6 +88,9 @@ if not os.path.isdir('build'):
 with open('pages/detail.html','r',encoding='utf-8') as f:
     datail_page = Template(f.read())
     f.close()
+with open('pages/archive.html','r',encoding='utf-8') as f:
+    archive_page = Template(f.read())
+    f.close()
 
 # 用于构建单张图片的 Detail 页面
 def buildOne(pic):
@@ -97,6 +100,11 @@ def buildOne(pic):
     with open('build/%s.json'%pic['PID'],'w',encoding='utf-8') as f:
         f.write(json.dumps(pic))
         f.close()
+def buildArchive(pics,title,name):
+    with open('build/%s.html'%name,'w',encoding='utf-8') as f:
+        f.write(datail_page.render(pic=pics,sort=output_pics['sort_map'][pic['TID']],title=title))
+        f.close()
+
 
 
 # 获取分类
@@ -260,6 +268,7 @@ with open('build/user-all.json','w',encoding='utf-8') as f:
     f.close()
 for v in output_pics['username']:
     with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
+        buildArchive(output_pics['users'][v],v,'user-' + v)
         f.write(json.dumps(output_pics['users'][v]))
         f.close()
 ## 输出 纵横比
@@ -271,6 +280,7 @@ with open('build/asp-all.json','w',encoding='utf-8') as f:
     f.close()
 for v in output_pics['aspect_ratio'].keys():
     with open(('build/asp-%s.json'%v).replace(':','-'),'w',encoding='utf-8') as f:
+        buildArchive(output_pics['aspect_ratio'][v],v,('user-' + v).replace(':','-'))
         f.write(json.dumps(output_pics['aspect_ratio'][v]))
         f.close()
 ## 输出各分类归档
@@ -280,6 +290,7 @@ with open('build/sort-all.json','w',encoding='utf-8') as f:
 for v in sort:
     #### 输出归档
     with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
+        buildArchive(output_pics['archive'][v['TID']],v['T_NAME'],'sort-' + v)
         f.write(json.dumps(output_pics['archive'][v['TID']]))
         f.close()
 ## 输出时间
