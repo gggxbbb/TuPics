@@ -280,7 +280,7 @@ with open('build/asp-all.json','w',encoding='utf-8') as f:
     f.close()
 for v in output_pics['aspect_ratio'].keys():
     with open(('build/asp-%s.json'%v).replace(':','-'),'w',encoding='utf-8') as f:
-        buildArchive(output_pics['aspect_ratio'][v],v,('user-' + v).replace(':','-'))
+        buildArchive(output_pics['aspect_ratio'][v],v,('asp-' + v).replace(':','-'))
         f.write(json.dumps(output_pics['aspect_ratio'][v]))
         f.close()
 ## 输出各分类归档
@@ -290,7 +290,7 @@ with open('build/sort-all.json','w',encoding='utf-8') as f:
 for v in sort:
     #### 输出归档
     with open('build/sort-%s.json'%v['TID'],'w',encoding='utf-8') as f:
-        buildArchive(output_pics['archive'][v['TID']],v['T_NAME'],'sort-' + v)
+        buildArchive(output_pics['archive'][v['TID']],v['T_NAME'],'sort-' + v['TID'])
         f.write(json.dumps(output_pics['archive'][v['TID']]))
         f.close()
 ## 输出时间
