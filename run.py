@@ -58,14 +58,14 @@ def putUser(pic):
     if not (pic['username'] in output_pics['username']):
         output_pics['username'].append(pic['username'])
         output_pics['users'][pic['username']] = []
-    if not pic in output_pics['users'][pic['username']]:
+    if not pic['PID'] in [ v['PID'] for v in output_pics['users'][pic['username']] ]:
         output_pics['users'][pic['username']].append(pic)
 
 def putAsp(pic):
     if not (pic['aspect_ratio'] in output_pics['aspect_ratio']):
         output_pics['asp'].append(pic['aspect_ratio'])
         output_pics['aspect_ratio'][pic['aspect_ratio']] = []
-    if not pic in output_pics['aspect_ratio'][pic['aspect_ratio']]:
+    if not pic['PID'] in [ v['PID'] for v in output_pics['aspect_ratio'][pic['aspect_ratio']] ]:
         output_pics['aspect_ratio'][pic['aspect_ratio']].append(pic)
 
 # 初始化字典
