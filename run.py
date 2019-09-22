@@ -292,7 +292,7 @@ with open('build/date-all.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics['date']))
     f.close()
 for v in output_pics['date'].keys():
-    with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
+    with open('build/date-%s.json'%v,'w',encoding='utf-8') as f:
         buildArchive(output_pics['date'][v],v,'date-' + v)
         f.write(json.dumps(output_pics['date'][v]))
         f.close()
