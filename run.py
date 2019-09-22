@@ -249,11 +249,12 @@ with open('build/index.html','w',encoding='utf-8') as f:
 # 输出 JSON
 ## 输出今日图片
 with open('build/today.json','w',encoding='utf-8') as f:
-    f.write(json.dumps(today))
+    buildArchive(output_pics['today'],'今日','today')
+    f.write(json.dumps(output_pics['today']))
     f.close()
 ## 输出分类
 with open('build/sort.json','w',encoding='utf-8') as f:
-    f.write(json.dumps(sort))
+    f.write(json.dumps(output_pics['sort']))
     f.close()
 ## 输出转换后的分类
 with open('build/sort2.json','w',encoding='utf-8') as f:
