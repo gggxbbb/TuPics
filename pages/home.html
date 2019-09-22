@@ -23,7 +23,7 @@
         {% endfor %}
     </ul>
     <h2 id='today'>今日图片</h2>
-    <p>{{ not_updated }}<a href="today.html" target="_blank">今日图片</a></p>
+    <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
     <ul>
         {% for pic in pics.today %}
         <li>
