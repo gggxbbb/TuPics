@@ -5,9 +5,17 @@
     <title>{{ pic.p_title }}</title>
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+    * {
+       max-width: 1280px;
+       margin-right:auto;
+       margin-left:auto;
+       width:100%
+      }
+    </style>
 </head>
 
-<body style="max-width: 1280px">
+<body>
     <h1>{{ pic.p_title|e }}</h1>
     <p>
         <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">dailypics.cn</a>
