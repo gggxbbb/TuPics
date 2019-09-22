@@ -7,10 +7,10 @@
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
-<body>
+<body style="max-width: 1280px">
     <h1>{{ title }}</h1>
     {% for pic in pics %}
-<div>
+    <div>
     <h2>{{ pic.p_title|e }}</h2>
     <p>
         <a href="{{ pic.PID }}.html" target="_blank">Detail</a>
@@ -18,8 +18,8 @@
     </p>
     <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
     <img src="{{ pic.file_name }}" style="max-width: 100%">
-<hr/>
-</div>
+    <hr/>
+    </div>
     {% endfor %}
 </body>
 
