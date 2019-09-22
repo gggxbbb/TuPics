@@ -289,7 +289,7 @@ with open('build/date.json','w',encoding='utf-8') as f:
     f.write(json.dumps(output_pics['dates']))
     f.close()
 with open('build/date-all.json','w',encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['date]))
+    f.write(json.dumps(output_pics['date']))
     f.close()
 for v in output_pics['date'].keys():
     with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
