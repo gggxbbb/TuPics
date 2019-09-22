@@ -7,7 +7,7 @@
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
-<body>
+<body style="max-width: 1280px">
     <h1>Tujian</h1>
     <p><small>
         <a href="https://www.dailypics.cn/" target="_blank">官方站点</a>
@@ -23,7 +23,7 @@
         {% endfor %}
     </ul>
     <h2 id='today'>今日图片</h2>
-    <p>{{ not_updated }}</p>
+    <p>{{ not_updated }}<a href="today.html" target="_blank">今日图片</a></p>
     <ul>
         {% for pic in pics.today %}
         <li>
