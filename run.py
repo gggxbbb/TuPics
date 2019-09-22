@@ -70,8 +70,8 @@ def putAsp(pic):
 
 def putDate(pic):
     if not (pic['p_date'] in output_pics['dates']):
-        output_pics['dates'].append(pic['date'])
-        output_pics['date'][pic['date']] = []
+        output_pics['dates'].append(pic['p_date'])
+        output_pics['date'][pic['p_date']] = []
     if not pic['PID'] in [ v['PID'] for v in output_pics['date'][pic['p_date']] ]:
         output_pics['date'][pic['p_date']].append(pic)
 
