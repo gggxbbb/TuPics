@@ -68,6 +68,14 @@ def putAsp(pic):
     if not pic['PID'] in [ v['PID'] for v in output_pics['aspect_ratio'][pic['aspect_ratio']] ]:
         output_pics['aspect_ratio'][pic['aspect_ratio']].append(pic)
 
+def putDate(pic):
+    if not (pic['p_date'] in output_pics['dates']):
+        output_pics['dates'].append(pic['date'])
+        output_pics['date'][pic['date']] = []
+    if not pic['PID'] in [ v['PID'] for v in output_pics['date'][pic['p_date']] ]:
+        output_pics['date'][pic['p_date']].append(pic)
+
+
 # 初始化字典
 output_pics={}
 output_pics['info'] = {}
@@ -76,6 +84,8 @@ output_pics['username'] = []
 output_pics['users'] = {}
 output_pics['asp'] = []
 output_pics['aspect_ratio'] = {}
+output_pics['date'] = {}
+output_pics['dates'] = []
 
 # 获取格式化的今日日期(北京时间)
 date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
@@ -150,6 +160,7 @@ for v in output_pics['today']:
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     putAsp(v)
     putUser(v)
+    putDate(v)
     download(v)
 ## 记录结束时间
 output_pics['info']['today']['end']= getTime()
@@ -216,6 +227,7 @@ for v in sort:
         pic['file_name'] = pic['PID'] + '.' + pic['info']['format'].lower()
         putUser(pic)
         putAsp(pic)
+        putDate(pic)
         download(pic)
 
 ## 记录结束时间
@@ -271,6 +283,18 @@ for v in output_pics['username']:
     with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
         buildArchive(output_pics['users'][v],v,'user-' + v)
         f.write(json.dumps(output_pics['users'][v]))
+        f.close()
+
+with open('build/date.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['dates']))
+    f.close()
+with open('build/date-all.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['date]))
+    f.close()
+for v in output_pics['date'].keys():
+    with open('build/user-%s.json'%v,'w',encoding='utf-8') as f:
+        buildArchive(output_pics['date'][v],v,'date-' + v)
+        f.write(json.dumps(output_pics['date'][v]))
         f.close()
 ## 输出 纵横比
 with open('build/asp.json','w',encoding='utf-8') as f:
