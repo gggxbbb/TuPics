@@ -61,7 +61,7 @@
     </ul>
     <h2 id='date'>日期 ({{pics.dates|length}})</h2>
     <ul>
-        {% for date in pics.dstes %}
+        {% for date in pics.dates %}
         <li><a href="date-{{ date }}.html" target="_blank" id='date-{{ date }}'>{{date}} ({{ pics.date[date]|length }})</a></li>
         {% endfor %}
     </ul>
