@@ -59,6 +59,12 @@
         <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
+    <h2 id='date'>日期 ({{pics.dates|length}})</h2>
+    <ul>
+        {% for date in pics.dstes %}
+        <li><a href="date-{{ date }}.html" target="_blank" id='date-{{ date }}'>{{date}} ({{ pics.date[date]|length }})</a></li>
+        {% endfor %}
+    </ul>
     <h2 id='username'>用户 ({{pics.username|length}})</h2>
     <ul>
         {% for user in pics.username %}
@@ -86,8 +92,15 @@
         <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='json-sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
+    <h3 id='json-date'>Date ({{pics.dates|length}})</h3>
+    <a href="date.json" target="_blank">Sort (Array)</a>
+    <a href="date-all.json" target="_blank">Sort (Object)</a>
+    <ul>
+        {% for date in pics.dates %}
+        <li><a href="date-{{ date }}.json" target="_blank" id='json-date-{{ date }}'>Date: {{date}} ({{ pics.date[date]|length }})</a></li>
+        {% endfor %}
+    </ul>
     <h3 id='json-username'>Username ({{pics.username|length}})</h3>
-
     <a href="username.json" target="_blank">Username (Array)</a>
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
