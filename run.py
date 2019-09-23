@@ -37,17 +37,28 @@ def getTime():
 # 下载图片
 def download(pic):
     file_path = 'build/%s'%pic['file_name']
+    file_lite = 'build/%s-lite.jpg'%pic['PID']
     if ifWindows():
         print('%s passing'%file_path)
         return 0
     if os.path.isfile(file_path):
         print('%s 已存在'%file_path)
-        return 0
-    req = request.Request(pic['local_url']+'?p=0', headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
-    data = request.urlopen(req).read()
-    with open(file_path,'wb') as f:
-        f.write(data)
-        f.close()
+    else:
+        print('download')
+        req = request.Request(pic['local_url']+'?p=0', headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
+        data = request.urlopen(req).read()
+        with open(file_path,'wb') as f:
+            f.write(data)
+            f.close()
+    if os.path.isfile(file_lite):
+        print('%s 已存在'%file_lite)
+    else:
+        req2 = request.Request(pic['local_url']+'?f=jpg', headers={'User-Agent':ua[random.randint(0,len(ua)-1)]})
+        data2 = request.urlopen(req2).read()
+        print('-lite')
+        with open(file_lite,'wb') as f:
+            f.write(data2)
+            f.close()
 
 # 计算长宽比
 def getAsp(height,width):
