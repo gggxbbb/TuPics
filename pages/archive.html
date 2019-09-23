@@ -17,6 +17,8 @@
 
 <body>
     <h1>{{ title }}</h1>
+    <p>此处所示图片均已压缩</p>
+    <hr/>
     {% for pic in pics %}
     <div>
     <h2>{{ pic.p_title|e }}</h2>
@@ -25,7 +27,7 @@
         <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
     </p>
     <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.file_name }}" style="max-width: 100%">
+    <img src="{{ pic.PID }}-lite.jpg" style="max-width: 100%">
     <hr/>
     </div>
     {% endfor %}
