@@ -133,7 +133,7 @@ print('sorts')
 ## 记录开始时间
 output_pics['info']['sort'] = {'all':{'start':getTime()}}
 ## 获取分类数据
-sort = getJson('https://v2.api.dailypics.cn/sort')['result']
+sort = getJson('https://api.dpic.dev/sort')['result']
 ## 将分类数据存入字典
 output_pics['sort'] = sort
 ## 初始化存储
@@ -160,7 +160,7 @@ print('today')
 output_pics['info']['today'] = {}
 output_pics['info']['today']['start']= getTime()
 ## 获取今日
-today = getJson('https://v2.api.dailypics.cn/today')
+today = getJson('https://api.dpic.dev/today')
 output_pics['today'] = today
 ## 处理今日
 for v in output_pics['today']:
@@ -211,7 +211,7 @@ for v in sort:
     ### 记录开始时间
     output_pics['info']['sort'][v['TID']]['start'] = getTime()
     ### 获取第一页和总页数
-    first_page = getJson('https://v2.api.dailypics.cn/list/?page=1&size=15&sort=%s' % v['TID'])
+    first_page = getJson('https://api.dpic.dev/list/?page=1&size=15&sort=%s' % v['TID'])
     max_page = first_page['maxpage']
     ### 打个输出，以免看着心慌
     print(max_page)
@@ -221,7 +221,7 @@ for v in sort:
     ### 循环获取之后的个页
     for p in range(1, int(max_page)):
         page = p+1
-        this_page = getJson('https://v2.api.dailypics.cn/list/?page=%s&size=15&sort=%s' % (page, v['TID']))['result']
+        this_page = getJson('https://api.dpic.dev/list/?page=%s&size=15&sort=%s' % (page, v['TID']))['result']
         print(page)
         for pic in this_page:
             output_pics['archive'][pic['TID']].append(pic)
