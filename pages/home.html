@@ -40,9 +40,9 @@
         </li>
         {% endfor %}
     </ul>
-    <h2 id='history'>历史图片:</h2>
+    <h2 id="history">历史图片</h2>
     {% for sort in pics.sort %}
-    <h3 id='s-{{ sort.TID }}'>{{sort.T_NAME}}</h3>
+    <h3 id='history-{{ sort.TID }}'>{{sort.T_NAME}}</h3>
     <ul>
         {% for pic in pics.archive[sort.TID] %}
         <li>
@@ -53,25 +53,26 @@
         {% endfor %}
     </ul>
     {% endfor %}
-    <h2 id='sort'>分类 ({{pics.sort|length}})</h2>
+    <h2 id="archive">归档(含今日)</h2>
+    <h3 id='sort'>分类 ({{pics.sort|length}})</h3>
     <ul>
         {% for sort in pics.sort %}
         <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h2 id='date'>日期 ({{pics.dates|length}})</h2>
+    <h3 id='date'>日期 ({{pics.dates|length}})</h3>
     <ul>
         {% for date in pics.dates %}
         <li><a href="date-{{ date }}.html" target="_blank" id='date-{{ date }}'>{{date}} ({{ pics.date[date]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h2 id='username'>用户 ({{pics.username|length}})</h2>
+    <h3 id='username'>用户 ({{pics.username|length}})</h3>
     <ul>
         {% for user in pics.username %}
         <li><a href="user-{{ user }}.html" target="_blank" id='user-{{ user }}'>{{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h2 id='asp'>长宽比 ({{pics.asp|length}})</h2>
+    <h3 id='asp'>长宽比 ({{pics.asp|length}})</h3>
     <ul>
         {% for asp in pics.asp %}
         <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank" id='asp-{{ asp }}'>{{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
@@ -93,8 +94,8 @@
         {% endfor %}
     </ul>
     <h3 id='json-date'>Date ({{pics.dates|length}})</h3>
-    <a href="date.json" target="_blank">Sort (Array)</a>
-    <a href="date-all.json" target="_blank">Sort (Object)</a>
+    <a href="date.json" target="_blank">Date (Array)</a>
+    <a href="date-all.json" target="_blank">Date (Object)</a>
     <ul>
         {% for date in pics.dates %}
         <li><a href="date-{{ date }}.json" target="_blank" id='json-date-{{ date }}'>Date: {{date}} ({{ pics.date[date]|length }})</a></li>
