@@ -23,12 +23,6 @@
         <a href="https://www.dailypics.cn/doc/2" target="_blank">官方:隐私政策</a>
     </small>
     <p>数据更新时间: {{ pics.info.end }}</p>
-    <h2 id='count'>图片归档(不含今日)</h2>
-    <ul>
-        {% for sort in pics.sort %}
-        <li>{{ sort.T_NAME }}: {{ pics.archive[sort.TID]|length }}</li>
-        {% endfor %}
-    </ul>
     <h2 id='today'>今日图片</h2>
     <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
     <ul>
@@ -40,42 +34,48 @@
         </li>
         {% endfor %}
     </ul>
-    <h2 id="history">历史图片</h2>
+    <h2 id="archive">图片归档(不含今日)</h2>
+    <h3 id='archive-sort'>图片分类 ({{pics.sort|length}})</h3>
+    <ul>
+        {% for sort in pics.sort %}
+        <li><a href="sort-{{ sort.TID }}.html" target="_blank">{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        {% endfor %}
+    </ul>
+    <h3 id='archive-count'>数量统计</h3>
+    <ul>
+        {% for sort in pics.sort %}
+        <li>{{ sort.T_NAME }}: {{ pics.archive[sort.TID]|length }}</li>
+        {% endfor %}
+    </ul>
     {% for sort in pics.sort %}
-    <h3 id='history-{{ sort.TID }}'>{{sort.T_NAME}}</h3>
+    <h3 id='archive-{{ sort.TID }}'>{{sort.T_NAME}}</h3>
     <ul>
         {% for pic in pics.archive[sort.TID] %}
         <li>
-            <a href="{{ pic.PID }}.html" target="_blank" id='{{ pic.PID }}'>
+            <a href="{{ pic.PID }}.html" target="_blank">
                 {{ pic.p_title|e }} @ {{ pic.username|e }} on {{ pic.p_date }}
             </a>
         </li>
         {% endfor %}
     </ul>
     {% endfor %}
-    <h2 id="archive">归档(含今日)</h2>
-    <h3 id='sort'>分类 ({{pics.sort|length}})</h3>
-    <ul>
-        {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.html" target="_blank" id='sort-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='date'>日期 ({{pics.dates|length}})</h3>
+    <h2 id="archive-2">其它归档(含今日)</h2>
+    <h3 id='archive-date'>日期 ({{pics.dates|length}})</h3>
     <ul>
         {% for date in pics.dates %}
-        <li><a href="date-{{ date }}.html" target="_blank" id='date-{{ date }}'>{{date}} ({{ pics.date[date]|length }})</a></li>
+        <li><a href="date-{{ date }}.html" target="_blank">{{date}} ({{ pics.date[date]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h3 id='username'>用户 ({{pics.username|length}})</h3>
+    <h3 id='archive-username'>用户 ({{pics.username|length}})</h3>
     <ul>
         {% for user in pics.username %}
-        <li><a href="user-{{ user }}.html" target="_blank" id='user-{{ user }}'>{{user}} ({{ pics.users[user]|length }})</a></li>
+        <li><a href="user-{{ user }}.html" target="_blank">{{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h3 id='asp'>长宽比 ({{pics.asp|length}})</h3>
+    <h3 id='archive-asp'>长宽比 ({{pics.asp|length}})</h3>
     <ul>
         {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank" id='asp-{{ asp }}'>{{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank">{{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
     <h2 id='json'>JSON</h2>
@@ -90,7 +90,7 @@
     <a href="sort2.json" target="_blank">Sort (Object)</a>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.json" target="_blank" id='json-sort-{{ sort.TID }}'>Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        <li><a href="sort-{{ sort.TID }}.json" target="_blank">Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='json-date'>Date ({{pics.dates|length}})</h3>
@@ -98,7 +98,7 @@
     <a href="date-all.json" target="_blank">Date (Object)</a>
     <ul>
         {% for date in pics.dates %}
-        <li><a href="date-{{ date }}.json" target="_blank" id='json-date-{{ date }}'>Date: {{date}} ({{ pics.date[date]|length }})</a></li>
+        <li><a href="date-{{ date }}.json" target="_blank">Date: {{date}} ({{ pics.date[date]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='json-username'>Username ({{pics.username|length}})</h3>
@@ -106,7 +106,7 @@
     <a href="user-all.json" target="_blank">Username (Object)</a>
     <ul>
         {% for user in pics.username %}
-        <li><a href="user-{{ user }}.json" target="_blank" id='json-user-{{ user }}'>User: {{user}} ({{ pics.users[user]|length }})</a></li>
+        <li><a href="user-{{ user }}.json" target="_blank">User: {{user}} ({{ pics.users[user]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='json-asp'>Aspect ratio ({{pics.asp|length}})</h3>
@@ -114,7 +114,7 @@
     <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
         {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank" id='json-asp-{{ asp }}'>Aspect ratio: {{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank">Aspect ratio: {{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
 </body>
