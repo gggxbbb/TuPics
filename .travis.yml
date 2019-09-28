@@ -4,7 +4,9 @@ python:
 script:
   - pip3 install Jinja2
   - pip3 install pytz
+  - pip3 install xlwt
   - python3 run.py
+  - python3 excel.py
 after_success:
   - cd build/
   - git init; git add -- *; git commit --allow-empty-message -m ""

@@ -6,29 +6,29 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
-    body {
-       max-width: 512px;
-       padding: 2%;
-       margin-left:auto;
-       margin-right:auto;
-      }
+        body {
+            max-width: 512px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
 <body>
     <h1>{{ title }}</h1>
     <p>此处所示图片均已被压缩</p>
-    <hr/>
+    <hr />
     {% for pic in pics %}
     <div>
-    <h2>{{ pic.p_title|e }}</h2>
-    <p>
-        <a href="{{ pic.PID }}.html" target="_blank">Detail</a>
-        <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
-    </p>
-    <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.PID }}-lite.jpg" style="max-width: 100%">
-    <hr/>
+        <h2>{{ pic.p_title|e }}</h2>
+        <p>
+            <a href="{{ pic.PID }}.html" target="_blank">Detail</a>
+            <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
+        </p>
+        <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
+        <img src="{{ pic.PID }}-lite.jpg" style="max-width: 100%" alt="{{ pic.p_title|e }}">
+        <hr />
     </div>
     {% endfor %}
 </body>

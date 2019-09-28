@@ -6,22 +6,24 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
-    body {
-       max-width: 512px;
-       padding: 2%;
-       margin-left:auto;
-       margin-right:auto;
-      }
+        body {
+            max-width: 512px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
 <body>
     <h1>Tujian</h1>
-    <p><small>
-        <a href="https://www.dailypics.cn/" target="_blank">官方站点</a>
-        <a href="https://www.dailypics.cn/doc/1" target="_blank">官方:用户协议</a>
-        <a href="https://www.dailypics.cn/doc/2" target="_blank">官方:隐私政策</a>
-    </small>
+    <p>
+        <small>
+            <a href="https://www.dailypics.cn/" target="_blank">官方站点</a>
+            <a href="https://www.dailypics.cn/doc/1" target="_blank">官方:用户协议</a>
+            <a href="https://www.dailypics.cn/doc/2" target="_blank">官方:隐私政策</a>
+        </small>
+    </p>
     <p>数据更新时间: {{ pics.info.end }}</p>
     <h2 id='today'>今日图片</h2>
     <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
@@ -38,11 +40,12 @@
     <h3 id='archive-sort'>图片分类 ({{pics.sort|length}})</h3>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.html" target="_blank">{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        <li><a href="sort-{{ sort.TID }}.html" target="_blank">{{sort.T_NAME}}
+                ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     {% for sort in pics.sort %}
-    <h3 id='archive-{{ sort.TID }}'>{{sort.T_NAME}}  ({{ pics.archive[sort.TID]|length }})</h3>
+    <h3 id='archive-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</h3>
     <ul>
         {% for pic in pics.archive[sort.TID] %}
         <li>
@@ -69,9 +72,12 @@
     <h3 id='archive-asp'>长宽比 ({{pics.asp|length}})</h3>
     <ul>
         {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank">{{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank">{{asp}}
+                ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
+    <h2>其他数据</h2>
+    <a href="Tujian.xls">Xls 文件</a>
     <h2 id='json'>JSON</h2>
     <ul>
         <li><a href="all.json" target="_blank">All</a></li>
@@ -84,7 +90,8 @@
     <a href="sort2.json" target="_blank">Sort (Object)</a>
     <ul>
         {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.json" target="_blank">Sort: {{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</a></li>
+        <li><a href="sort-{{ sort.TID }}.json" target="_blank">Sort: {{sort.T_NAME}}
+                ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
     <h3 id='json-date'>Date ({{pics.dates|length}})</h3>
@@ -104,11 +111,12 @@
         {% endfor %}
     </ul>
     <h3 id='json-asp'>Aspect ratio ({{pics.asp|length}})</h3>
-    <a href="asp.json" target="_blank">Aspect ratio (Array)</a>    
+    <a href="asp.json" target="_blank">Aspect ratio (Array)</a>
     <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
     <ul>
         {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank">Aspect ratio: {{asp}} ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank">Aspect ratio: {{asp}}
+                ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
 </body>
