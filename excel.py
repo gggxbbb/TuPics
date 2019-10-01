@@ -63,7 +63,6 @@ output_table_pic = output_book.add_sheet('归档')
 
 row = 0
 for pic in output_table:
-    print(row)
     col = 0
     for v in pic:
         output_table_pic.write(row, col, v)
