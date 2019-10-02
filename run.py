@@ -10,6 +10,7 @@ from fractions import Fraction
 from urllib import request
 
 import pytz
+import requests
 from jinja2 import Template
 
 ua = [
@@ -22,6 +23,13 @@ ua = [
     'Mozilla/5.0 (Linux; U; Android 5.1.1; zh-cn; MI 4S Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.146 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.1.3',
     
 ]
+
+ss = []
+
+for v in ua:
+    s = requests.session()
+    s.headers.update({'User-Agent': v})
+    ss.append(s)
 
 # 判断是否为 Windows
 
@@ -36,10 +44,9 @@ def ifWindows():
 
 
 def getJson(url):
-    req = request.Request(
-        url, headers={'User-Agent': ua[random.randint(0, len(ua)-1)]})
-    data = request.urlopen(req).read().decode('utf-8')
-    return json.loads(data)
+    req = ss[random.randint(0, len(ua)-1)].get(url)
+    req.encoding='utf-8'
+    return json.loads(req.text)
 
 # 获取格式化的北京时间
 
@@ -56,23 +63,21 @@ def download(pic):
     file_lite = 'build/%s-lite.jpg' % pic['PID']
     if ifWindows():
         print('%s passing' % file_path)
-        return 0
+        #return 0
     if os.path.isfile(file_path):
         print('%s 已存在' % file_path)
     else:
         print('download')
-        req = request.Request(
-            pic['local_url']+'?p=0', headers={'User-Agent': ua[random.randint(0, len(ua)-1)]})
-        data = request.urlopen(req).read()
+        req = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?p=0')
+        data = req.content
         with open(file_path, 'wb') as f:
             f.write(data)
             f.close()
     if os.path.isfile(file_lite):
         print('%s 已存在' % file_lite)
     else:
-        req2 = request.Request(
-            pic['local_url']+'?f=jpg', headers={'User-Agent': ua[random.randint(0, len(ua)-1)]})
-        data2 = request.urlopen(req2).read()
+        req2 = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?f=jpg')
+        data2 = req2.content
         print('-lite')
         with open(file_lite, 'wb') as f:
             f.write(data2)
