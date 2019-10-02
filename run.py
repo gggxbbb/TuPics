@@ -3,6 +3,7 @@
 import datetime
 import json
 import os
+import sys
 import platform
 import random
 import time
@@ -21,7 +22,7 @@ ua = [
     'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_3 like Mac OS X) AppleWebKit/603.3.8 (KHTML, like Gecko) Mobile/14G60 MicroMessenger/6.5.18 NetType/WIFI Language/en',
     'Mozilla/5.0 (Linux; Android 5.1.1; vivo Xplay5A Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/48.0.2564.116 Mobile Safari/537.36 T7/9.3 baiduboxapp/9.3.0.10 (Baidu; P1 5.1.1)',
     'Mozilla/5.0 (Linux; U; Android 5.1.1; zh-cn; MI 4S Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.146 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.1.3',
-    
+    #'Tujian/2.0.2 Version/191002'
 ]
 
 ss = []
@@ -35,16 +36,16 @@ for v in ua:
 
 
 def ifWindows():
-    if(platform.system() == 'Windows'):
-        return True
-    else:
-        return False
+    return platform.system() == 'Windows'
 
-# 获取 JOSN 数据
+# 获取 JSON 数据
 
 
 def getJson(url):
     req = ss[random.randint(0, len(ua)-1)].get(url)
+    if not req.status_code == 200:
+        print(req.status_code,req.text)
+        sys.exit(1)
     req.encoding='utf-8'
     return json.loads(req.text)
 
@@ -63,12 +64,15 @@ def download(pic):
     file_lite = 'build/%s-lite.jpg' % pic['PID']
     if ifWindows():
         print('%s passing' % file_path)
-        #return 0
+        return 0
     if os.path.isfile(file_path):
         print('%s 已存在' % file_path)
     else:
         print('download')
         req = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?p=0')
+        if not req.status_code == 200:
+            print(req.text)
+            sys.exit(1)
         data = req.content
         with open(file_path, 'wb') as f:
             f.write(data)
@@ -77,6 +81,9 @@ def download(pic):
         print('%s 已存在' % file_lite)
     else:
         req2 = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?f=jpg')
+        if not req.status_code == 200:
+            print(req.status_code,req.text)
+            sys.exit(1)
         data2 = req2.content
         print('-lite')
         with open(file_lite, 'wb') as f:
