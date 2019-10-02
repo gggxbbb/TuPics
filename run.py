@@ -41,13 +41,28 @@ def ifWindows():
 # 获取 JSON 数据
 
 
-def getJson(url):
-    req = ss[random.randint(0, len(ua)-1)].get(url)
+def getJson(url,host='v2.api.dailypics.cn'):
+    s = ss[random.randint(0, len(ua)-1)]
+    h = s.headers
+    h['Host'] = host
+    s.headers.update(h)
+    req = s.get(url)
     if not req.status_code == 200:
-        print(req.status_code,req.text)
+        print(req.url,req.status_code,req.text)
         sys.exit(1)
     req.encoding='utf-8'
     return json.loads(req.text)
+
+def getBytes(url,host='images.dailypics.cn'):
+    s = ss[random.randint(0, len(ua)-1)]
+    h = s.headers
+    h['Host'] = host
+    s.headers.update(h)
+    req = s.get(url)
+    if not req.status_code == 200:
+        print(req.url,req.status_code,req.text)
+        sys.exit(1)
+    return req.content
 
 # 获取格式化的北京时间
 
@@ -69,23 +84,15 @@ def download(pic):
         print('%s 已存在' % file_path)
     else:
         print('download')
-        req = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?p=0')
-        if not req.status_code == 200:
-            print(req.text)
-            sys.exit(1)
-        data = req.content
+        data = getBytes(pic['local_url']+'?p=0')
         with open(file_path, 'wb') as f:
             f.write(data)
             f.close()
     if os.path.isfile(file_lite):
         print('%s 已存在' % file_lite)
     else:
-        req2 = ss[random.randint(0, len(ua)-1)].get(pic['local_url']+'?f=jpg')
-        if not req.status_code == 200:
-            print(req.status_code,req.text)
-            sys.exit(1)
-        data2 = req2.content
         print('-lite')
+        data2 = getBytes(pic['local_url']+'?f=jpg')
         with open(file_lite, 'wb') as f:
             f.write(data2)
             f.close()
