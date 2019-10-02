@@ -171,7 +171,7 @@ print('sorts')
 # 记录开始时间
 output_pics['info']['sort'] = {'all': {'start': getTime()}}
 # 获取分类数据
-sort = getJson('https://api.dpic.dev/sort')['result']
+sort = getJson('https://v2.api.dailypics.cn/sort')['result']
 # 将分类数据存入字典
 output_pics['sort'] = sort
 # 初始化存储
@@ -198,7 +198,7 @@ print('today')
 output_pics['info']['today'] = {}
 output_pics['info']['today']['start'] = getTime()
 # 获取今日
-today = getJson('https://api.dpic.dev/today')
+today = getJson('https://v2.api.dailypics.cn/today')
 output_pics['today'] = today
 # 处理今日
 for v in output_pics['today']:
@@ -206,8 +206,8 @@ for v in output_pics['today']:
     v['mainland_url'] = v['local_url'].replace(
         'img.dpic.dev', 'images.dailypics.cn')
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    v['info'] = getJson(v['local_url'].replace(
-        'dev/', 'dev/info?md5='))['info']
+    v['info'] = getJson(v['mainland_url'].replace(
+        'cn/', 'cn/info?md5='))['info']
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     putAsp(v)
     putUser(v)
@@ -252,7 +252,7 @@ for v in sort:
     output_pics['info']['sort'][v['TID']]['start'] = getTime()
     # 获取第一页和总页数
     first_page = getJson(
-        'https://api.dpic.dev/list/?page=1&size=15&sort=%s' % v['TID'])
+        'https://v2.api.dailypics.cn/list/?page=1&size=15&sort=%s' % v['TID'])
     max_page = first_page['maxpage']
     # 打个输出，以免看着心慌
     print(max_page)
@@ -263,7 +263,7 @@ for v in sort:
     for p in range(1, int(max_page)):
         page = p+1
         this_page = getJson(
-            'https://api.dpic.dev/list/?page=%s&size=15&sort=%s' % (page, v['TID']))['result']
+            'https://v2.api.dailypics.cn/list/?page=%s&size=15&sort=%s' % (page, v['TID']))['result']
         print(page)
         for pic in this_page:
             output_pics['archive'][pic['TID']].append(pic)
@@ -277,8 +277,8 @@ for v in sort:
         pic['mainland_url'] = pic['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
         pic['aspect_ratio'] = getAsp(pic['height'], pic['width'])
-        pic['info'] = getJson(pic['local_url'].replace(
-            'dev/', 'dev/info?md5='))['info']
+        pic['info'] = getJson(pic['mainland_url'].replace(
+            'cn/', 'cn/info?md5='))['info']
         pic['file_name'] = pic['PID'] + '.' + pic['info']['format'].lower()
         putUser(pic)
         putAsp(pic)
