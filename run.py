@@ -8,7 +8,6 @@ import platform
 import random
 import time
 from fractions import Fraction
-from urllib import request
 
 import pytz
 import requests
@@ -40,29 +39,21 @@ def ifWindows():
 
 # 获取 JSON 数据
 
-
-def getJson(url,host='v2.api.dailypics.cn'):
+def getReq(url) -> requests.request:
     s = ss[random.randint(0, len(ua)-1)]
-    h = s.headers
-    h['Host'] = host
-    s.headers.update(h)
     req = s.get(url)
     if not req.status_code == 200:
         print(req.url,req.status_code,req.text)
         sys.exit(1)
+    return req
+
+def getJson(url):
+    req = getReq(url)
     req.encoding='utf-8'
     return json.loads(req.text)
 
-def getBytes(url,host='images.dailypics.cn'):
-    s = ss[random.randint(0, len(ua)-1)]
-    h = s.headers
-    h['Host'] = host
-    s.headers.update(h)
-    req = s.get(url)
-    if not req.status_code == 200:
-        print(req.url,req.status_code,req.text)
-        sys.exit(1)
-    return req.content
+def getBytes(url):
+    return getReq(url).content
 
 # 获取格式化的北京时间
 
