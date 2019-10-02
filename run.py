@@ -75,7 +75,7 @@ def download(pic):
         print('%s 已存在' % file_path)
     else:
         print('download')
-        data = getBytes(pic['local_url']+'?p=0')
+        data = getBytes(pic['cf_url']+'?p=0')
         with open(file_path, 'wb') as f:
             f.write(data)
             f.close()
@@ -83,7 +83,7 @@ def download(pic):
         print('%s 已存在' % file_lite)
     else:
         print('-lite')
-        data2 = getBytes(pic['local_url']+'?f=jpg')
+        data2 = getBytes(pic['cf_url']+'?f=jpg')
         with open(file_lite, 'wb') as f:
             f.write(data2)
             f.close()
@@ -205,8 +205,10 @@ for v in output_pics['today']:
     print(v['PID'])
     v['mainland_url'] = v['local_url'].replace(
         'img.dpic.dev', 'images.dailypics.cn')
+    v['cf_url'] = v['mainland_url'].replace(
+        'imgaes.', 'images2.')
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    v['info'] = getJson(v['mainland_url'].replace(
+    v['info'] = getJson(v['cf_url'].replace(
         'cn/', 'cn/info?md5='))['info']
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     putAsp(v)
@@ -276,8 +278,10 @@ for v in sort:
         print(pic['PID'])
         pic['mainland_url'] = pic['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
+        pic['cf_url'] = pic['mainland_url'].replace(
+            'imgaes.', 'images2.')
         pic['aspect_ratio'] = getAsp(pic['height'], pic['width'])
-        pic['info'] = getJson(pic['mainland_url'].replace(
+        pic['info'] = getJson(pic['cf_url'].replace(
             'cn/', 'cn/info?md5='))['info']
         pic['file_name'] = pic['PID'] + '.' + pic['info']['format'].lower()
         putUser(pic)
