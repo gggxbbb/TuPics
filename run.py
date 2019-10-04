@@ -90,17 +90,17 @@ def download(pic):
 
 def getInfo(pic):
     v = pic
-    try:
-        v = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())
-    except:
-        v['mainland_url'] = v['local_url'].replace(
+    v['mainland_url'] = v['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
-        v['cf_url'] = v['mainland_url'].replace(
+    v['cf_url'] = v['mainland_url'].replace(
             'imgaes.', 'images2.')
-        v['aspect_ratio'] = getAsp(v['height'], v['width'])
+    v['aspect_ratio'] = getAsp(v['height'], v['width'])
+    try:
+        v['info'] = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())['info']
+    except:
         v['info'] = getJson(v['cf_url'].replace(
             'cn/', 'cn/info?md5='))['info']
-        v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
+    v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     putAsp(v)
     putUser(v)
     putDate(v)
@@ -219,11 +219,11 @@ output_pics['info']['today'] = {}
 output_pics['info']['today']['start'] = getTime()
 # 获取今日
 today = getJson('https://v2.api.dailypics.cn/today')
-output_pics['today'] = today
+output_pics['today'] = []
 # 处理今日
-for v in output_pics['today']:
+for v in today:
     print(v['PID'])
-    v=getInfo(v)
+    output_pics['today'].append(getInfo(v))
 # 记录结束时间
 output_pics['info']['today']['end'] = getTime()
 
@@ -283,9 +283,11 @@ for v in sort:
 
 # 处理归档
 for v in sort:
+    pics = []
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
-        pic = getInfo(pic)
+        pics.append(getInfo(pic))
+    output_pics['archive'][v['TID']] = pics
 
 # 记录结束时间
 output_pics['info']['end'] = getTime()
