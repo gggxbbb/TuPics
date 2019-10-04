@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>搜索</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 512px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        xmlhttp = new XMLHttpRequest()
+        xmlhttp.open('GET', 'all.json', false)
+        xmlhttp.send()
+        if (xmlhttp.status == 200) {
+            input_all = JSON.parse(xmlhttp.responseText)
+        } else {
+            document.write('<h1>Http Error</h1>')
+            document.write(xmlhttp.status)
+        }
+    </script>
+    <h1>搜索</h1>
+    <input type="text" id='key' style="width: 100%">
+    <div id='result'></div>
+    <script>
+        var input = document.getElementById('key')
+        var list = document.getElementById('result')
+        input.addEventListener('input', function (e) {
+            list.innerHTML = ''
+            key_word = input.value.toLowerCase()
+            sort_map = input_all['sort_map']
+            if (key_word == '') {
+                return
+            }
+            for (k1 in input_all['sort']) {
+                sort = input_all['sort'][k1]
+                for (k2 in input_all['archive'][sort['TID']]) {
+                    pic = input_all['archive'][sort['TID']][k2]
+                    d = (pic['p_title'] + pic['p_content']).toLowerCase()
+                    reg = RegExp(key_word)
+                    if (d.match(reg)) {
+                        console.log(d.match(key_word))
+                        addResult(pic, sort_map)
+                    }
+                }
+            }
+        })
+        function addResult(pic, sort) {
+            var item = document.createElement('div')
+            var title = document.createElement('h2')
+            title.innerText = pic['p_title']
+            item.appendChild(title)
+            var info = document.createElement('p')
+            var detail_a = document.createElement('a')
+            detail_a.target = '_blank'
+            detail_a.href = pic['PID'] + '.html'
+            detail_a.innerText = '详情'
+            info.appendChild(detail_a)
+            var detail_info = document.createElement('small')
+            detail_info.innerText = pic.p_date + ' ' + sort[pic.TID]['T_NAME'] + ' @' + pic['username']
+            info.appendChild(detail_info)
+            item.appendChild(info)
+            var content = document.createElement('p')
+            content.innerHTML = pic['p_content'].replace('\n','<br/>')
+            var img = document.createElement('img')
+            img.src = pic['PID'] + '-lite.jpg'
+            img.alt = pic['p_title']
+            item.appendChild(img)
+            var hr = document.createElement('hr')
+            item.appendChild(content)
+            item.appendChild(hr)
+            list.appendChild(item)
+        }
+    </script>
+</body>
+
+</html>

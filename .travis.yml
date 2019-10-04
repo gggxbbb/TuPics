@@ -8,6 +8,7 @@ script:
   - pip3 install requests
   - python3 run.py
   - python3 excel.py
+  - cp static/* build
 after_success:
   - cd build/
   - git config http.postBuffer 524288000

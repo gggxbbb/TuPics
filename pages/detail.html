@@ -13,6 +13,9 @@
             margin-left: auto;
             margin-right: auto;
         }
+        img {
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -38,7 +41,7 @@
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
     </p>
     <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.file_name }}" style="max-width: 100%" alt="{{ pic.p_title|e }}">
+    <img src="{{ pic.file_name }}" alt="{{ pic.p_title|e }}">
 </body>
 
 </html>

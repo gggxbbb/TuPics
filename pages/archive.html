@@ -13,6 +13,9 @@
             margin-left: auto;
             margin-right: auto;
         }
+        img {
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -24,11 +27,11 @@
     <div>
         <h2>{{ pic.p_title|e }}</h2>
         <p>
-            <a href="{{ pic.PID }}.html" target="_blank">Detail</a>
+            <a href="{{ pic.PID }}.html" target="_blank">详情</a>
             <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
         </p>
         <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
-        <img src="{{ pic.PID }}-lite.jpg" style="max-width: 100%" alt="{{ pic.p_title|e }}">
+        <img src="{{ pic.PID }}-lite.jpg" alt="{{ pic.p_title|e }}">
         <hr />
     </div>
     {% endfor %}
