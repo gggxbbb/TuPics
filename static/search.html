@@ -75,12 +75,12 @@
             item.appendChild(info)
             var content = document.createElement('p')
             content.innerHTML = pic['p_content'].replace('\n','<br/>')
-            var img = document.createElement('img')
-            img.src = pic['PID'] + '-lite.jpg'
-            img.alt = pic['p_title']
-            item.appendChild(img)
-            var hr = document.createElement('hr')
             item.appendChild(content)
+            //var img = document.createElement('img')
+            //img.src = pic['PID'] + '-lite.jpg'
+            //img.alt = pic['p_title']
+            //item.appendChild(img)
+            var hr = document.createElement('hr')
             item.appendChild(hr)
             list.appendChild(item)
         }
