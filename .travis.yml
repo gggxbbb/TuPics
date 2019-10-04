@@ -8,7 +8,7 @@ script:
   - pip3 install requests
   - python3 run.py
   - python3 excel.py
-  - tar –czf build/all.tar.gz build/*
+  - tar -czf build/all.tar.gz build/*
 after_success:
   - cd build/
   - git init; git add -- *; git commit --allow-empty-message -m ""
