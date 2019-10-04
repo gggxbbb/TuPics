@@ -83,7 +83,7 @@ def download(pic):
         print('%s 已存在' % file_lite)
     else:
         print('-lite')
-        data2 = getBytes(pic['cf_url']+'?f=jpg')
+        data2 = getBytes(pic['cf_url']+'?f=jpg&q=50')
         with open(file_lite, 'wb') as f:
             f.write(data2)
             f.close()
