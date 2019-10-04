@@ -11,6 +11,7 @@ script:
   - tar -czf build/all.tar.gz build/*
 after_success:
   - cd build/
+  - git config http.postBuffer 524288000
   - git init; git add -- *; git commit --allow-empty-message -m ""
   - git push -f -q https://gggxbbb:$GITHUB_PASS@github.com/gggxbbb/TuPics.git master:gh-pages
 cache:
