@@ -8,7 +8,6 @@ script:
   - pip3 install requests
   - python3 run.py
   - python3 excel.py
-  - tar -czf build/all.tar.gz build/*
 after_success:
   - cd build/
   - git config http.postBuffer 524288000
