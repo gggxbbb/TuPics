@@ -91,6 +91,8 @@ def download(pic):
 def getInfo(pic):
     v = pic
     try:
+        v = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())
+    except:
         v['mainland_url'] = v['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
         v['cf_url'] = v['mainland_url'].replace(
@@ -99,8 +101,6 @@ def getInfo(pic):
         v['info'] = getJson(v['cf_url'].replace(
             'cn/', 'cn/info?md5='))['info']
         v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
-    except:
-        v = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())
     putAsp(v)
     putUser(v)
     putDate(v)
