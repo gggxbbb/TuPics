@@ -88,6 +88,26 @@ def download(pic):
             f.write(data2)
             f.close()
 
+def getInfo(pic):
+    v = pic
+    try:
+        v['mainland_url'] = v['local_url'].replace(
+            'img.dpic.dev', 'images.dailypics.cn')
+        v['cf_url'] = v['mainland_url'].replace(
+            'imgaes.', 'images2.')
+        v['aspect_ratio'] = getAsp(v['height'], v['width'])
+        v['info'] = getJson(v['cf_url'].replace(
+            'cn/', 'cn/info?md5='))['info']
+        v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
+    except:
+        v = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())
+    putAsp(v)
+    putUser(v)
+    putDate(v)
+    download(v)
+    return v
+
+
 # 计算长宽比
 
 
@@ -203,18 +223,7 @@ output_pics['today'] = today
 # 处理今日
 for v in output_pics['today']:
     print(v['PID'])
-    v['mainland_url'] = v['local_url'].replace(
-        'img.dpic.dev', 'images.dailypics.cn')
-    v['cf_url'] = v['mainland_url'].replace(
-        'imgaes.', 'images2.')
-    v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    v['info'] = getJson(v['cf_url'].replace(
-        'cn/', 'cn/info?md5='))['info']
-    v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
-    putAsp(v)
-    putUser(v)
-    putDate(v)
-    download(v)
+    v=getInfo(v)
 # 记录结束时间
 output_pics['info']['today']['end'] = getTime()
 
@@ -276,18 +285,7 @@ for v in sort:
 for v in sort:
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
-        pic['mainland_url'] = pic['local_url'].replace(
-            'img.dpic.dev', 'images.dailypics.cn')
-        pic['cf_url'] = pic['mainland_url'].replace(
-            'imgaes.', 'images2.')
-        pic['aspect_ratio'] = getAsp(pic['height'], pic['width'])
-        pic['info'] = getJson(pic['cf_url'].replace(
-            'cn/', 'cn/info?md5='))['info']
-        pic['file_name'] = pic['PID'] + '.' + pic['info']['format'].lower()
-        putUser(pic)
-        putAsp(pic)
-        putDate(pic)
-        download(pic)
+        pic = getInfo(pic)
 
 # 记录结束时间
 output_pics['info']['end'] = getTime()
