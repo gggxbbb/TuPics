@@ -31,22 +31,40 @@
             document.write('<h1>Http Error</h1>')
             document.write(xmlhttp.status)
         }
-    </script>
-    <h1>搜索</h1>
-    <input type="text" id='key' style="width: 100%">
-    <div id='result'></div>
-    <script>
+        var title = document.createElement('h1')
+        title.innerText = '搜索'
+        var list = document.createElement('div')
+        var input = document.createElement('div')
+        var input_key = document.createElement('input')
+        input_key.type = 'text'
+        input_key.style = 'width: 100%'
+        input.appendChild(input_key)
+        var input_botton = document.createElement('button')
+        input_botton.style = 'float:right'
+        input_botton.innerText = '搜索'
+        document.body.appendChild(title)
+        document.body.appendChild(input)
+        document.body.appendChild(list)
+        input.appendChild(input_botton)
+        input_botton.onclick = function () {
+            window.location.hash = '#' + encodeURI(input_key.value)
+            search()
+        }
         function search() {
-            list.innerHTML = ''
-            key_word = input.value.toLowerCase()
+            key_word = input_key.value
             sort_map = input_all['sort_map']
-            window.location.hash = '#' + encodeURI(key_word)
             if (key_word == '') {
                 document.title = '搜索'
+                title.innerText = '搜索'
+                list.innerHTML = ''
+                document.body.appendChild(title)
+                document.body.appendChild(input)
                 return
             }
             document.title = '搜索:' + key_word
-            reg = RegExp(key_word)
+            title.innerText = key_word
+            input.remove()
+            reg = RegExp(key_word.toLowerCase())
             for (k1 in input_all['date']) {
                 for (k2 in input_all['date'][k1]) {
                     pic = input_all['date'][k1][k2]
@@ -83,15 +101,18 @@
             item.appendChild(hr)
             list.appendChild(item)
         }
-    </script>
-    <script>
-        var input = document.getElementById('key')
-        var list = document.getElementById('result')
-        input.addEventListener('input', search)
-    </script>
-    <script>
-        input.value = decodeURI(window.location.hash.replace('#',''))
-        search()
+
+        window.addEventListener('popstate', function (e) {
+            input_key.value = decodeURI(window.location.hash.replace('#', ''))
+            search()
+        })
+
+        input_key.addEventListener('keypress', function (e) {
+            if (e.keyCode == 13) {
+                input_botton.click()
+            }
+        })
+
     </script>
 </body>
 
