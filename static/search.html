@@ -74,7 +74,7 @@
             info.appendChild(detail_info)
             item.appendChild(info)
             var content = document.createElement('p')
-            content.innerHTML = pic['p_content'].replace('\n','<br/>')
+            content.innerText = pic['p_content']
             item.appendChild(content)
             var img = document.createElement('img')
             img.src = pic['PID'] + '-lite.jpg'
