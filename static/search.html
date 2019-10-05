@@ -42,6 +42,7 @@
             list.innerHTML = ''
             key_word = input.value.toLowerCase()
             sort_map = input_all['sort_map']
+            window.location.hash = '#' + key_word
             if (key_word == '') {
                 return
             }
@@ -84,6 +85,9 @@
             item.appendChild(hr)
             list.appendChild(item)
         }
+    </script>
+    <script>
+        input.value = window.location.hash.replace('#','')
     </script>
 </body>
 
