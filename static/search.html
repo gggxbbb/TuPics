@@ -42,8 +42,10 @@
             sort_map = input_all['sort_map']
             window.location.hash = '#' + encodeURI(key_word)
             if (key_word == '') {
+                document.title = '搜索'
                 return
             }
+            document.title = '搜索:' + key_word
             for (k1 in input_all['sort']) {
                 sort = input_all['sort'][k1]
                 for (k2 in input_all['archive'][sort['TID']]) {
