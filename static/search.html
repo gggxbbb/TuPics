@@ -46,6 +46,16 @@
                 return
             }
             document.title = '搜索:' + key_word
+            for (k in input_all['today']) {
+                pic = input_all['today'][k]
+                if (pic['if_today']===true){
+                    d = (pic['p_title'] + pic['p_content']).toLowerCase()
+                    reg = RegExp(key_word)
+                    if (d.match(reg)) {
+                        addResult(pic, sort_map)
+                    }
+                }
+            }
             for (k1 in input_all['sort']) {
                 sort = input_all['sort'][k1]
                 for (k2 in input_all['archive'][sort['TID']]) {
@@ -53,7 +63,6 @@
                     d = (pic['p_title'] + pic['p_content']).toLowerCase()
                     reg = RegExp(key_word)
                     if (d.match(reg)) {
-                        console.log(d.match(key_word))
                         addResult(pic, sort_map)
                     }
                 }
