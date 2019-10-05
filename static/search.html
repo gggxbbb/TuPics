@@ -57,7 +57,6 @@
                 document.title = '搜索'
                 title.innerText = '搜索'
                 list.innerHTML = ''
-                document.body.appendChild(title)
                 document.body.appendChild(input)
                 return
             }
@@ -77,9 +76,9 @@
         }
         function addResult(pic, sort) {
             var item = document.createElement('div')
-            var title = document.createElement('h2')
-            title.innerText = pic['p_title']
-            item.appendChild(title)
+            var p_title = document.createElement('h2')
+            p_title.innerText = pic['p_title']
+            item.appendChild(p_title)
             var info = document.createElement('p')
             var detail_a = document.createElement('a')
             detail_a.target = '_blank'
