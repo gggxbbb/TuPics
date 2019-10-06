@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>数据</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="http://cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body {
+            max-width: 512px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        xmlhttp = new XMLHttpRequest()
+        xmlhttp.open('GET', 'all.json', false)
+        xmlhttp.send()
+        if (xmlhttp.status == 200) {
+            input_all = JSON.parse(xmlhttp.responseText)
+        } else {
+            document.write('<h1>Http Error</h1>')
+            document.write(xmlhttp.status)
+        }
+    </script>
+    <h1>数据</h1>
+
+    <div>
+        <div id='info_count' class="container"></div>
+        <script>
+            info_count = {}
+            info_count.chart = {
+                reflow: true,
+                type: 'column'
+            }
+            info_count.title = {
+                text: '归档数量统计'
+            }
+            info_count.subtitle = {
+                text: '不含今日'
+            }
+            info_count.xAxis = {
+                categories: ['归档数量'],
+                crosshair: true
+            }
+            info_count.yAxis = {
+                min: 0,
+                title: {
+                    text: '数量(张)'
+                }
+            }
+            info_count.series = []
+            for (k in input_all['sort']) {
+                info_count.series.push(
+                    {
+                        name: input_all['sort'][k]['T_NAME'],
+                        data: [input_all['archive'][input_all['sort'][k]['TID']].length]
+                    }
+                )
+            }
+            $('#info_count').highcharts(info_count)
+        </script>
+    </div>
+
+    <div>
+        <div id='info_archive' class='container'></div>
+        <script>
+            info_archive = {}
+            info_archive.chart = {
+                reflow: true
+            }
+            info_archive.title = {
+                text: '归档数量统计2'
+            }
+            info_archive.subtitle = {
+                text: '不含今日'
+            }
+            info_archive.plotOptions = {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            }
+            info_archive.series = [
+                {
+                    type: 'pie',
+                    name: '数量',
+                    data: []
+                }
+            ]
+            for (k in input_all['sort_map']) {
+                info_archive.series[0].data.push(
+                    [
+                        input_all['sort_map'][k]['T_NAME'],
+                        input_all['archive'][k].length
+                    ]
+                )
+            }
+            $('#info_archive').highcharts(info_archive)
+        </script>
+    </div>
+
+    <div>
+        <div id='info_user' class='container'></div>
+        <script>
+            info_user = {}
+            info_user.chart = {
+                width: document.getElementById('info_user').offsetWidth,
+                height: document.getElementById('info_user').offsetWidth * 2,
+                reflow: true
+            }
+            info_user.title = {
+                text: '投稿数量统计'
+            }
+            info_user.subtitle = {
+                text: '含今日'
+            }
+            info_user.plotOptions = {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            }
+            info_user.series = [
+                {
+                    type: 'pie',
+                    name: '投稿数量',
+                    data: []
+                }
+            ]
+            for (k in input_all['users']) {
+                info_user.series[0].data.push(
+                    [
+                        k,
+                        input_all['users'][k].length
+                    ]
+                )
+            }
+            $('#info_user').highcharts(info_user)
+        </script>
+    </div>
+
+    <div>
+        <div id='info_asp' class='container'></div>
+        <script>
+            info_asp = {}
+            info_asp.chart = {
+                width: document.getElementById('info_asp').offsetWidth,
+                height: document.getElementById('info_asp').offsetWidth * 2,
+                reflow: true
+            }
+            info_asp.title = {
+                text: '长宽比数量统计'
+            }
+            info_asp.subtitle = {
+                text: '含今日'
+            }
+            info_asp.plotOptions = {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            }
+            info_asp.series = [
+                {
+                    type: 'pie',
+                    name: '数量',
+                    data: []
+                }
+            ]
+            for (k in input_all['aspect_ratio']) {
+                info_asp.series[0].data.push(
+                    [
+                        k,
+                        input_all['aspect_ratio'][k].length
+                    ]
+                )
+            }
+            $('#info_asp').highcharts(info_asp)
+        </script>
+    </div>
+
+</body>
+
+</html>
