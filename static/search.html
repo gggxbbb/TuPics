@@ -75,7 +75,7 @@
             try {
                 reg = RegExp(key.toLowerCase())
             } catch (error) {
-                retrun r
+                return r
             }
             for (k1 in input_all['date']) {
                 for (k2 in input_all['date'][k1]) {
@@ -110,7 +110,7 @@
             document.title = '搜索:' + key_word
             title.innerText = '搜索:' + key_word
             //input.remove()
-            input.style.display = 'gone'
+            input.style.display = 'none'
             pics = getResult(key_word)
             for (k in pics){
                 addResult(pics[k],sort_map)
