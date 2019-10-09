@@ -91,13 +91,13 @@
             }
             return r
         }
-        //var key_word2 = ''
+        var key_word2 = ''
         function search() {
             list.appendChild(res_bar)
             key_word = input_key.value
             sort_map = input_all['sort_map']
             if (key_word == '') {
-                //input_key.value = key_word2
+                input_key.value = key_word2
                 document.title = '搜索'
                 title.innerText = '搜索'
                 list.innerHTML = ''
@@ -106,7 +106,7 @@
                 res_bar.remove()
                 return
             }
-            //key_word2 = key_word
+            key_word2 = key_word
             document.title = '搜索:' + key_word
             title.innerText = '搜索:' + key_word
             //input.remove()
