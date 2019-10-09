@@ -27,14 +27,22 @@
 <body>
     <script>
         xmlhttp = new XMLHttpRequest()
-        xmlhttp.open('GET', 'all.json', false)
-        xmlhttp.send()
+        xmlhttp.open('GET', 'https://tu.gggxbbb.tk/all.json', false)
+        try{
+            xmlhttp.send()
+        } catch(error) {
+            document.write('<h1>Http Error</h1>')
+            document.write(error)
+            throw "HttpError"
+        }
         if (xmlhttp.status == 200) {
             input_all = JSON.parse(xmlhttp.responseText)
         } else {
             document.write('<h1>Http Error</h1>')
-            document.write(xmlhttp.status)
+            document.write('error code: ' + xmlhttp.status)
+            throw "HttpError"
         }
+        
         var title = document.createElement('h1')
         var list = document.createElement('div')
         var input = document.createElement('div')
