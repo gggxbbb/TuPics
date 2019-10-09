@@ -60,9 +60,7 @@
         input_info.innerText='输入图片标题或简介(正则表达式)进行模糊搜索(不区分大小写),\
         \n输入 PID 进行精确查找(区分大小写),\
         \n输入 $+日期 查询单日图片(如 $2019-10-06),\
-        \n输入 @+用户名 对单独用户进行查找(区分大小写, 如 @Chimon89).\
-        \n以上所有情况同时生效,\
-        \n如: 当搜索 @abc 时, 若图片简介中恰含 @abc , 也将显示在搜索结果中.'
+        \n输入 @+用户名 对单独用户进行查找(区分大小写, 如 @Chimon89).'
         var res_bar = document.createElement('div')
         res_bar.align = 'right'
         var msg = document.createElement('p')
@@ -88,8 +86,9 @@
             for (k1 in input_all['date']) {
                 for (k2 in input_all['date'][k1]) {
                     pic = input_all['date'][k1][k2]
-                    d = (pic['p_title'] + pic['p_content']).toLowerCase()
-                    if (d.match(reg) ||
+                    //d = (pic['p_title'] + pic['p_content']).toLowerCase()
+                    if (pic['p_title'].toLowerCase().match(reg) ||
+                     pic['p_content'].toLowerCase().match(reg) ||
                      pic['PID'] == key || 
                      ('$'+pic['p_date']) == key ||
                      ('@'+pic['username']) == key) {
