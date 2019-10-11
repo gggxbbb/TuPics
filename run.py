@@ -104,7 +104,7 @@ def getInfo(pic):
     putAsp(v)
     putUser(v)
     putDate(v)
-    download(v)
+    #download(v)
     return v
 
 
