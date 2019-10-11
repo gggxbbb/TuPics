@@ -25,10 +25,9 @@
         <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">dailypics.cn</a>
         <a href="{{ pic.PID }}.json" target="_blank">JSON</a>
         <br />
-        <a href="{{ pic.file_name }}" target="_blank">Pic</a>
-        <a href="{{ pic.local_url }}?p=0" target="_blank">Pic (dpic.dev)</a>
-        <a href="{{ pic.mainland_url }}?p=0" target="_blank">Pic (Mainland)</a>
-        <a href="{{ pic.p_link }}" target="_blank">Pic (Original)</a>
+        <a href="{{ pic.local_url }}?p=0" target="_blank">图片地址(主要)</a>
+        <a href="{{ pic.mainland_url }}?p=0" target="_blank">图片地址(大陆)</a>
+        <a href="{{ pic.p_link }}" target="_blank">图片地址(原始)</a>
     </p>
     <p>
         <small>{{ pic.PID }}</small>
@@ -41,7 +40,7 @@
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
     </p>
     <p>{{ pic.p_content|e|replace('\r','')|replace('\n','<br/>') }}</p>
-    <img src="{{ pic.file_name }}" alt="{{ pic.p_title|e }}">
+    <img src="{{ pic.mainland_url }}?p=0" alt="{{ pic.p_title|e }}">
 </body>
 
 </html>
