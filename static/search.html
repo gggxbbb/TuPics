@@ -145,7 +145,7 @@
             info.appendChild(detail_info)
             item.appendChild(info)
             var content = document.createElement('p')
-            content.innerText = pic['p_content']
+            content.innerHTML = pic['p_content_html']
             item.appendChild(content)
             var img = document.createElement('img')
             img.src = pic['mainland_url'] + '?p=50'
