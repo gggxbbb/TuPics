@@ -7,6 +7,7 @@ import sys
 import platform
 import random
 import time
+from markdown import markdown
 from fractions import Fraction
 
 import pytz
@@ -105,6 +106,7 @@ def getInfo(pic):
     putUser(v)
     putDate(v)
     #download(v)
+    v['p_content_html'] = markdown['p_content']
     return v
 
 
