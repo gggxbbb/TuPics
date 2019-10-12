@@ -95,8 +95,8 @@ def getInfo(pic):
             'cn/', 'cn/info?md5='))['info']
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
     v['size_b'] = v['info']['size']
-    v['size_kb'] = int('%.2f' % (v['size_b'] / 1024))
-    v['size_mb'] = int('%.2f' % (v['size_b'] / 1048576))
+    v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
+    v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
     if v['size_mb'] < 1:
         v['size'] = v['size_kb'] + 'KB'
     else:
