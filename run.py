@@ -98,9 +98,9 @@ def getInfo(pic):
     v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
     v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
     if v['size_mb'] < 1:
-        v['size'] = v['size_kb'] + 'KB'
+        v['size'] = str(v['size_kb']) + 'KB'
     else:
-        v['size'] = v['size_mb'] + 'MB'
+        v['size'] = str(v['size_mb']) + 'MB'
     putAsp(v)
     putUser(v)
     putDate(v)
