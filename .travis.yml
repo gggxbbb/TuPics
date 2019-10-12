@@ -1,11 +1,13 @@
 language: python
 python:
   - '3.7'
-script:
+install:
   - pip3 install Jinja2
   - pip3 install pytz
   - pip3 install xlwt
   - pip3 install requests
+  - pip3 install markdown
+script:
   - python3 run.py
   - python3 excel.py
   - cp static/* build
