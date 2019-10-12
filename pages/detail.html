@@ -40,7 +40,7 @@
         <br />
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
     </p>
-    <p>{{ pic.p_content_html|e|replace('\r','')|replace('\n','<br/>') }}</p>
+    <p>{{ pic.p_content_html }}</p>
     <img src="{{ pic.mainland_url }}?p=0" alt="{{ pic.p_title|e }}">
 </body>
 
