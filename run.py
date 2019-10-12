@@ -106,7 +106,7 @@ def getInfo(pic):
     putUser(v)
     putDate(v)
     #download(v)
-    v['p_content_html'] = markdown['p_content']
+    v['p_content_html'] = markdown(v['p_content'])
     return v
 
 
