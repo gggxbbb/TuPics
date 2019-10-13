@@ -145,7 +145,7 @@ def putDate(pic):
 def sortDict(dict,reverse=False,key=lambda e:e[0]):
     n_keys = []
     n_dict = {}
-    s_list = sorted(dict.items(),key,reverse)
+    s_list = sorted(dict.items(),key=key,reverse=reverse)
     for v in s_list:
         n_keys.append(v[0])
         n_dict[v[0]] = v[1]
