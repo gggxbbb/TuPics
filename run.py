@@ -142,6 +142,15 @@ def putDate(pic):
     if not pic['PID'] in [v['PID'] for v in output_pics['date'][pic['p_date']]]:
         output_pics['date'][pic['p_date']].append(pic)
 
+def sortDict(dict,reverse=False,key=lambda e:e[0]):
+    n_keys = []
+    n_dict = {}
+    s_list = sorted(dict.items(),key=,reverse)
+    for v in s_list:
+        n_keys.append(v[0])
+        n_dict[v[0]] = v[1]
+    return (n_keys,n_dict)
+
 
 # 初始化字典
 output_pics = {}
@@ -292,8 +301,14 @@ for v in sort:
         pics.append(getInfo(pic))
     output_pics['archive'][v['TID']] = pics
 
+output_pics['username'],output_pics['users'] = sortDict(output_pics['users'])
+output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'])
+output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
+
+
 # 记录结束时间
 output_pics['info']['end'] = getTime()
+
 
 print('output')
 
