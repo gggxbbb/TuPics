@@ -107,6 +107,7 @@ def getInfo(pic):
     putDate(v)
     #download(v)
     v['p_content_html'] = markdown(v['p_content']).replace('\n','<br/>').replace('\r','')
+    v['if_today'] = False
     return v
 
 
