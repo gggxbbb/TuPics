@@ -7,6 +7,7 @@ import sys
 import platform
 import random
 import time
+import re
 from markdown import markdown
 from fractions import Fraction
 
@@ -106,7 +107,13 @@ def getInfo(pic):
     putUser(v)
     putDate(v)
     #download(v)
-    v['p_content_html'] = markdown(v['p_content']).replace('\n','<br/>').replace('\r','')
+    v['p_content_html'] = markdown(
+    re.sub(
+        '(?!<=  )\n',
+        '  \n',
+        v['p_content'].replace('\r','')
+        )
+    )
     v['if_today'] = False
     return v
 
