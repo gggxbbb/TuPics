@@ -8,7 +8,7 @@ import platform
 import random
 import time
 import re
-from markdown import markdown
+from gfm import markdown
 from fractions import Fraction
 
 import pytz
