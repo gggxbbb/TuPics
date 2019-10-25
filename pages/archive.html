@@ -16,16 +16,13 @@
         img {
             max-width: 100%;
         }
-        hr {
-            width: 70%;
-        }
     </style>
 </head>
 
 <body>
     <h1>{{ title }}</h1>
-    <p>此处所示图片均已被压缩</p>
-    <hr style="width:no"/>
+    <small>此处所示图片均已被压缩</small>
+    <br/>
     {% for pic in pics %}
     <div>
         <h2>{{ pic.p_title|e }}</h2>
@@ -35,7 +32,7 @@
         </p>
         <p>{{ pic.p_content_html }}</p>
         <img src="{{ pic.mainland_url }}?p=50" alt="{{ pic.p_title|e }}">
-        <hr style="width:no"/>
+        <br/>
     </div>
     {% endfor %}
 </body>
