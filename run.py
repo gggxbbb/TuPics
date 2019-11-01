@@ -309,7 +309,7 @@ for v in sort:
         pics.append(getInfo(pic))
     output_pics['archive'][v['TID']] = pics
 
-output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[1])
+output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[1]))
 output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'])
 output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
