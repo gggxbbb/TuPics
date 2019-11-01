@@ -10,6 +10,7 @@ import time
 import re
 from gfm import markdown
 from fractions import Fraction
+from pinyin import get as pinyin
 
 import pytz
 import requests
@@ -308,7 +309,7 @@ for v in sort:
         pics.append(getInfo(pic))
     output_pics['archive'][v['TID']] = pics
 
-output_pics['username'],output_pics['users'] = sortDict(output_pics['users'])
+output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[1])
 output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'])
 output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
