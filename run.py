@@ -252,6 +252,7 @@ output_pics['info']['today']['end'] = getTime()
 print('GuGuGu')
 # 初始化 List
 GuGuGu = []
+GuGuGu_key = []
 # 遍历今日图片
 for v in output_pics['today']:
     # 判断是否咕咕咕并存储
@@ -260,7 +261,9 @@ for v in output_pics['today']:
     else:
         v['if_today'] = False
         # 记录咕咕咕的分类
-        GuGuGu.append(output_pics['sort_map'][v['TID']])
+        if not v['TID'] in GuGuGu_key:
+            GuGuGu.append(output_pics['sort_map'][v['TID']])
+            GuGuGu_key.append(v['TID'])
 # 将咕咕咕的分类存入主 Dict
 output_pics['not_updated'] = {'sort': GuGuGu}
 # 输出可读的咕咕咕情况
