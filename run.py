@@ -88,8 +88,7 @@ def getInfo(pic):
     v = pic
     v['mainland_url'] = v['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
-    v['cf_url'] = v['mainland_url'].replace(
-            'imgaes.', 'images2.')
+    v['cf_url'] = v['mainland_url']
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
     try:
         v['info'] = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())['info']
@@ -170,6 +169,7 @@ output_pics['asp'] = []
 output_pics['aspect_ratio'] = {}
 output_pics['date'] = {}
 output_pics['dates'] = []
+output_pics['count'] = {}
 
 # 获取格式化的今日日期(北京时间)
 date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
@@ -310,7 +310,10 @@ for v in sort:
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
         pics.append(getInfo(pic))
+    output_pics['count'][v['TID']] = len(pics)
     output_pics['archive'][v['TID']] = pics
+    if not v['TID'] in GuGuGu_key:
+        output_pics['count'][v['TID']] += 1
 
 output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[0]).lower())
 output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'])
