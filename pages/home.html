@@ -26,7 +26,7 @@
         </small>
     </p>
     <p>数据更新时间: {{ pics.info.end }}</p>
-    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张, {%- endfor -%}必应日图(无法计数)张</p>
+    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张,{{ " "|e }}{%- endfor -%}必应日图(无法计数)张.</p>
     <h2 id='today'>今日图片</h2>
     <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
     <ul>
