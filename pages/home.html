@@ -26,14 +26,14 @@
         </small>
     </p>
     <p>数据更新时间: {{ pics.info.end }}</p>
-    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张,{{ " "|e }}{%- endfor -%}必应日图(无法计数)张.</p>
+    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张,{{ " "|e }}{%- endfor -%}必应日图每天一张.</p>
     <h2 id='today'>今日图片</h2>
     <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
     <ul>
         {% for pic in pics.today %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                {{ pic.p_title|e }} ({{ pic.T_NAME }}) 由@{{ pic.username|e }} 于 {{ pic.p_date }}
+                 {{ pic.T_NAME }} {{ pic.p_title|e }} via@{{ pic.username|e }} ({{ pic.p_date }},{{ pic.size }})
             </a>
         </li>
         {% endfor %}
@@ -56,7 +56,7 @@
         {% for pic in pics.archive[sort.TID] %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                {{ pic.p_title|e }} 由@{{ pic.username|e }} 于 {{ pic.p_date }}
+                {{ pic.p_title|e }} via@{{ pic.username|e }} ({{ pic.p_date }},{{ pic.size }})
             </a>
         </li>
         {% endfor %}
