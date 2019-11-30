@@ -23,79 +23,101 @@ ua = [
 ss = []
 
 for v in ua:
+    ## 实例化 session
     s = requests.session()
+    ## 设置不同的 UA
     s.headers.update({'User-Agent': v})
+    ## 添加到 List
     ss.append(s)
 
-# 判断是否为 Windows
-
-
-def ifWindows():
-    return platform.system() == 'Windows'
-
-# 获取 JSON 数据
-
-def getReq(url) -> requests.request:
+# 获取 Response
+def getReq(url) -> requests.Response:
+    ## 随机获取 session
     s = ss[random.randint(0, len(ua)-1)]
+    ## 获取 Response
     req = s.get(url)
+    ## 判断是否获取成功
     if not req.status_code == 200:
+        ### 失败抛出输出错误
         print(req.url,req.status_code,req.text)
+        ### 并退出
         sys.exit(1)
+    ## 返回获取的 Response
     return req
 
+# 获取 JSON 数据
 def getJson(url):
+    ## 获取 Response
     req = getReq(url)
+    ## 设置编码
     req.encoding='utf-8'
+    ## 序列化并返回
     return json.loads(req.text)
 
+# 获得 Bytes
 def getBytes(url):
+    ## 获得 Response 并直接返回 Content
     return getReq(url).content
 
 # 获取格式化的北京时间
-
-
+## 获得 datetime 对象
+beijing_time = datetime.datetime.now(pytz.timezone('PRC')).replace(hour=0,minute=0,second=0)
 def getTime():
-    beijing_time = datetime.datetime.now(pytz.timezone('PRC'))
-    return beijing_time.strftime('%Y-%m-%d %H:%M:%S')
+    ## 返回格式化时间
+    return datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d %H:%M:%S')
 
 # 下载图片
-
-
 def download(pic):
+    ## 存储原始图片文件的路径
     file_path = 'build/%s' % pic['file_name']
+    ## 存储缩略图片文件的路径
     file_lite = 'build/%s-lite.jpg' % pic['PID']
-    if ifWindows():
-        print('%s passing' % file_path)
-        return 0
+    ## 判断原始图片文件是否已存在
     if os.path.isfile(file_path):
+        ### 存在输出提示
         print('%s 已存在' % file_path)
     else:
+        ### 否则下载
         print('download')
-        data = getBytes(pic['cf_url']+'?p=0')
+        ### 获得原始图片
+        data = getBytes(pic['mainland_url']+'?p=0')
+        ### 存储到文件
         with open(file_path, 'wb') as f:
             f.write(data)
             f.close()
+    ## 判断缩略图片文件是否存在
     if os.path.isfile(file_lite):
+        ### 存在输出提示
         print('%s 已存在' % file_lite)
     else:
+        ### 否则下载
         print('-lite')
-        data2 = getBytes(pic['cf_url']+'?f=jpg&q=50')
+        ### 获得缩略图
+        data2 = getBytes(pic['mainland_url']+'?f=jpg&q=50')
+        ### 保存到文件
         with open(file_lite, 'wb') as f:
             f.write(data2)
             f.close()
 
+# 获得图片信息
 def getInfo(pic):
     v = pic
+    ## 获取大陆友好的链接
     v['mainland_url'] = v['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
-    v['cf_url'] = v['mainland_url']
+    ## 获得非常友好的链接
+    v['s_url'] = 'https://s2.dailypics.cn' + v['nativePath']
+    ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
+    ## 获得图片文件信息
     try:
         v['info'] = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())['info']
     except:
-        v['info'] = getJson(v['cf_url'].replace(
+        v['info'] = getJson(v['mainland_url'].replace(
             'cn/', 'cn/info?md5='))['info']
+    ## 获得文件名
     v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
+    ## 获得文件体积
     v['size_b'] = v['info']['size']
     v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
     v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
@@ -103,10 +125,12 @@ def getInfo(pic):
         v['size'] = str(v['size_kb']) + 'KB'
     else:
         v['size'] = str(v['size_mb']) + 'MB'
+    ## 归类
     putAsp(v)
     putUser(v)
     putDate(v)
     #download(v)
+    ## 格式化 p_content
     v['p_content_html'] = markdown(
     re.sub(
         '(?!<=  )\n',
@@ -114,13 +138,23 @@ def getInfo(pic):
         v['p_content'].replace('\r','')
         )
     )
+    ## 默认不是今日的图片 (:
     v['if_today'] = False
+    ## 计算此图片和今日相差几天
+    date = datetime.datetime.strptime(v['p_date'],'%Y-%m-%d').replace(tzinfo=pytz.timezone('PRC'))
+    v['ago'] = (beijing_time - date).days
+    if v['ago'] == 0:
+        v['ago_zh'] = '今日'
+    elif v['ago'] == 1:
+        v['ago_zh'] = '昨天'
+    elif v['ago'] == 2:
+        v['ago_zh'] = '前天'
+    else:
+        v['ago_zh'] = str(v['ago']) + '天前'
     return v
 
 
 # 计算长宽比
-
-
 def getAsp(height, width):
     f = Fraction(width, height)
     return '%s:%s' % (f.numerator, f.denominator)

@@ -33,7 +33,7 @@
         {% for pic in pics.today %}
         <li>
             <a href="{{ pic.PID }}.html" target="_blank">
-                 {{ pic.T_NAME }} {{ pic.p_date }} {{ pic.p_title|e }} via@{{ pic.username|e }}
+                {{ pic.T_NAME }} {{ pic.ago_zh}} {{ pic.p_title|e }} via@{{ pic.username|e }}
             </a>
         </li>
         {% endfor %}
