@@ -44,7 +44,7 @@ def getReq(url) -> requests.Response:
         print(req.url,req.status_code,req.text)
         ### 并退出
         sys.exit(1)
-    http_count += 1
+    global http_count += 1
     ## 返回获取的 Response
     return req
 
