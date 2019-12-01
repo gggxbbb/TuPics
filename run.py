@@ -30,6 +30,8 @@ for v in ua:
     ## 添加到 List
     ss.append(s)
 
+http_count = 0
+
 # 获取 Response
 def getReq(url) -> requests.Response:
     ## 随机获取 session
@@ -42,6 +44,7 @@ def getReq(url) -> requests.Response:
         print(req.url,req.status_code,req.text)
         ### 并退出
         sys.exit(1)
+    http_count += 1
     ## 返回获取的 Response
     return req
 
@@ -463,3 +466,6 @@ with open('build/all.json', 'w', encoding='utf-8') as f:
 with open('build/CNAME', 'w', encoding='utf-8') as f:
     f.write('tu.gggxbbb.tk')
     f.close()
+
+
+print('共进行%s次 HTTP 请求' % http_count)
