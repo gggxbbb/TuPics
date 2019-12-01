@@ -302,13 +302,15 @@ for v in output_pics['today']:
 output_pics['not_updated'] = {'sort': GuGuGu}
 # 输出可读的咕咕咕情况
 print(GuGuGu)
-if (not (len(GuGuGu) == 0)):
-    # 如果咕咕咕输出咕咕咕的分类
-    GuGuGu_srt = ','.join([v['T_NAME'] for v in GuGuGu]) + '没有更新'
+if len(GuGuGu) == 0:
+    GuGuGu_str = '所有分类均已更新'
+elif len(GuGuGu) == len(sort):
+    GuGuGu_str = '所以分类均未更新'
 else:
-    GuGuGu_srt = '所有分类均已更新'
+    # 如果咕咕咕输出咕咕咕的分类
+    GuGuGu_str = ','.join([v['T_NAME'] for v in GuGuGu]) + '没有更新'
 # 将可读的咕咕咕情况存入主 Dict
-output_pics['not_updated']['info'] = GuGuGu_srt
+output_pics['not_updated']['info'] = GuGuGu_str
 
 # 单个分类
 print('sort')
