@@ -382,7 +382,7 @@ with open('pages/home.html', 'r', encoding='utf-8') as f:
     f.close()
 # 输出主页
 with open('build/index.html', 'w', encoding='utf-8') as f:
-    f.write(index_page.render(pics=output_pics, not_updated=GuGuGu_srt))
+    f.write(index_page.render(pics=output_pics, not_updated=GuGuGu_str))
     f.close()
 
 # 输出 JSON
