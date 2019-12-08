@@ -3,18 +3,18 @@
 import datetime
 import json
 import os
-import sys
 import platform
 import random
-import time
 import re
-from gfm import markdown
+import sys
+import time
 from fractions import Fraction
-from pinyin import get as pinyin
 
 import pytz
 import requests
+from gfm import markdown
 from jinja2 import Template
+from pinyin import get as pinyin
 
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
@@ -110,7 +110,7 @@ def getInfo(pic):
     v['mainland_url'] = v['local_url'].replace(
             'img.dpic.dev', 'images.dailypics.cn')
     ## 获得非常友好的链接
-    v['s_url'] = 'https://s2.dailypics.cn' + v['nativePath']
+    v['s_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
     ## 获得图片文件信息

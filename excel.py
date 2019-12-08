@@ -1,5 +1,6 @@
-import xlwt
 import json
+
+import xlwt
 
 input_pics = json.loads(open('build/all.json', 'r', encoding='utf-8').read())
 
