@@ -12,7 +12,7 @@ from fractions import Fraction
 
 import pytz
 import requests
-from gfm import markdown
+from gfm import markdown,gfm
 from jinja2 import Template
 from pinyin import get as pinyin
 
@@ -136,10 +136,12 @@ def getInfo(pic):
     #download(v)
     ## 格式化 p_content
     v['p_content_html'] = markdown(
-    re.sub(
-        '(?!<=  )\n',
-        '  \n',
-        v['p_content'].replace('\r','')
+    gfm(
+        re.sub(
+            '(?!<=  )\n',
+            '  \n',
+            v['p_content'].replace('\r','')
+            )
         )
     )
     ## 默认不是今日的图片 (:
