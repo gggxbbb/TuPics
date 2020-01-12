@@ -13,6 +13,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         img {
             max-width: 100%;
         }
@@ -22,7 +23,7 @@
 <body>
     <h1>{{ title }}</h1>
     <small>此处所示图片均已被压缩</small>
-    <br/>
+    <br />
     {% for pic in pics %}
     <div>
         <h2>{{ pic.p_title|e }}</h2>
@@ -30,31 +31,32 @@
             <a href="{{ pic.PID }}.html" target="_blank">详情</a>
             <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
         </p>
-        <img src="favicon.ico" data-src="https://s2.images.dailypics.cn{{ pic.nativePath }}!w1080" alt="{{ pic.p_title|e }}">
-        <br/>
+        <img src="favicon.ico" data-src="https://s2.images.dailypics.cn{{ pic.nativePath }}!w1080"
+            alt="{{ pic.p_title|e }}">
+        <br />
     </div>
     {% endfor %}
     <script>
         function lazyload() {
-	    var images = document.getElementsByTagName('img');
-	    var len    = images.length;
-	    var n      = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
-	    return function() {
-		var seeHeight = document.documentElement.clientHeight;
-		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-		for(var i = n; i < len; i++) {
-		    if(images[i].offsetTop < seeHeight + scrollTop) {
-		        if(images[i].getAttribute('src') === 'favicon.ico') {
-			     images[i].src = images[i].getAttribute('data-src');
-			}
-			n = n + 1;
-		     }
-		}
-	    }
-	}
-	var loadImages = lazyload();
-	loadImages();          //初始化首页的页面图片
-	window.addEventListener('scroll', loadImages, false);
+            var images = document.getElementsByTagName('img');
+            var len = images.length;
+            var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+            return function () {
+                var seeHeight = document.documentElement.clientHeight;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (var i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+        var loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
     </script>
 </body>
 
