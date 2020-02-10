@@ -360,6 +360,10 @@ output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ra
 output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
 
+# 计算项目存活时间
+start_time = datetime.datetime.strptime(output_pics['dates'][-1],'%Y-%m-%d').replace(tzinfo=pytz.timezone('PRC'))
+output_pics['project_age'] = (beijing_time - start_time).days
+
 # 记录结束时间
 output_pics['info']['end'] = getTime()
 
