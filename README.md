@@ -19,7 +19,7 @@ The data in the repository may be not up-to-date. Please follow the data of the 
 It is recommended to turn to the offical [website](https://www.dailypics.cn) or use these official(or unofficial) [apps](https://www.dailypics.cn/download).  
 You can also get the source of the official iOS app from this [repository](https://github.com/KagurazakaHanabi/dailypics.git). The application also support Android. If you need, you can build it yourself.
 You can also get the source of the official Android app from this [repository](https://github.com/zsqw123/tujian-kt.git).  
-There are also mini apps. You can get them by search for 图鉴日图 in WeChat or in QQ.  
+There are also mini apps. You can get them by searching for 图鉴日图 in WeChat or in QQ.  
  
 *The websites or apps, including this, mostly only support Simplified Chinese.*  
 *All data for this project comes from Tujian API.*  
