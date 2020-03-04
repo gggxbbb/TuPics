@@ -84,47 +84,6 @@
                 ({{ pics['aspect_ratio'][asp]|length }})</a></li>
         {% endfor %}
     </ul>
-    <h2 id='json'>JSON</h2>
-    <ul>
-        <li><a href="all.json" target="_blank">All</a></li>
-        <li><a href="info.json" target="_blank">Info</a></li>
-        <li><a href="not_updated.json" target="_blank">Not Updated</a></li>
-        <li><a href="today.json" target="_blank">Today</a></li>
-    </ul>
-    <h3 id='json-sort'>Sort ({{pics.sort|length}})</h3>
-    <a href="sort.json" target="_blank">Sort (Array)</a>
-    <a href="sort2.json" target="_blank">Sort (Object)</a>
-    <ul>
-        {% for sort in pics.sort %}
-        <li><a href="sort-{{ sort.TID }}.json" target="_blank">Sort: {{sort.T_NAME}}
-                ({{ pics.archive[sort.TID]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='json-date'>Date ({{pics.dates|length}})</h3>
-    <a href="date.json" target="_blank">Date (Array)</a>
-    <a href="date-all.json" target="_blank">Date (Object)</a>
-    <ul>
-        {% for date in pics.dates %}
-        <li><a href="date-{{ date }}.json" target="_blank">Date: {{date}} ({{ pics.date[date]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='json-username'>Username ({{pics.username|length}})</h3>
-    <a href="username.json" target="_blank">Username (Array)</a>
-    <a href="user-all.json" target="_blank">Username (Object)</a>
-    <ul>
-        {% for user in pics.username %}
-        <li><a href="user-{{ user }}.json" target="_blank">User: {{user}} ({{ pics.users[user]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='json-asp'>Aspect ratio ({{pics.asp|length}})</h3>
-    <a href="asp.json" target="_blank">Aspect ratio (Array)</a>
-    <a href="asp-all.json" target="_blank">Aspect ratio (Object)</a>
-    <ul>
-        {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.json" target="_blank">Aspect ratio: {{asp}}
-                ({{ pics['aspect_ratio'][asp]|length }})</a></li>
-        {% endfor %}
-    </ul>
 </body>
 
 </html>
