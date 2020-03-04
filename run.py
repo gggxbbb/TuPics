@@ -232,9 +232,9 @@ def buildOne(pic):
         f.write(datail_page.render(
             pic=pic, sort=output_pics['sort_map'][pic['TID']]))
         f.close()
-    with open('build/%s.json' % pic['PID'], 'w', encoding='utf-8') as f:
-        f.write(json.dumps(pic))
-        f.close()
+##    with open('build/%s.json' % pic['PID'], 'w', encoding='utf-8') as f:
+##        f.write(json.dumps(pic))
+##        f.close()
 
 
 def buildArchive(pics, title, name):
