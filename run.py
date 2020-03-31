@@ -393,6 +393,17 @@ with open('build/index.html', 'w', encoding='utf-8') as f:
     f.write(index_page.render(pics=output_pics, not_updated=GuGuGu_str))
     f.close()
 
+
+buildArchive(output_pics['today'], '今日', 'today')
+for v in output_pics['username']:
+    buildArchive(output_pics['users'][v], v, 'user-' + v)
+for v in output_pics['date'].keys():
+    buildArchive(output_pics['date'][v], v, 'date-' + v)
+for v in output_pics['aspect_ratio'].keys():
+    buildArchive(output_pics['aspect_ratio'][v],v, ('asp-' + v).replace(':', '-'))
+for v in sort:
+    buildArchive(output_pics['archive'][v['TID']],v['T_NAME'], 'sort-' + v['TID'])
+    
 # 输出 JSON
 # 输出今日图片
 ##with open('build/today.json', 'w', encoding='utf-8') as f:
