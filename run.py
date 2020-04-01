@@ -232,9 +232,9 @@ def buildOne(pic):
         f.write(datail_page.render(
             pic=pic, sort=output_pics['sort_map'][pic['TID']]))
         f.close()
-##    with open('build/%s.json' % pic['PID'], 'w', encoding='utf-8') as f:
-##        f.write(json.dumps(pic))
-##        f.close()
+    with open('build/%s.json' % pic['PID'], 'w', encoding='utf-8') as f:
+        f.write(json.dumps(pic))
+        f.close()
 
 
 def buildArchive(pics, title, name):
@@ -393,87 +393,76 @@ with open('build/index.html', 'w', encoding='utf-8') as f:
     f.write(index_page.render(pics=output_pics, not_updated=GuGuGu_str))
     f.close()
 
-
-buildArchive(output_pics['today'], '今日', 'today')
-for v in output_pics['username']:
-    buildArchive(output_pics['users'][v], v, 'user-' + v)
-for v in output_pics['date'].keys():
-    buildArchive(output_pics['date'][v], v, 'date-' + v)
-for v in output_pics['aspect_ratio'].keys():
-    buildArchive(output_pics['aspect_ratio'][v],v, ('asp-' + v).replace(':', '-'))
-for v in sort:
-    buildArchive(output_pics['archive'][v['TID']],v['T_NAME'], 'sort-' + v['TID'])
-    
 # 输出 JSON
 # 输出今日图片
-##with open('build/today.json', 'w', encoding='utf-8') as f:
-##    buildArchive(output_pics['today'], '今日', 'today')
-##    f.write(json.dumps(output_pics['today']))
-##    f.close()
+with open('build/today.json', 'w', encoding='utf-8') as f:
+    buildArchive(output_pics['today'], '今日', 'today')
+    f.write(json.dumps(output_pics['today']))
+    f.close()
 # 输出分类
-##with open('build/sort.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['sort']))
-##    f.close()
+with open('build/sort.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['sort']))
+    f.close()
 # 输出转换后的分类
-##with open('build/sort2.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['sort_map']))
-##    f.close()
+with open('build/sort2.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['sort_map']))
+    f.close()
 # 输出 Users
-##with open('build/username.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['username']))
-##    f.close()
-##with open('build/user-all.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['users']))
-##    f.close()
-##for v in output_pics['username']:
-##    with open('build/user-%s.json' % v, 'w', encoding='utf-8') as f:
-##        buildArchive(output_pics['users'][v], v, 'user-' + v)
-##        f.write(json.dumps(output_pics['users'][v]))
-##        f.close()
+with open('build/username.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['username']))
+    f.close()
+with open('build/user-all.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['users']))
+    f.close()
+for v in output_pics['username']:
+    with open('build/user-%s.json' % v, 'w', encoding='utf-8') as f:
+        buildArchive(output_pics['users'][v], v, 'user-' + v)
+        f.write(json.dumps(output_pics['users'][v]))
+        f.close()
 
-##with open('build/date.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['dates']))
-##    f.close()
-##with open('build/date-all.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['date']))
-##    f.close()
-##for v in output_pics['date'].keys():
-##    with open('build/date-%s.json' % v, 'w', encoding='utf-8') as f:
-##        buildArchive(output_pics['date'][v], v, 'date-' + v)
-##        f.write(json.dumps(output_pics['date'][v]))
-##        f.close()
+with open('build/date.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['dates']))
+    f.close()
+with open('build/date-all.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['date']))
+    f.close()
+for v in output_pics['date'].keys():
+    with open('build/date-%s.json' % v, 'w', encoding='utf-8') as f:
+        buildArchive(output_pics['date'][v], v, 'date-' + v)
+        f.write(json.dumps(output_pics['date'][v]))
+        f.close()
 # 输出 纵横比
-##with open('build/asp.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['asp']))
-##    f.close()
-##with open('build/asp-all.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['aspect_ratio']))
-##    f.close()
-##for v in output_pics['aspect_ratio'].keys():
-##    with open(('build/asp-%s.json' % v).replace(':', '-'), 'w', encoding='utf-8') as f:
-##        buildArchive(output_pics['aspect_ratio'][v],
-##                     v, ('asp-' + v).replace(':', '-'))
-##        f.write(json.dumps(output_pics['aspect_ratio'][v]))
-##        f.close()
+with open('build/asp.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['asp']))
+    f.close()
+with open('build/asp-all.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['aspect_ratio']))
+    f.close()
+for v in output_pics['aspect_ratio'].keys():
+    with open(('build/asp-%s.json' % v).replace(':', '-'), 'w', encoding='utf-8') as f:
+        buildArchive(output_pics['aspect_ratio'][v],
+                     v, ('asp-' + v).replace(':', '-'))
+        f.write(json.dumps(output_pics['aspect_ratio'][v])
+          f.close()
 # 输出各分类归档
-##with open('build/sort-all.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['archive']))
-##    f.close()
-##for v in sort:
+with open('build/sort-all.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['archive']))
+    f.close()
+for v in sort:
     # 输出归档
-##    with open('build/sort-%s.json' % v['TID'], 'w', encoding='utf-8') as f:
-##        buildArchive(output_pics['archive'][v['TID']],
-##                     v['T_NAME'], 'sort-' + v['TID'])
-##        f.write(json.dumps(output_pics['archive'][v['TID']]))
-##        f.close()
+    with open('build/sort-%s.json' % v['TID'], 'w', encoding='utf-8') as f:
+        buildArchive(output_pics['archive'][v['TID']],
+                     v['T_NAME'], 'sort-' + v['TID'])
+        f.write(json.dumps(output_pics['archive'][v['TID']]))
+        f.close()
 # 输出时间
-##with open('build/info.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['info']))
-##    f.close()
+with open('build/info.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['info']))
+    f.close()
 # 输出咕咕咕情况
-##with open('build/not_updated.json', 'w', encoding='utf-8') as f:
-##    f.write(json.dumps(output_pics['not_updated']))
-##    f.close()
+with open('build/not_updated.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['not_updated']))
+    f.close()
 # 输出主 Dict
 with open('build/all.json', 'w', encoding='utf-8') as f:
    f.write(json.dumps(output_pics))
