@@ -442,7 +442,7 @@ for v in output_pics['aspect_ratio'].keys():
     with open(('build/asp-%s.json' % v).replace(':', '-'), 'w', encoding='utf-8') as f:
         buildArchive(output_pics['aspect_ratio'][v],
                      v, ('asp-' + v).replace(':', '-'))
-        f.write(json.dumps(output_pics['aspect_ratio'][v])
+        f.write(json.dumps(output_pics['aspect_ratio'][v]))
         f.close()
 # 输出各分类归档
 with open('build/sort-all.json', 'w', encoding='utf-8') as f:
