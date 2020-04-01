@@ -443,7 +443,7 @@ for v in output_pics['aspect_ratio'].keys():
         buildArchive(output_pics['aspect_ratio'][v],
                      v, ('asp-' + v).replace(':', '-'))
         f.write(json.dumps(output_pics['aspect_ratio'][v])
-          f.close()
+        f.close()
 # 输出各分类归档
 with open('build/sort-all.json', 'w', encoding='utf-8') as f:
     f.write(json.dumps(output_pics['archive']))
