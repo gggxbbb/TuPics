@@ -309,7 +309,7 @@ print(GuGuGu)
 if len(GuGuGu) == 0:
     GuGuGu_str = '所有分类均已更新'
 elif len(GuGuGu) == len(sort):
-    GuGuGu_str = '所以分类均未更新'
+    GuGuGu_str = '所有分类均未更新'
 else:
     # 如果咕咕咕输出咕咕咕的分类
     GuGuGu_str = ','.join([v['T_NAME'] for v in GuGuGu]) + '没有更新'
