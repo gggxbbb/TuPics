@@ -18,6 +18,9 @@ from pinyin import get as pinyin
 import dhash
 from PIL import Image
 
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
 ]
