@@ -359,9 +359,9 @@ for v in sort:
     pics = []
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
-        v = getInfo(v)
-        output_pics['dhash'][v['PID']] = v['dhash']
-        pics.append(v)
+        pic = getInfo(pic)
+        output_pics['dhash'][v['PID']] = pic['dhash']
+        pics.append(pic)
     output_pics['count'][v['TID']] = len(pics)
     output_pics['archive'][v['TID']] = pics
     if not v['TID'] in GuGuGu_key:
