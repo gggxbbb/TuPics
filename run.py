@@ -133,7 +133,7 @@ def getInfo(pic):
     else:
         v['size'] = str(v['size_mb']) + 'MB'
     path = download(v)
-    with Image(filename=path) as image:
+    with Image.open(path) as image:
         row, col = dhash.dhash_row_col(image)
     v['dhash'] = dhash.format_hex(row, col)
     ## 格式化 p_content
