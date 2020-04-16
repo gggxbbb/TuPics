@@ -8,6 +8,8 @@ install:
   - pip3 install requests
   - pip3 install markdown2
   - pip3 install pinyin
+  - pip3 install Pillow
+  - pip3 install dhash
 script:
   - python3 run.py
   - python3 excel.py
@@ -20,6 +22,7 @@ after_success:
 cache:
   directories:
     - build
+    - catch
 notifications:
   email:
     - 2331490629@qq.com
