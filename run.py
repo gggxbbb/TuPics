@@ -15,6 +15,8 @@ import requests
 from markdown2 import markdown
 from jinja2 import Template
 from pinyin import get as pinyin
+import dhash
+from PIL import Image
 
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
@@ -73,22 +75,22 @@ def getTime():
 # 下载图片
 def download(pic):
     ## 存储原始图片文件的路径
-    file_path = 'build/%s' % pic['file_name']
+    #file_path = 'build/%s' % pic['file_name']
     ## 存储缩略图片文件的路径
-    file_lite = 'build/%s-lite.jpg' % pic['PID']
+    file_lite = 'catch/%s-lite.jpg' % pic['PID']
     ## 判断原始图片文件是否已存在
-    if os.path.isfile(file_path):
-        ### 存在输出提示
-        print('%s 已存在' % file_path)
-    else:
-        ### 否则下载
-        print('download')
-        ### 获得原始图片
-        data = getBytes(pic['mainland_url']+'?p=0')
-        ### 存储到文件
-        with open(file_path, 'wb') as f:
-            f.write(data)
-            f.close()
+    #if os.path.isfile(file_path):
+    #    ### 存在输出提示
+    #    print('%s 已存在' % file_path)
+    #else:
+    #    ### 否则下载
+    #    print('download')
+    #    ### 获得原始图片
+    #    data = getBytes(pic['mainland_url']+'?p=0')
+    #    ### 存储到文件
+    #    with open(file_path, 'wb') as f:
+    #        f.write(data)
+    #        f.close()
     ## 判断缩略图片文件是否存在
     if os.path.isfile(file_lite):
         ### 存在输出提示
@@ -102,6 +104,7 @@ def download(pic):
         with open(file_lite, 'wb') as f:
             f.write(data2)
             f.close()
+    return file_lite
 
 # 获得图片信息
 def getInfo(pic):
@@ -129,11 +132,10 @@ def getInfo(pic):
         v['size'] = str(v['size_kb']) + 'KB'
     else:
         v['size'] = str(v['size_mb']) + 'MB'
-    ## 归类
-    putAsp(v)
-    putUser(v)
-    putDate(v)
-    #download(v)
+    path = download(v)
+    with Image(filename='dhash-test.jpg') as image:
+        row, col = dhash.dhash_row_col(image)
+    v['dhash'] = dhash.format_hex(row, col)
     ## 格式化 p_content
     v['p_content_html'] = markdown(
         re.sub(
@@ -155,6 +157,11 @@ def getInfo(pic):
         v['ago_zh'] = '前天'
     else:
         v['ago_zh'] = str(v['ago']) + '天前'
+    ## 归类
+    putAsp(v)
+    putUser(v)
+    putDate(v)
+ 
     return v
 
 
@@ -208,6 +215,7 @@ output_pics['aspect_ratio'] = {}
 output_pics['date'] = {}
 output_pics['dates'] = []
 output_pics['count'] = {}
+output_pics['dhash'] = {}
 
 # 获取格式化的今日日期(北京时间)
 date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
@@ -281,7 +289,9 @@ output_pics['today'] = []
 # 处理今日
 for v in today:
     print(v['PID'])
-    output_pics['today'].append(getInfo(v))
+    v = getInfo(v)
+    output_pics['dhash'][v['PID']] = v['dhash']
+    output_pics['today'].append(v)
 # 记录结束时间
 output_pics['info']['today']['end'] = getTime()
 
@@ -349,7 +359,9 @@ for v in sort:
     pics = []
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
-        pics.append(getInfo(pic))
+        v = getInfo(v)
+        output_pics['dhash'][v['PID']] = v['dhash']
+        pics.append(v)
     output_pics['count'][v['TID']] = len(pics)
     output_pics['archive'][v['TID']] = pics
     if not v['TID'] in GuGuGu_key:
@@ -402,6 +414,9 @@ with open('build/today.json', 'w', encoding='utf-8') as f:
 # 输出分类
 with open('build/sort.json', 'w', encoding='utf-8') as f:
     f.write(json.dumps(output_pics['sort']))
+    f.close()
+with open('build/dhash.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(output_pics['dhash']))
     f.close()
 # 输出转换后的分类
 with open('build/sort2.json', 'w', encoding='utf-8') as f:
