@@ -360,7 +360,8 @@ for v in sort:
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
         pic = getInfo(pic)
-        output_pics['dhash'][v['PID']] = pic['dhash']
+        print(pic['dhash'])
+        output_pics['dhash'][pic['PID']] = pic['dhash']
         pics.append(pic)
     output_pics['count'][v['TID']] = len(pics)
     output_pics['archive'][v['TID']] = pics
