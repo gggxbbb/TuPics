@@ -80,7 +80,7 @@ def download(pic):
     ## 存储原始图片文件的路径
     #file_path = 'build/%s' % pic['file_name']
     ## 存储缩略图片文件的路径
-    file_lite = 'catch/%s-lite.jpg' % pic['PID']
+    file_lite = 'catch/%s.jpg' % pic['PID']
     ## 判断原始图片文件是否已存在
     #if os.path.isfile(file_path):
     #    ### 存在输出提示
@@ -100,9 +100,9 @@ def download(pic):
         print('%s 已存在' % file_lite)
     else:
         ### 否则下载
-        print('-lite')
+        print('-d')
         ### 获得缩略图
-        data2 = getBytes(pic['mainland_url']+'?f=jpg&q=50')
+        data2 = getBytes(pic['local_url']+'?f=jpg&q=0')
         ### 保存到文件
         with open(file_lite, 'wb') as f:
             f.write(data2)
