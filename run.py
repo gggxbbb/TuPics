@@ -21,7 +21,6 @@ from PIL import Image
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-formatting = ['~~']
 addition = {'~~':'del'}
 
 def md(text):
@@ -156,10 +155,6 @@ def getInfo(pic):
         row, col = dhash.dhash_row_col(image)
     v['dhash'] = dhash.format_hex(row, col)
     ## 格式化 p_content
-    content = v['p_content']
-    for f in formatting:
-       content = re.sub('(?!<= )'+f,' '+f,content)
-       content = re.sub(f+'(?!<= )',f+' ',content)
     v['p_content_html'] = md(
         markdown(
             re.sub(
