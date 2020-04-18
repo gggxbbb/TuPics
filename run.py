@@ -145,8 +145,8 @@ def getInfo(pic):
     ## 格式化 p_content
     content = v['p_content']
     for f in formatting:
-        re.sub('(?!<= )'+f,' '+f,content)
-        re.sub(f+'(?!<= )',f+' ',content)
+       content = re.sub('(?!<= )'+f,' '+f,content)
+       content = re.sub(f+'(?!<= )',f+' ',content)
     v['p_content_html'] = markdown(
         re.sub(
             '(?!<=  )\n',
