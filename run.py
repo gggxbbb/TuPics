@@ -151,7 +151,7 @@ def getInfo(pic):
         re.sub(
             '(?!<=  )\n',
             '  \n',
-            v['p_content'].replace('\r','')
+            content.replace('\r','')
             )
     )
     ## 默认不是今日的图片 (:
