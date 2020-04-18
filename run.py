@@ -21,6 +21,9 @@ from PIL import Image
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+formatting = ['~~']
+
+
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
 ]
@@ -140,6 +143,10 @@ def getInfo(pic):
         row, col = dhash.dhash_row_col(image)
     v['dhash'] = dhash.format_hex(row, col)
     ## 格式化 p_content
+    content = v['p_content']
+    for f in formatting:
+        re.sub('(?!<= )'+f,' '+f,content)
+        re.sub(f+'(?!<= )',f+' ',content)
     v['p_content_html'] = markdown(
         re.sub(
             '(?!<=  )\n',
