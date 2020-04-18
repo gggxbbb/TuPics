@@ -22,7 +22,18 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 formatting = ['~~']
+addition = {'~~','del'}
 
+def md(text):
+    for k in addition:
+        type = 0
+        while k in text:
+             if type == 0:
+                 text.replace(k,f'<{k}>',1)
+                 type == 1
+             else:
+                 text.replace(k,f'</{k}>',1)
+                 type == 0
 
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
@@ -147,12 +158,14 @@ def getInfo(pic):
     for f in formatting:
        content = re.sub('(?!<= )'+f,' '+f,content)
        content = re.sub(f+'(?!<= )',f+' ',content)
-    v['p_content_html'] = markdown(
-        re.sub(
-            '(?!<=  )\n',
-            '  \n',
-            content.replace('\r','')
-            )
+    v['p_content_html'] = md(
+        markdown(
+            re.sub(
+                '(?!<=  )\n',
+                '  \n',
+                content.replace('\r','')
+                )
+        )
     )
     ## 默认不是今日的图片 (:
     v['if_today'] = False
