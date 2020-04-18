@@ -25,15 +25,17 @@ formatting = ['~~']
 addition = {'~~','del'}
 
 def md(text):
+    _t = text
     for k in addition:
         type = 0
-        while k in text:
+        while k in _t:
              if type == 0:
-                 text.replace(k,f'<{k}>',1)
+                 _t = _t.replace(k,f'<{k}>',1)
                  type == 1
              else:
-                 text.replace(k,f'</{k}>',1)
+                 _t = _t.replace(k,f'</{k}>',1)
                  type == 0
+    return _t
 
 ua = [
     'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
