@@ -6,7 +6,7 @@ install:
   - pip3 install pytz
   - pip3 install xlwt
   - pip3 install requests
-  - pip3 install markdown2
+  - pip3 install markdown
   - pip3 install pinyin
   - pip3 install Pillow
   - pip3 install dhash
