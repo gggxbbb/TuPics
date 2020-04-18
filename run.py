@@ -22,7 +22,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 formatting = ['~~']
-addition = {'~~','del'}
+addition = {'~~':'del'}
 
 def md(text):
     _t = text
