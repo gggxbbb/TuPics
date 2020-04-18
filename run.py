@@ -160,7 +160,7 @@ def getInfo(pic):
             re.sub(
                 '(?!<=  )\n',
                 '  \n',
-                content.replace('\r','')
+                v['p_content'].replace('\r','')
                 )
         )
     )
