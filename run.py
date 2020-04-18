@@ -30,10 +30,10 @@ def md(text):
         type = 0
         while k in _t:
              if type == 0:
-                 _t = _t.replace(k,f'<{k}>',1)
+                 _t = _t.replace(k,f'<{addition[k]}>',1)
                  type == 1
              else:
-                 _t = _t.replace(k,f'</{k}>',1)
+                 _t = _t.replace(k,f'</{addition[k]}>',1)
                  type == 0
     return _t
 
