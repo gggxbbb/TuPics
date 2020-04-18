@@ -12,7 +12,7 @@ from fractions import Fraction
 
 import pytz
 import requests
-from markdown2 import markdown
+from markdown import markdown
 from jinja2 import Template
 from pinyin import get as pinyin
 import dhash
