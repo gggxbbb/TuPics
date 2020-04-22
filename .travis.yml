@@ -19,6 +19,15 @@ after_success:
   - git config http.postBuffer 524288000
   - git init; git add -- *; git commit --allow-empty-message -m ""
   - git push -f -q https://gggxbbb:$GITHUB_PASS@github.com/gggxbbb/TuPics.git master:gh-pages
+  - cd ..
+  - git clone $BACKUP backup
+  - cp build/sort.json backup
+  - cp build/sort-*.json backup
+  - cp backup
+  - git add .
+  - git commit --allow-empty-message -m ""
+  - git push
+
 cache:
   directories:
     - build
