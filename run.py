@@ -185,6 +185,7 @@ def getInfo(pic):
     return v
 
 
+
 # 计算长宽比
 def getAsp(height, width):
     f = Fraction(width, height)
@@ -193,14 +194,12 @@ def getAsp(height, width):
     if (n > 50) or (d > 50):
         if n > d:
             _n = 16
-            _d = 9 * n / 16
         if n < d:
             _n = 9
-            _d = 16 * n / 9
+        _d = d * _n / n
         n = _n
-        d = '%0.4f'%_d
+        d = '%0.3f'%_d
     return '%s:%s' % (n, d)
-
 
 def putUser(pic):
     if not (pic['username'] in output_pics['username']):
