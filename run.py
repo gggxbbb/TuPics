@@ -198,9 +198,7 @@ def getAsp(height, width):
             _n = 9
         _d = d * _n / n
         n = _n
-        d = '%0.2f'%_d
-        if str(int(d)) + '.00' == d:
-            d = int(d)
+        d = ('%0.2f'%_d).replace('.00','')
     return '%s:%s' % (n, d)
 
 def putUser(pic):
