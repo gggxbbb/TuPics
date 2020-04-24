@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
     <style>
         body {
             max-width: 512px;
@@ -42,14 +41,7 @@
         <br />
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
     </p>
-    <p id="info">{{ pic.p_content }}</p>
+    <p id="info">{{ pic.p_content_html }}</p>
     <img src="{{ pic.s_url }}" alt="{{ pic.p_title|e }}">
-    <script>
-    info = document.getElementById("info")
-    var converter = new showdown.Converter(),
-    info.innerHTML = converter.makeHtml(info.innerText);
-
-    </script>
 </body>
-
 </html>
