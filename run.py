@@ -199,7 +199,7 @@ def getAsp(height, width):
         _d = d * _n / n
         n = _n
         d = '%0.2f'%_d
-        if srt(int(d)) + '.00' == d:
+        if str(int(d)) + '.00' == d:
             d = int(d)
     return '%s:%s' % (n, d)
 
