@@ -198,7 +198,7 @@ def getAsp(height, width):
             _n = 9
         _d = d * _n / n
         n = _n
-        d = '%0.3f'%_d
+        d = '%0.2f'%_d
     return '%s:%s' % (n, d)
 
 def putUser(pic):
@@ -399,7 +399,7 @@ for v in sort:
         output_pics['count'][v['TID']] += 1
 
 output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[0]).lower())
-output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'])
+output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'],key=lambda v:'0'+v[0] if v[0].index(':') == 1 else v[0])
 output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
 
