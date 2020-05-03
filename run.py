@@ -128,16 +128,16 @@ def getInfo(pic):
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
     ## 获得文件体积
-    try:
+    #try:
         v['size_b'] = json.loads(open('build/%s.json'%v['PID']).read())['size_b']
-    except:
+    #except:
         v['size_b'] = int(ss[random.randint(0, len(ua)-1)].get(v['s_url'], stream = True).headers['Content-Length']) 
-    v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
-    v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
-    if v['size_mb'] < 1:
-        v['size'] = str(v['size_kb']) + 'KB'
-    else:
-        v['size'] = str(v['size_mb']) + 'MB'
+    #v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
+    #v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
+    #if v['size_mb'] < 1:
+    #    v['size'] = str(v['size_kb']) + 'KB'
+    #else:
+    #    v['size'] = str(v['size_mb']) + 'MB'
     ## 格式化 p_content
     v['p_content_html'] = md(
         markdown(
