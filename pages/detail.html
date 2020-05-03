@@ -24,10 +24,6 @@
     <p>
         <a href="https://www.dailypics.cn/member/id/{{ pic.PID }}" target="_blank">官网</a>
         <a href="tujian://p/{{ pic.PID }}" target="_blank">客户端</a>
-        <br />
-        <a href="{{ pic.local_url }}?p=0" target="_blank">图片地址(主要)</a>
-        <a href="{{ pic.mainland_url }}?p=0" target="_blank">图片地址(大陆)</a>
-        <a href="{{ pic.p_link }}" target="_blank">图片地址(原始)</a>
     </p>
     <p>
         <small>{{ pic.PID }}</small>
@@ -36,7 +32,7 @@
         <br />
         <small>{{ pic.p_date }}<a href="date-{{ pic.p_date }}.html" target="_blank">.</a> {{ sort.T_NAME }}<a href="sort-{{ pic.TID }}.html" target="_blank">.</a> @{{ pic.username|e }}<a href="user-{{ pic.username }}.html" target="_blank">.</a></small>
         <br />
-        <small>{{ pic.width }}×{{ pic.height }} {{ pic.aspect_ratio }}<a href="asp-{{ pic.aspect_ratio|replace(':','-') }}.html" target="_blank">.</a> {{ pic.info.quality }}% {{ pic.info.format }}
+        <small>{{ pic.width }}×{{ pic.height }} {{ pic.aspect_ratio }}<a href="asp-{{ pic.aspect_ratio|replace(':','-') }}.html" target="_blank">.</a>
             {{ pic.size }}</small>
         <br />
         <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>

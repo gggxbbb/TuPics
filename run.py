@@ -117,7 +117,7 @@ def download(pic):
         ### 否则下载
         print('-d')
         ### 获得缩略图
-        data2 = getBytes(pic['local_url']+'?f=jpg&q=0')
+        data2 = getBytes(pic['s_url'])
         ### 保存到文件
         with open(file_lite, 'wb') as f:
             f.write(data2)
@@ -127,30 +127,19 @@ def download(pic):
 # 获得图片信息
 def getInfo(pic):
     v = pic
-    ## 获取大陆友好的链接
-    v['mainland_url'] = v['local_url'].replace(
-            'img.dpic.dev', 'images.dailypics.cn')
     ## 获得非常友好的链接
     v['s_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    ## 获得图片文件信息
-    try:
-        v['info'] = json.loads(open('build/%s.json'%v['PID'],'r',encoding='utf-8').read())['info']
-    except:
-        v['info'] = getJson(v['mainland_url'].replace(
-            'cn/', 'cn/info?md5='))['info']
-    ## 获得文件名
-    v['file_name'] = v['PID'] + '.' + v['info']['format'].lower()
+    path = download(v)
     ## 获得文件体积
-    v['size_b'] = v['info']['size']
+    v['size_b'] = os.path.getsize(path)
     v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
     v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
     if v['size_mb'] < 1:
         v['size'] = str(v['size_kb']) + 'KB'
     else:
         v['size'] = str(v['size_mb']) + 'MB'
-    path = download(v)
     with Image.open(path) as image:
         row, col = dhash.dhash_row_col(image)
     v['dhash'] = dhash.format_hex(row, col)
