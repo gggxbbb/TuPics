@@ -28,8 +28,6 @@
     <p>
         <small>{{ pic.PID }}</small>
         <br />
-        <small>dHash(size=8) {{ pic.dhash }}</small>
-        <br />
         <small>{{ pic.p_date }}<a href="date-{{ pic.p_date }}.html" target="_blank">.</a> {{ sort.T_NAME }}<a href="sort-{{ pic.TID }}.html" target="_blank">.</a> @{{ pic.username|e }}<a href="user-{{ pic.username }}.html" target="_blank">.</a></small>
         <br />
         <small>{{ pic.width }}×{{ pic.height }} {{ pic.aspect_ratio }}<a href="asp-{{ pic.aspect_ratio|replace(':','-') }}.html" target="_blank">.</a>

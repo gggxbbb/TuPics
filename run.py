@@ -124,6 +124,21 @@ def download(pic):
             f.close()
     return file_lite
 
+def getRemoteFileSize(url):
+    opener = urllib.build_opener()
+    try:
+        request = urllib.Request(url)
+        request.get_method = lambda: 'HEAD'
+        response = opener.open(request)
+        response.read()
+    except Exception:
+        return 0
+    else:
+        print(response.headers)
+        fileSize = dict(response.headers).get('Content-Length', 0)
+        return int(fileSize)
+
+
 # 获得图片信息
 def getInfo(pic):
     v = pic
@@ -131,18 +146,14 @@ def getInfo(pic):
     v['s_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    path = download(v)
     ## 获得文件体积
-    v['size_b'] = os.path.getsize(path)
+    v['size_b'] = getRemoteFileSize(v['s_url'])
     v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
     v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
     if v['size_mb'] < 1:
         v['size'] = str(v['size_kb']) + 'KB'
     else:
         v['size'] = str(v['size_mb']) + 'MB'
-    with Image.open(path) as image:
-        row, col = dhash.dhash_row_col(image)
-    v['dhash'] = dhash.format_hex(row, col)
     ## 格式化 p_content
     v['p_content_html'] = md(
         markdown(
