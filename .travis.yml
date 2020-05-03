@@ -11,7 +11,7 @@ install:
   - pip3 install Pillow
   - pip3 install dhash
 script:
-  - python3 run.py
+  - python3 travis_wait run.py
   - python3 excel.py
   - cp static/* build
 after_success:
