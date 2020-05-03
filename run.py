@@ -15,11 +15,6 @@ import requests
 from markdown import markdown
 from jinja2 import Template
 from pinyin import get as pinyin
-import dhash
-from PIL import Image
-
-from PIL import ImageFile
-ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 addition = {'~~':'del'}
 
