@@ -131,7 +131,7 @@ def getInfo(pic):
     #try:
         v['size_b'] = json.loads(open('build/%s.json'%v['PID']).read())['size_b']
     #except:
-        v['size_b'] = int(ss[random.randint(0, len(ua)-1)].get(v['s_url'], stream = True).headers['Content-Length']) 
+    #    v['size_b'] = int(ss[random.randint(0, len(ua)-1)].get(v['s_url'], stream = True).headers['Content-Length']) 
     #v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
     #v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
     #if v['size_mb'] < 1:
