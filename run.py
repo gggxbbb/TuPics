@@ -226,7 +226,6 @@ output_pics['aspect_ratio'] = {}
 output_pics['date'] = {}
 output_pics['dates'] = []
 output_pics['count'] = {}
-output_pics['dhash'] = {}
 
 # 获取格式化的今日日期(北京时间)
 date_today = datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d')
@@ -301,7 +300,6 @@ output_pics['today'] = []
 for v in today:
     print(v['PID'])
     v = getInfo(v)
-    output_pics['dhash'][v['PID']] = v['dhash']
     output_pics['today'].append(v)
 # 记录结束时间
 output_pics['info']['today']['end'] = getTime()
@@ -371,8 +369,6 @@ for v in sort:
     for pic in output_pics['archive'][v['TID']]:
         print(pic['PID'])
         pic = getInfo(pic)
-        print(pic['dhash'])
-        output_pics['dhash'][pic['PID']] = pic['dhash']
         pics.append(pic)
     output_pics['count'][v['TID']] = len(pics)
     output_pics['archive'][v['TID']] = pics
@@ -426,9 +422,6 @@ with open('build/today.json', 'w', encoding='utf-8') as f:
 # 输出分类
 with open('build/sort.json', 'w', encoding='utf-8') as f:
     f.write(json.dumps(output_pics['sort']))
-    f.close()
-with open('build/dhash.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['dhash']))
     f.close()
 # 输出转换后的分类
 with open('build/sort2.json', 'w', encoding='utf-8') as f:
