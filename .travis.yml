@@ -23,7 +23,7 @@ after_success:
 cache:
   directories:
     - build
-    - catch
+    - img
 notifications:
   email:
     - 2331490629@qq.com

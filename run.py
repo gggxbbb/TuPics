@@ -95,7 +95,7 @@ def download(pic):
     ## 存储原始图片文件的路径
     #file_path = 'build/%s' % pic['file_name']
     ## 存储缩略图片文件的路径
-    file_lite = 'catch/%s.jpg' % pic['PID']
+    file_lite = 'img/%s' % pic['PID']
     ## 判断原始图片文件是否已存在
     #if os.path.isfile(file_path):
     #    ### 存在输出提示
