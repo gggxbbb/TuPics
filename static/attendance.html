@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>出勤</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+<script>
+function get(){
+    var username =document.getElementById("name").value;
+    var result = document.getElementById("result");
+    result.innerText="加载中......";
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET","user-"+username+".json",true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4){
+                if (xmlhttp.status != 200) {
+                    result.innerText = "ERROR " + xmlhttp.status
+                    return
+                }
+                info = JSON.parse(xmlhttp.responseText)
+                count = {}
+                for (key in info){
+                    v = info[key]
+                    d = new Date(v["p_date"])
+                    month = d.getMonth()+1
+                    if (month < 10){
+                        key = d.getFullYear() + "-0" + month
+                    }else{
+                        key = d.getFullYear() + "-" + month
+                    }
+                    if (count[key]){
+                       count[key] += 1
+                    }else{
+                       count[key] = 1
+                    }
+                }
+                var root = document.createElement("ul");
+                for (v in count) { 
+                    var item = document.createElement("li");
+                    item.innerText = v + " : " +count[v]
+                    root.appendChild(item)
+                }
+                result.innerText = ""
+                result.appendChild(root)
+        }
+    }
+}
+</script>
+<p><label>用户名</label><input id="name"/><button onclick="get()">走着</button></p>
+<div id="result"></div>
+</body>
+
+</html>
