@@ -86,6 +86,20 @@ def getTime():
     ## 返回格式化时间
     return datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y-%m-%d %H:%M:%S')
 
+# 从 cos 获得图片数据
+def getInfoFromCos(pic):
+    try:
+        print('getFromCatch')
+        catch = json.loads(open('build/%s'%pic['PID']).read())
+        if (catch['s_url'] == pic['s_url']):
+            return pic['info']
+    except:
+        print('getFormCos')
+        info = {}
+        info['image'] = getJson(pic['s_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s_url']+'?exif')
+        return info
+
 # 下载图片
 def download(pic):
     ## 存储原始图片文件的路径
@@ -127,17 +141,15 @@ def getInfo(pic):
     v['s_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    ## 获得文件体积
-    #try:
-    #    v['size_b'] = json.loads(open('build/%s.json'%v['PID']).read())['size_b']
-    #except:
-    #    v['size_b'] = int(ss[random.randint(0, len(ua)-1)].get(v['s_url'], stream = True).headers['Content-Length']) 
-    #v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
-    #v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
-    #if v['size_mb'] < 1:
-    #    v['size'] = str(v['size_kb']) + 'KB'
-    #else:
-    #    v['size'] = str(v['size_mb']) + 'MB'
+    v['info'] = getInfoFromCos(v)
+    # 获得文件体积
+    v['size_b'] = int(v['info']['image']['size'])
+    v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
+    v['size_mb'] = float('%.2f' % (v['size_b'] / 1048576))
+    if v['size_mb'] < 1:
+        v['size'] = str(v['size_kb']) + 'KB'
+    else:
+        v['size'] = str(v['size_mb']) + 'MB'
     ## 格式化 p_content
     v['p_content_html'] = md(
         markdown(
