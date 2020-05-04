@@ -90,7 +90,7 @@ def getTime():
 def getInfoFromCos(pic):
     try:
         print('getFromCatch')
-        catch = json.loads(open('build/%s'%pic['PID']).read())
+        catch = json.loads(open('build/%s.json'%pic['PID']).read())
         if (catch['s_url'] == pic['s_url']):
             return pic['info']
     except:
