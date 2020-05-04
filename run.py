@@ -88,17 +88,17 @@ def getTime():
 
 # 从 cos 获得图片数据
 def getInfoFromCos(pic):
-    #try:
-    print('getFromCatch')
-    catch = json.loads(open('build/%s.json'%pic['PID']).read())
-    if (catch['s_url'] == pic['s_url']):
-        return pic['info']
-    #except:
-    #    print('getFromCos')
-    #    info = {}
-    #    info['image'] = getJson(pic['s_url']+'?imageInfo')
-    #    info['exif'] = getJson(pic['s_url']+'?exif')
-    #    return info
+    try:
+        print('getFromCatch')
+        catch = json.loads(open('build/%s.json'%pic['PID']).read())
+        if (catch['s_url'] == pic['s_url']):
+            return catch['info']
+    except:
+        print('getFromCos')
+        info = {}
+        info['image'] = getJson(pic['s_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s_url']+'?exif')
+        return info
 
 # 下载图片
 def download(pic):
