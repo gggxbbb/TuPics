@@ -36,5 +36,17 @@
     </p>
     <p id="info">{{ pic.p_content_html }}</p>
     <img src="{{ pic.s_url }}" alt="{{ pic.p_title|e }}">
+    <p><small>
+    {% if pic.image.exif.Artist %} 作者: {{ pic.image.exif.Artist.val }}<br/>{% endif %}
+    {% if pic.image.exif.ExposureTime %} 快门速度: {{ pic.image.exif.ExposureTime.val }}<br/>{% endif %}
+    {% if pic.image.exif.FNumber %} 光圈系数: {{ pic.image.exif.FNumber.val }}<br/>{% endif %}
+    {% if pic.image.exif.ISOSpeedRating %} ISO: {{ pic.image.exif.ISOSpeedRating.val }}<br/>{% endif %}
+    {% if pic.image.exif.FocalLengthIn35mmFile %} 35mm等效焦距: {{ pic.image.exif.FocalLengthIn35mmFile.val }}<br/>{% endif %}
+    {% if pic.image.exif.Make %} 设备厂商: {{ pic.image.exif.Make.val }}<br/>{% endif %}
+    {% if pic.image.exif.Model %} 设备型号: {{ pic.image.exif.Model.val }}<br/>{% endif %}
+    {% if pic.image.exif.Software %} 软件: {{ pic.image.exif.Software.val }}<br/>{% endif %}
+    {% if pic.image.exif.DateTimeOrginal %} 拍摄时间: {{ pic.image.exif.DateTimeOrginal.val }}<br/>{% endif %}
+    {% if pic.image.exif.DateTime %} 修改时间: {{ pic.image.exif.DateTime.val }}<br/>{% endif %}
+    </small></p>
 </body>
 </html>
