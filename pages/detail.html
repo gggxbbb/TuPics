@@ -30,10 +30,9 @@
         <br />
         <small>{{ pic.p_date }}<a href="date-{{ pic.p_date }}.html" target="_blank">.</a> {{ sort.T_NAME }}<a href="sort-{{ pic.TID }}.html" target="_blank">.</a> @{{ pic.username|e }}<a href="user-{{ pic.username }}.html" target="_blank">.</a></small>
         <br />
-        <small>{{ pic.width }}×{{ pic.height }} {{ pic.aspect_ratio }}<a href="asp-{{ pic.aspect_ratio|replace(':','-') }}.html" target="_blank">.</a>
-        </small>
+        <small>{{ pic.width }}×{{ pic.height }} {{ pic.aspect_ratio }}<a href="asp-{{ pic.aspect_ratio|replace(':','-') }}.html" target="_blank">.</a> {{ pic.info.image.format }} {{ pic.size }}</small>
         <br />
-        <small>{{ pic.text_color }} @ {{ pic.theme_color }}</small>
+        <small><span style="color: {{ pic.text_color }}; background-color: {{ pic.theme_color }}">{{ pic.text_color }} @ {{ pic.theme_color }} (顶部)</span> <span style="color: {{ pic.text_color }}; background-color: {{ pic.info.image.photo_rgb|replace('0x','#') }}">{{ pic.info.image.photo_rgb|replace('0x','#') }}</span></small>
     </p>
     <p id="info">{{ pic.p_content_html }}</p>
     <img src="{{ pic.s_url }}" alt="{{ pic.p_title|e }}">
