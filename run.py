@@ -96,8 +96,8 @@ def getInfoFromCos(pic):
     except:
         print('getFromCos')
         info = {}
-        info['image'] = getJson(pic['s_url']+'?imageInfo')
-        info['exif'] = getJson(pic['s_url']+'?exif')
+        info['image'] = getJson(pic['s1_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s1_url']+'?exif')
         return info
 
 # 下载图片
@@ -127,7 +127,7 @@ def download(pic):
         ### 否则下载
         print('-d')
         ### 获得缩略图
-        data2 = getBytes(pic['s_url'])
+        data2 = getBytes(pic['s1_url'])
         ### 保存到文件
         with open(file_lite, 'wb') as f:
             f.write(data2)
@@ -138,7 +138,8 @@ def download(pic):
 def getInfo(pic):
     v = pic
     ## 获得非常友好的链接
-    v['s_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
+    v['s1_url'] = 'https://s1.images.dailypics.cn' + v['nativePath']
+    v['s2_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
     v['info'] = getInfoFromCos(v)
