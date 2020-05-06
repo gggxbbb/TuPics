@@ -72,7 +72,11 @@ def getJson(url):
     ## 设置编码
     req.encoding='utf-8'
     ## 序列化并返回
-    return json.loads(req.text)
+    try:
+        return json.loads(req.text)
+    except:
+        print(req.text)
+        return json.loads(req.text)
 
 # 获得 Bytes
 def getBytes(url):
