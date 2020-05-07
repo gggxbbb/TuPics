@@ -33,7 +33,7 @@ def md(text):
     return _t
 
 ua = [
-    'Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0',
+    'TuPics/' + datetime.datetime.now(pytz.timezone('PRC')).strftime('%Y%m%d%H'),
 ]
 
 ss = []
