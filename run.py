@@ -100,8 +100,8 @@ def getInfoFromCos(pic):
     except:
         print('getFromCos')
         info = {}
-        info['image'] = getJson(pic['s1_url']+'?imageInfo')
-        info['exif'] = getJson(pic['s1_url']+'?exif')
+        info['image'] = getJson(pic['s2_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s2_url']+'?exif')
         return info
 
 # 下载图片
