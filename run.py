@@ -95,13 +95,13 @@ def getInfoFromCos(pic):
     try:
         print('getFromCatch')
         catch = json.loads(open('build/%s.json'%pic['PID']).read())
-        if (catch['s2_url'] == pic['s2_url']):
+        if (catch['nativePath'] == pic['nativePath']):
             return catch['info']
     except:
         print('getFromCos')
         info = {}
-        info['image'] = getJson(pic['s2_url']+'?imageInfo')
-        info['exif'] = getJson(pic['s2_url']+'?exif')
+        info['image'] = getJson(pic['s1_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s1_url']+'?exif')
         return info
 
 # 下载图片
