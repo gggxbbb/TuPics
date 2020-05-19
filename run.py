@@ -395,9 +395,7 @@ for v in sort:
     if not v['TID'] in GuGuGu_key:
         output_pics['count'][v['TID']] += 1
 
-output_pics['username'],output_pics['users'] = 
-    sortDict(output_pics['users'],
-            key=lambda v:pinyin(v[0]).lower())
+output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[0]).lower())
 def fix_asp(v):
     asp = v[0]
     if asp.index(':') == 1:
@@ -408,11 +406,8 @@ def fix_asp(v):
     if length - (asp.index(':') + 1) == 1:
         asp.replace(':',':0')
     return asp
-output_pics['asp'],output_pics['aspect_ratio'] = 
-    sortDict(output_pics['aspect_ratio'],
-            key=fix_asp)
-output_pics['dates'],output_pics['date'] = 
-    sortDict(output_pics['date'],True)
+output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'],key=fix_asp)
+output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
 
 # 计算项目存活时间
