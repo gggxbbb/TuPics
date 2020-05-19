@@ -192,7 +192,7 @@ def getAsp(height, width):
     f = Fraction(width, height)
     n = f.numerator
     d = f.denominator
-    if (n > 50) or (d > 50):
+    if (n > 20) or (d > 20):
         if n > d:
             _n = 16
         if n < d:
@@ -396,7 +396,7 @@ for v in sort:
         output_pics['count'][v['TID']] += 1
 
 output_pics['username'],output_pics['users'] = sortDict(output_pics['users'],key=lambda v:pinyin(v[0]).lower())
-output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'],key=lambda v:'0'+v[0] if v[0].index(':') == 1 else v[0])
+output_pics['asp'],output_pics['aspect_ratio'] = sortDict(output_pics['aspect_ratio'],key=lambda v:'0'+v[0] if v[0].index(':') == 1 else if len(v[0])-v[0].index(':') = 2 v[0].replace(':',':0') else v[0])
 output_pics['dates'],output_pics['date'] = sortDict(output_pics['date'],True)
 
 
