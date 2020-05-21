@@ -8,9 +8,11 @@ install:
   - pip3 install requests
   - pip3 install markdown
   - pip3 install pinyin
+  - pip3 install jieba
 script:
   - python3 run.py
   - python3 excel.py
+  - python3 tags.py
   - cp static/* build
 after_success:
   - cd build/

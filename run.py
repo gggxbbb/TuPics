@@ -447,75 +447,75 @@ with open('build/index.html', 'w', encoding='utf-8') as f:
 # 输出今日图片
 with open('build/today.json', 'w', encoding='utf-8') as f:
     buildArchive(output_pics['today'], '今日', 'today')
-    f.write(json.dumps(output_pics['today']))
+    f.write(json.dumps(output_pics['today'],ensure_ascii=False))
     f.close()
 # 输出分类
 with open('build/sort.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['sort']))
+    f.write(json.dumps(output_pics['sort'],ensure_ascii=False))
     f.close()
 # 输出转换后的分类
 with open('build/sort2.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['sort_map']))
+    f.write(json.dumps(output_pics['sort_map'],ensure_ascii=False))
     f.close()
 # 输出 Users
 with open('build/username.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['username']))
+    f.write(json.dumps(output_pics['username'],ensure_ascii=False))
     f.close()
 with open('build/user-all.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['users']))
+    f.write(json.dumps(output_pics['users'],ensure_ascii=False))
     f.close()
 for v in output_pics['username']:
     with open('build/user-%s.json' % v, 'w', encoding='utf-8') as f:
         buildArchive(output_pics['users'][v], v, 'user-' + v)
-        f.write(json.dumps(output_pics['users'][v]))
+        f.write(json.dumps(output_pics['users'][v],ensure_ascii=False))
         f.close()
 
 with open('build/date.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['dates']))
+    f.write(json.dumps(output_pics['dates'],ensure_ascii=False))
     f.close()
 with open('build/date-all.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['date']))
+    f.write(json.dumps(output_pics['date'],ensure_ascii=False))
     f.close()
 for v in output_pics['date'].keys():
     with open('build/date-%s.json' % v, 'w', encoding='utf-8') as f:
         buildArchive(output_pics['date'][v], v, 'date-' + v)
-        f.write(json.dumps(output_pics['date'][v]))
+        f.write(json.dumps(output_pics['date'][v],ensure_ascii=False))
         f.close()
 # 输出 纵横比
 with open('build/asp.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['asp']))
+    f.write(json.dumps(output_pics['asp'],ensure_ascii=False))
     f.close()
 with open('build/asp-all.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['aspect_ratio']))
+    f.write(json.dumps(output_pics['aspect_ratio'],ensure_ascii=False))
     f.close()
 for v in output_pics['aspect_ratio'].keys():
     with open(('build/asp-%s.json' % v).replace(':', '-'), 'w', encoding='utf-8') as f:
         buildArchive(output_pics['aspect_ratio'][v],
                      v, ('asp-' + v).replace(':', '-'))
-        f.write(json.dumps(output_pics['aspect_ratio'][v]))
+        f.write(json.dumps(output_pics['aspect_ratio'][v],ensure_ascii=False))
         f.close()
 # 输出各分类归档
 with open('build/sort-all.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['archive']))
+    f.write(json.dumps(output_pics['archive'],ensure_ascii=False))
     f.close()
 for v in sort:
     # 输出归档
     with open('build/sort-%s.json' % v['TID'], 'w', encoding='utf-8') as f:
         buildArchive(output_pics['archive'][v['TID']],
                      v['T_NAME'], 'sort-' + v['TID'])
-        f.write(json.dumps(output_pics['archive'][v['TID']]))
+        f.write(json.dumps(output_pics['archive'][v['TID']],ensure_ascii=False))
         f.close()
 # 输出时间
 with open('build/info.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['info']))
+    f.write(json.dumps(output_pics['info'],ensure_ascii=False))
     f.close()
 # 输出咕咕咕情况
 with open('build/not_updated.json', 'w', encoding='utf-8') as f:
-    f.write(json.dumps(output_pics['not_updated']))
+    f.write(json.dumps(output_pics['not_updated'],ensure_ascii=False))
     f.close()
 # 输出主 Dict
 with open('build/all.json', 'w', encoding='utf-8') as f:
-   f.write(json.dumps(output_pics))
+   f.write(json.dumps(output_pics,ensure_ascii=False))
    f.close()
 # 输出主 CNAME
 with open('build/CNAME', 'w', encoding='utf-8') as f:
