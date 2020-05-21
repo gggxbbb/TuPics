@@ -12,7 +12,7 @@ def p_content(pic):
             if not pic['PID'] in tags[t]:
                 tags[t].append(pic['PID'])
         else:
-            tags[t] = [pic]
+            tags[t] = [pic['PID']]
 
 for v in input_pic['today']:
     p_content(v)
