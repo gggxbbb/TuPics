@@ -146,7 +146,8 @@ def getInfo(pic):
     v['s2_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
-    v['info'] = getInfoFromCos(v)
+    #v['info'] = getInfoFromCos(v)
+    v['info'] = {'image':{},'exif':{}}
     # 获得文件体积
     v['size_b'] = int(v['info']['image']['size'])
     v['size_kb'] = float('%.2f' % (v['size_b'] / 1024))
