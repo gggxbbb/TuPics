@@ -69,14 +69,14 @@ def getReq(url) -> requests.Response:
 def getJson(url):
     ## 获取 Response
     req = getReq(url)
-    ## 设置编码
-    req.encoding='utf-8'
     ## 序列化并返回
     try:
-        return json.loads(req.text)
+        json.loads(req.text)
+        ## 设置编码
+        req.encoding='utf-8'
     except:
         print(req.text)
-        return json.loads(req.text)
+    return json.loads(req.text)
 
 # 获得 Bytes
 def getBytes(url):
