@@ -10,6 +10,7 @@ install:
   - pip3 install pinyin
   - pip3 install jieba
 script:
+  - echo "99.84.206.50 s2.images.dailypics.cn" >> /etc/hosts
   - python3 run.py
   - python3 excel.py
   - python3 tags.py
