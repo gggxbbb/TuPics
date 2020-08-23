@@ -522,7 +522,7 @@ with open('build/all.json', 'w', encoding='utf-8') as f:
    f.close()
 # 输出主 CNAME
 with open('build/CNAME', 'w', encoding='utf-8') as f:
-    f.write('tu.gggxbbb.tk')
+    f.write('tupics.cf')
     f.close()
 
 
