@@ -520,10 +520,6 @@ with open('build/not_updated.json', 'w', encoding='utf-8') as f:
 with open('build/all.json', 'w', encoding='utf-8') as f:
    f.write(json.dumps(output_pics,ensure_ascii=False))
    f.close()
-# 输出主 CNAME
-with open('build/CNAME', 'w', encoding='utf-8') as f:
-    f.write('tupics.cf')
-    f.close()
 
 
 print('共进行%s次 HTTP 请求' % http_count)

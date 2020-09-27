@@ -14,6 +14,7 @@ script:
   - python3 excel.py
   - python3 tags.py
   - cp static/* build
+  - echo 'tu.evax.top' > build/CNAME
 after_success:
   - cd build/
   - git config http.postBuffer 524288000
