@@ -95,8 +95,11 @@ def getInfoFromCos(pic):
     try:
         print('getFromCatch')
         catch = json.loads(open('build/%s.json'%pic['PID']).read())
+        if catch['info']['image']['size'] == 0:
+            rasie Exception('useless catch')
         if (catch['nativePath'] == pic['nativePath']):
             return catch['info']
+        rasie Exception('useless catch')
     except:
         print('getFromCos')
         info = {}
