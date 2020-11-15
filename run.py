@@ -92,24 +92,24 @@ def getTime():
 
 # 从 cos 获得图片数据
 def getInfoFromCos(pic):
-    try:
-        print('getFromCatch')
-        catch = json.loads(open('build/%s.json'%pic['PID']).read())
-        if catch['info']['image']['size'] == 0:
-            raise Exception('useless catch')
-        if (catch['nativePath'] == pic['nativePath']):
-            return catch['info']
-        raise Exception('useless catch')
-    except:
-        print('getFromCos')
-        info = {}
-        try:
-            info['image'] = getJson(pic['s1_url']+'?imageInfo')
-            info['exif'] = getJson(pic['s1_url']+'?exif')
-        except:
-            info['image'] = {'size':0,'format':'null'}
-            info['exif'] = {}
-        return info
+    #try:
+        #print('getFromCatch')
+        #catch = json.loads(open('build/%s.json'%pic['PID']).read())
+        #if catch['info']['image']['size'] == 0:
+        #    raise Exception('useless catch')
+        #if (catch['nativePath'] == pic['nativePath']):
+        #    return catch['info']
+        #raise Exception('useless catch')
+    #except:
+        #print('getFromCos')
+    info = {}
+        #try:
+            #info['image'] = getJson(pic['s1_url']+'?imageInfo')
+            #info['exif'] = getJson(pic['s1_url']+'?exif')
+        #except:
+    info['image'] = {'size':0,'format':'null'}
+    info['exif'] = {}
+    return info
 
 # 下载图片
 def download(pic):
