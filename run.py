@@ -100,11 +100,11 @@ def getInfoFromCos(pic):
     except:
         print('getFromCos')
         info = {}
-        #info['image'] = getJson(pic['s2_url']+'?imageInfo')
-        #info['exif'] = getJson(pic['s2_url']+'?exif')
+        info['image'] = getJson(pic['s2_url']+'?imageInfo')
+        info['exif'] = getJson(pic['s2_url']+'?exif')
        
-        info['image'] = {'size':0,'format':'null'}
-        info['exif'] = {}
+        #info['image'] = {'size':0,'format':'null'}
+        #info['exif'] = {}
         return info
 
 # 下载图片
@@ -202,7 +202,7 @@ def getAsp(height, width):
             _n = 9
         _d = d * _n / n
         n = _n
-        d = ('%0.2f'%_d).replace('.00','')
+        d = ('%0.1f'%_d).replace('.0','')
     return '%s:%s' % (n, d)
 
 def putUser(pic):
