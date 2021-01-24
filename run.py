@@ -151,6 +151,7 @@ def getInfo(pic):
     ## 获得非常友好的链接
     v['s1_url'] = 'https://s1.images.dailypics.cn' + v['nativePath']
     v['s2_url'] = 'https://s2.images.dailypics.cn' + v['nativePath']
+    v['type'] = os.path.splitext(v['nativePath'])[-1]
     ## 获得长宽比
     v['aspect_ratio'] = getAsp(v['height'], v['width'])
     v['info'] = getInfoFromCos(v)
