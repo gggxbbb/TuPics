@@ -36,7 +36,7 @@
         <small><span style="color: {{ pic.text_color }}; background-color: {{ pic.theme_color }}">{{ pic.text_color }} @ {{ pic.theme_color }} (顶部)</span> <span style="color: {{ pic.text_color }}; background-color: {{ pic.info.image.photo_rgb|replace('0x','#') }}">{{ pic.info.image.photo_rgb|replace('0x','#') }}</span></small>
     </p>
     <p id="info">{{ pic.p_content_html }}</p>
-    <img src="https://files.evax.top/Tujian/{{ pic.p_date }}-{{ sort.T_NAME }}-{{ pic.p_title }}_{{ pic.PID }}.{{ pic.username }}{{ pic.type }}" alt="{{ pic.p_title|e }}">
+    <img src="https://files.evax.top/Tujian/{{ pic.p_date }}-{{ sort.T_NAME }}_{{ pic.p_title }}_{{ pic.PID }}.{{ pic.username }}{{ pic.type }}" alt="{{ pic.p_title|e }}">
     <p><small>
     {% if pic.info.exif.Artist %} 作者: {{ pic.info.exif.Artist.val }}<br/>{% endif %}
     {% if pic.info.exif.ExposureTime %} 快门速度: {{ pic.info.exif.ExposureTime.val }}<br/>{% endif %}
