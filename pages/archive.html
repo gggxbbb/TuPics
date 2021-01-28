@@ -8,14 +8,37 @@
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
         body {
-            max-width: 512px;
+            max-width: 2048px;
             padding: 2%;
             margin-left: auto;
             margin-right: auto;
         }
 
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
         img {
             max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
         }
     </style>
 </head>
@@ -23,18 +46,20 @@
 <body>
     <h1>{{ title }}</h1>
     <br />
-    {% for pic in pics %}
-    <div>
-        <h2>{{ pic.p_title|e }}</h2>
-        <p>
-            <a href="{{ pic.PID }}.html" target="_blank">详情</a>
-            <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
-        </p>
-        <img src="favicon.ico" data-src="https://files.evax.top/Tujian/{{ pic.p_date }}-{{ sort[pic.TID].T_NAME }}_{{ pic.p_title }}_{{ pic.PID }}.{{ pic.username }}{{ pic.type }}"
-            alt="{{ pic.p_title|e }}">
-        <br />
+    <div class="root">
+        {% for pic in pics %}
+        <div class="item">
+            <h2>{{ pic.p_title|e }}</h2>
+            <p>
+                <a href="{{ pic.PID }}.html" target="_blank">详情</a>
+                <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
+            </p>
+            <img src="favicon.ico" data-src="https://s2.images.dailypics.cn{{ pic.nativePath }}!w1080"
+                alt="{{ pic.p_title|e }}">
+            <br />
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
     <script>
         function lazyload() {
             var images = document.getElementsByTagName('img');

@@ -8,11 +8,31 @@
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
         body {
-            max-width: 512px;
+            max-width: 2048px;
             padding: 2%;
             margin-left: auto;
             margin-right: auto;
         }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1,auto);
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2,auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+            }
+        }
+        
     </style>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
@@ -21,7 +41,8 @@
     <h1>TuPics (不再维护)</h1>
     <p>
         <small>
-            <a class="github-button" href="https://github.com/gggxbbb/TuPics" data-icon="octicon-star" data-show-count="true" aria-label="Star gggxbbb/TuPics on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/gggxbbb/TuPics" data-icon="octicon-star"
+                data-show-count="true" aria-label="Star gggxbbb/TuPics on GitHub">Star</a>
             <a href="https://www.dailypics.cn/" target="_blank">官方站点</a>
             <a href="https://www.dailypics.cn/doc/1" target="_blank">官方:用户协议</a>
             <a href="https://www.dailypics.cn/doc/2" target="_blank">官方:隐私政策</a>
@@ -30,7 +51,8 @@
     <p>数据更新时间: {{ pics.info.end }} <img src="https://travis-ci.org/gggxbbb/TuPics.svg?branch=master"></p>
     <p>项目已存活 {{ pics.project_age }} 天, 其中 {{pics.dates|length}} 天更新了图片.</p>
     <p><a href="https://afdian.net/@dailypicscn" target="_blank">为主项目发电</a> </p>
-    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张,{{ " "|e }}{%- endfor -%}必应日图每天一张.</p>
+    <p>截至数据更新时, 共有{%- for sort in pics.sort -%}{{sort.T_NAME }}{{ pics.count[sort.TID] }}张,{{ " "|e }}{%- endfor
+        -%}必应日图每天一张.</p>
     <h2 id='today'>今日图片</h2>
     <p><a href="today.html" target="_blank">今日图片</a>: {{ not_updated }}</p>
     <ul>
@@ -54,38 +76,50 @@
                 ({{ pics.archive[sort.TID]|length }})</a></li>
         {% endfor %}
     </ul>
-    {% for sort in pics.sort %}
-    <h3 id='archive-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</h3>
-    <ul>
-        {% for pic in pics.archive[sort.TID] %}
-        <li>
-            <a href="{{ pic.PID }}.html" target="_blank">
-                 {{ pic.p_date }} {{ pic.p_title|e }} via@{{ pic.username|e }}
-            </a>
-        </li>
+    <div class="root">
+        {% for sort in pics.sort %}
+        <div class="item">
+            <h3 id='archive-{{ sort.TID }}'>{{sort.T_NAME}} ({{ pics.archive[sort.TID]|length }})</h3>
+            <ul>
+                {% for pic in pics.archive[sort.TID] %}
+                <li>
+                    <a href="{{ pic.PID }}.html" target="_blank">
+                        {{ pic.p_date }} {{ pic.p_title|e }} via@{{ pic.username|e }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endfor %}
-    </ul>
-    {% endfor %}
+    </div>
     <h2 id="archive-2">其它归档(含今日)</h2>
-    <h3 id='archive-date'>日期 ({{pics.dates|length}})</h3>
-    <ul>
-        {% for date in pics.dates %}
-        <li><a href="date-{{ date }}.html" target="_blank">{{date}} ({{ pics.date[date]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='archive-username'>用户 ({{pics.username|length}})</h3>
-    <ul>
-        {% for user in pics.username %}
-        <li><a href="user-{{ user }}.html" target="_blank">{{user}} ({{ pics.users[user]|length }})</a></li>
-        {% endfor %}
-    </ul>
-    <h3 id='archive-asp'>长宽比 ({{pics.asp|length}})</h3>
-    <ul>
-        {% for asp in pics.asp %}
-        <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank">{{asp}}
-                ({{ pics['aspect_ratio'][asp]|length }})</a></li>
-        {% endfor %}
-    </ul>
+    <div class="root">
+        <div class="item">
+            <h3 id='archive-date'>日期 ({{pics.dates|length}})</h3>
+            <ul>
+                {% for date in pics.dates %}
+                <li><a href="date-{{ date }}.html" target="_blank">{{date}} ({{ pics.date[date]|length }})</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="item">
+            <h3 id='archive-username'>用户 ({{pics.username|length}})</h3>
+            <ul>
+                {% for user in pics.username %}
+                <li><a href="user-{{ user }}.html" target="_blank">{{user}} ({{ pics.users[user]|length }})</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="item">
+            <h3 id='archive-asp'>长宽比 ({{pics.asp|length}})</h3>
+            <ul>
+                {% for asp in pics.asp %}
+                <li><a href="asp-{{ asp|replace(':','-') }}.html" target="_blank">{{asp}}
+                        ({{ pics['aspect_ratio'][asp]|length }})</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 
 </html>
