@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<!--suppress HtmlFormInputWithoutLabel -->
+<html lang="zh-cn">
 
 <head>
     <title>出勤</title>
@@ -9,47 +10,54 @@
 </head>
 
 <body>
+<!--suppress JSUnfilteredForInLoop -->
 <script>
 function get(){
-    var username =document.getElementById("name").value;
-    var result = document.getElementById("result");
+    const username = document.getElementById("name").value;
+    const result = document.getElementById("result");
     result.innerText="加载中......";
-    xmlhttp=new XMLHttpRequest();
+    // noinspection SpellCheckingInspection
+    const xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET","user-"+username+".json",true);
     xmlhttp.send();
     xmlhttp.onreadystatechange=function()
         {
-            if (xmlhttp.readyState==4){
-                if (xmlhttp.status != 200) {
+            let info;
+            let count;
+            let v;
+            let month;
+            let d;
+            if (xmlhttp.readyState === 4) {
+                if (xmlhttp.status !== 200) {
                     result.innerText = "ERROR " + xmlhttp.status
                     return
                 }
                 info = JSON.parse(xmlhttp.responseText)
                 count = {}
-                for (key in info){
+                for (let key in info) {
                     v = info[key]
                     d = new Date(v["p_date"])
-                    month = d.getMonth()+1
-                    if (month < 10){
+                    month = d.getMonth() + 1
+                    if (month < 10) {
                         key = d.getFullYear() + "-0" + month
-                    }else{
+                    } else {
                         key = d.getFullYear() + "-" + month
                     }
-                    if (count[key]){
-                       count[key] += 1
-                    }else{
-                       count[key] = 1
+                    if (count[key]) {
+                        count[key] += 1
+                    } else {
+                        count[key] = 1
                     }
                 }
-                var root = document.createElement("ul");
-                for (v in count) { 
-                    var item = document.createElement("li");
-                    item.innerText = v + " : " +count[v]
+                const root = document.createElement("ul");
+                for (v in count) {
+                    const item = document.createElement("li");
+                    item.innerText = v + " : " + count[v]
                     root.appendChild(item)
                 }
                 result.innerText = ""
                 result.appendChild(root)
-        }
+            }
     }
 }
 </script>

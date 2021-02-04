@@ -335,6 +335,7 @@ print('today')
 # 记录开始时间
 # noinspection PyTypeChecker
 output_pics['info']['today'] = {}
+# noinspection PyTypeChecker
 output_pics['info']['today']['start'] = get_time()
 # 获取今日
 today = get_json('https://v2.api.dailypics.cn/today')

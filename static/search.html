@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<!--suppress HtmlFormInputWithoutLabel, JSUnfilteredForInLoop, JSUnresolvedVariable -->
+<html lang="zh-cn">
 
 <head>
     <title>搜索</title>
@@ -159,8 +160,8 @@
     <script>
 
         function getMethod(key) {
-            v = document.getElementsByName(`s_${key}_method`)
-            for (k in v) {
+            const v = document.getElementsByName(`s_${key}_method`);
+            for (const k in v) {
                 if (v[k].checked) {
                     return v[k].value
                 }
@@ -168,15 +169,14 @@
         }
 
         function doCheck(key, str, method) {
-            re = false
+            let re = false;
 
-            if (method == "in") {
-                re = str.indexOf(key) != -1
-            }
-            else if (method == "eq") {
-                re = key == str
-            }
-            else if (method == "re") {
+            let r;
+            if (method === "in") {
+                re = str.indexOf(key) !== -1
+            } else if (method === "eq") {
+                re = key === str
+            } else if (method === "re") {
                 r = new RegExp(key)
                 re = r.test(str)
             }
@@ -188,9 +188,10 @@
         }
 
         function search() {
-            result = []
+            const result = [];
 
-            for (k in pics) {
+            let pic;
+            for (const k in pics) {
                 pic = pics[k]
                 if (
                     doCheck(getValue("title"), pic["p_title"], getMethod("title")) &&
@@ -209,7 +210,7 @@
         }
 
         function doSearch() {
-            r = search()
+            const r = search();
             $("#result_count").text(`Results: ${r.length}`)
         }
 
@@ -228,13 +229,12 @@
 
         /*获取所有图片*/
         $.getJSON("https://tu.evax.top/today.json", (data, status, _) => {
-            s_a = data.length
-            for (k in data) {
+            for (const k in data) {
                 pics[data[k]['PID']] = data[k]
-                $.getJSON(`https://tu.evax.top/sort-${data[k]['TID']}.json`, (d, s) => {
+                $.getJSON(`https://tu.evax.top/sort-${data[k]['TID']}.json`, (d, _) => {
                     console.log(`[load]${data[k]['TID']}`)
                     s_d++
-                    for (kk in d) {
+                    for (const kk in d) {
                         d[kk]['T_NAME'] = data[k]['T_NAME']
                         pics[d[kk]['PID']] = d[kk]
                     }
