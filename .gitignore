@@ -2,3 +2,4 @@ build
 __*
 static/*.json
 .vscode
+.idea
