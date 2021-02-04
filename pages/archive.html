@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
 <html lang="zh-CN">
 
 <head>
@@ -54,21 +55,21 @@
                 <a href="{{ pic.PID }}.html" target="_blank">详情</a>
                 <small>{{ pic.p_date }} {{ sort[pic.TID].T_NAME }} @{{ pic.username|e }}</small>
             </p>
-            <img src="favicon.ico" data-src="https://s2.images.dailypics.cn{{ pic.nativePath }}!w1080"
-                alt="{{ pic.p_title|e }}">
+            <img alt="{{ pic.p_title|e }}" data-src="https://s2.images.dailypics.cn{{ pic.nativePath }}!w1080"
+                 src="favicon.ico">
             <br />
         </div>
         {% endfor %}
     </div>
     <script>
         function lazyload() {
-            var images = document.getElementsByTagName('img');
-            var len = images.length;
-            var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
             return function () {
-                var seeHeight = document.documentElement.clientHeight;
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                for (var i = n; i < len; i++) {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
                     if (images[i].offsetTop < seeHeight + scrollTop) {
                         if (images[i].getAttribute('src') === 'favicon.ico') {
                             images[i].src = images[i].getAttribute('data-src');
@@ -78,7 +79,8 @@
                 }
             }
         }
-        var loadImages = lazyload();
+
+        const loadImages = lazyload();
         loadImages();          //初始化首页的页面图片
         window.addEventListener('scroll', loadImages, false);
     </script>
