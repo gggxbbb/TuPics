@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2:1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2:1</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>大国重器</h2>
+            <p>
+                <a href="5b67e288-8b5b-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-01 插画 @createlite</small>
+            </p>
+            <img alt="大国重器" data-src="https://s2.images.dailypics.cn/202005/0f864ca90896d7594dc8fc28d69c6fc2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>俯瞰。</h2>
+            <p>
+                <a href="750d6c2f-c362-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-21 摄影 @lz233</small>
+            </p>
+            <img alt="俯瞰。" data-src="https://s2.images.dailypics.cn/201908/aaeab025f5515d5000a918bc492c0196.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>【PFAOS】潰えゆく</h2>
+            <p>
+                <a href="2f008c4f-7681-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-05 桌面 @KFC0803</small>
+            </p>
+            <img alt="【PFAOS】潰えゆく" data-src="https://s2.images.dailypics.cn/202004/7db4eccfb6044208aeea32ca2c5fd5ab.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>山 全景 森林</h2>
+            <p>
+                <a href="a593071b-ffc4-11e9-8f1a-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-11-05 桌面 @Chimon89</small>
+            </p>
+            <img alt="山 全景 森林" data-src="https://s2.images.dailypics.cn/201911/3f848c9655d530e75b2dfd0d0fcad862.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>少女终末旅行</h2>
+            <p>
+                <a href="3b7fff98-70b3-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-08 桌面 @酷安@DT9025A</small>
+            </p>
+            <img alt="少女终末旅行" data-src="https://s2.images.dailypics.cn/201905/c18083fdb0426726890a5ba9ad524146.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>辉夜大小姐</h2>
+            <p>
+                <a href="c54dcb25-52d1-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-29 桌面 @Createlite</small>
+            </p>
+            <img alt="辉夜大小姐" data-src="https://s2.images.dailypics.cn/201903/6eeef14d0ba3f5da2528a3bcedf8987d.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>-冻土の彼方 st.1.7-</h2>
+            <p>
+                <a href="a81b573c-3918-11e9-839c-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-26 桌面 @Galentwww</small>
+            </p>
+            <img alt="-冻土の彼方 st.1.7-" data-src="https://s2.images.dailypics.cn/201902/ac22411a6e51110a2cf88142432bdf72.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>夏日已所剩无几</h2>
+            <p>
+                <a href="41fa1e64-3460-11e9-839c-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-20 桌面 @Pray爱降临</small>
+            </p>
+            <img alt="夏日已所剩无几" data-src="https://s2.images.dailypics.cn/201902/08a7b0f863a2c661b5c7e5679c4b278c.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

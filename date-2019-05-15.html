@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2019-05-15</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2019-05-15</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>初音未来</h2>
+            <p>
+                <a href="b8c199b2-7664-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-15 插画 @Createlite</small>
+            </p>
+            <img alt="初音未来" data-src="https://s2.images.dailypics.cn/201905/2e9e7fedfae32d50d18378e4bce66020.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>离行</h2>
+            <p>
+                <a href="64d426ae-7660-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-15 摄影 @NightCalibur</small>
+            </p>
+            <img alt="离行" data-src="https://s2.images.dailypics.cn/201905/d0ec00b418461a78fbd2ecf13ac855b7.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>巣立ち、</h2>
+            <p>
+                <a href="24c4365b-7642-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-15 桌面 @Chimon89</small>
+            </p>
+            <img alt="巣立ち、" data-src="https://s2.images.dailypics.cn/201905/8d94a22ab8a047990223127434b835ed.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>轻音少女！</h2>
+            <p>
+                <a href="dca926f2-772d-11e9-9337-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-15 桌面 @Createlite</small>
+            </p>
+            <img alt="轻音少女！" data-src="https://s2.images.dailypics.cn/201905/d15dc9d09cc57c23fcb9869fbc3fc772.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

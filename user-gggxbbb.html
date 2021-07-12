@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>gggxbbb</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>gggxbbb</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>道</h2>
+            <p>
+                <a href="34b24caf-ac9a-11ea-aabe-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-06-13 插画 @gggxbbb</small>
+            </p>
+            <img alt="道" data-src="https://s2.images.dailypics.cn/202006/03cae1c5fb39d17f9061cdea11d46c4e.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Run!</h2>
+            <p>
+                <a href="2f219b31-a41d-11ea-a4bd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-06-03 桌面 @gggxbbb</small>
+            </p>
+            <img alt="Run!" data-src="https://s2.images.dailypics.cn/202006/30c1e01ec2cd29226cd0cf4452b26eda.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>雨</h2>
+            <p>
+                <a href="a06c5ac1-edc6-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-14 桌面 @gggxbbb</small>
+            </p>
+            <img alt="雨" data-src="https://s2.images.dailypics.cn/201910/8356883d409de05eae506fc9a8f3c3de.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>新科娘！</h2>
+            <p>
+                <a href="2cd4d4bc-e913-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-08 桌面 @gggxbbb</small>
+            </p>
+            <img alt="新科娘！" data-src="https://s2.images.dailypics.cn/201910/d66ba30e48db18602245510018ff4765.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

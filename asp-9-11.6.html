@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:11.6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:11.6</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>歩道橋</h2>
+            <p>
+                <a href="8f4f3789-66d7-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-07 插画 @Createlite</small>
+            </p>
+            <img alt="歩道橋" data-src="https://s2.images.dailypics.cn/202102/98b41b94a5588879523411e78673e6b2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>明日方舟</h2>
+            <p>
+                <a href="864340de-7592-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-14 插画 @NightCalibur</small>
+            </p>
+            <img alt="明日方舟" data-src="https://s2.images.dailypics.cn/201905/5081727459cd5a51bec1835278b580b0.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>日常</h2>
+            <p>
+                <a href="35820104-6103-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-18 插画 @流口水的兔子</small>
+            </p>
+            <img alt="日常" data-src="https://s2.images.dailypics.cn/201904/9382c8260cdc2d2fd416cdafe59b3834.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>公主殿下</h2>
+            <p>
+                <a href="36aaf8a0-ab99-11e8-a8ea-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-08-20 插画 @Galentwww</small>
+            </p>
+            <img alt="公主殿下" data-src="https://s2.images.dailypics.cn/201808/5018fcabf7a232b9531cc350fa90da51.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

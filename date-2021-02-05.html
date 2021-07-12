@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2021-02-05</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2021-02-05</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>SKY ROOM</h2>
+            <p>
+                <a href="63b1277e-6632-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-05 插画 @Createlite</small>
+            </p>
+            <img alt="SKY ROOM" data-src="https://s2.images.dailypics.cn/202102/88507a8db63867133af8ae666b36d1df.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>海、铁道</h2>
+            <p>
+                <a href="91a7a653-6634-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-05 摄影 @Createlite</small>
+            </p>
+            <img alt="海、铁道" data-src="https://s2.images.dailypics.cn/202102/9bde6788d0cb298cf86145fa37a68298.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>星見る頃を過ぎても</h2>
+            <p>
+                <a href="bff589f1-6636-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-05 桌面 @Createlite</small>
+            </p>
+            <img alt="星見る頃を過ぎても" data-src="https://s2.images.dailypics.cn/202102/abdfc443d105a69660f59a442e1cffe3.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

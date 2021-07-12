@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>xkeyC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>xkeyC</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>とある魔術の禁書目録-night</h2>
+            <p>
+                <a href="03c79c9e-7043-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-28 桌面 @xkeyC</small>
+            </p>
+            <img alt="とある魔術の禁書目録-night" data-src="https://s2.images.dailypics.cn/202003/4c98f7628021a62209119cd8c66ba757.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>とある魔術の禁書目録-dusk</h2>
+            <p>
+                <a href="1ade59b4-6147-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-09 桌面 @xkeyC</small>
+            </p>
+            <img alt="とある魔術の禁書目録-dusk" data-src="https://s2.images.dailypics.cn/202003/0e1ae7c49ed81d9c82307f2362f54cbd.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>とある魔術の禁書目録-morning</h2>
+            <p>
+                <a href="e343b288-6082-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-08 桌面 @xkeyC</small>
+            </p>
+            <img alt="とある魔術の禁書目録-morning" data-src="https://s2.images.dailypics.cn/202003/20c85e88746f10f9f8cec6806b04fb0f.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>とある魔術の禁書目録-noon</h2>
+            <p>
+                <a href="8d88354d-5fb7-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-07 桌面 @xkeyC</small>
+            </p>
+            <img alt="とある魔術の禁書目録-noon" data-src="https://s2.images.dailypics.cn/202003/c6dbd02de813f166612d9f478d4bfd5a.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>星尘</h2>
+            <p>
+                <a href="058f0bf8-9d42-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-03 桌面 @xkeyC</small>
+            </p>
+            <img alt="星尘" data-src="https://s2.images.dailypics.cn/201907/198b44b639de966aabb580fa99ce75a7.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>5:8</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>5:8</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>In Your Memory</h2>
+            <p>
+                <a href="b57ed3c4-7901-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-28 插画 @KFC0803</small>
+            </p>
+            <img alt="In Your Memory" data-src="https://s2.images.dailypics.cn/202102/47eeec74d79cb01ff8476b1d09f54880.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>アルトリア・ペンドラゴン</h2>
+            <p>
+                <a href="a0387304-8c9b-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-05 插画 @Night</small>
+            </p>
+            <img alt="アルトリア・ペンドラゴン" data-src="https://s2.images.dailypics.cn/202005/d05c36a8d0da9fa2d03731da3e7f8e14.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>❤塞下曲 P0 （洛天依）</h2>
+            <p>
+                <a href="4b2777ab-eaa9-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-10 插画 @Gadgetry</small>
+            </p>
+            <img alt="❤塞下曲 P0 （洛天依）" data-src="https://s2.images.dailypics.cn/201910/563b9d38a830ebcef57f02dfb5ef361f.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>少女前线</h2>
+            <p>
+                <a href="416a042d-8877-11e9-907b-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-06-07 插画 @Createlite</small>
+            </p>
+            <img alt="少女前线" data-src="https://s2.images.dailypics.cn/201906/1199a818202b07dac8fa80a53ca68f34.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>蕾姆</h2>
+            <p>
+                <a href="8b030de6-61e6-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-19 插画 @流口水的兔子</small>
+            </p>
+            <img alt="蕾姆" data-src="https://s2.images.dailypics.cn/201904/6ac09271fc2fb4608d8caaad881632e0.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>面对面</h2>
+            <p>
+                <a href="c083c8d7-3136-11e9-839c-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-17 插画 @wfhcr</small>
+            </p>
+            <img alt="面对面" data-src="https://s2.images.dailypics.cn/201902/e868e229274d3251f0e0f2d2ca9658d9.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

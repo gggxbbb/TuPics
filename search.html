@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel, JSUnfilteredForInLoop, JSUnresolvedVariable -->
+<html lang="zh-cn">
+
+<head>
+    <title>搜索</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="http://cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .search_unit {
+            display: flex;
+            width: 100%;
+        }
+
+        .search_key {
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        .search_go {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+
+            .search_key {
+                margin-right: 0;
+                margin-left: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+
+            .search_key {
+                margin-right: 0;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pic_loading">
+        <p><strong>Loading...</strong></p>
+    </div>
+
+    <script>
+        pics = {}
+    </script>
+
+    <div id="search_box" class="root">
+        <div id="s_title" class="item search_unit">
+            <p>title:</p>
+            <div class="search_key">
+                <p><input id="s_title_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_title_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_title_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_title_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_content" class="item search_unit">
+            <p>content:</p>
+            <div class="search_key">
+                <p><input id="s_content_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_content_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_content_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_content_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_user" class="item search_unit">
+            <p>username:</p>
+            <div class="search_key">
+                <p><input id="s_user_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_user_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_user_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_user_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_pid" class="item search_unit">
+            <p>PID:</p>
+            <div class="search_key">
+                <p><input id="s_pid_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_pid_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_pid_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_pid_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_tid" class="item search_unit">
+            <p>TID:</p>
+            <div class="search_key">
+                <p><input id="s_tid_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_tid_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_tid_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_tid_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_tname" class="item search_unit">
+            <p>T_NAME:</p>
+            <div class="search_key">
+                <p><input id="s_tname_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_tname_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_tname_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_tname_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+        <div id="s_date" class="item search_unit">
+            <p>Date:</p>
+            <div class="search_key">
+                <p><input id="s_date_key" oninput="doSearch()"></p>
+                <p>
+                    <input type="radio" name="s_date_method" value="in" onclick="doSearch()" checked>包含
+                    <input type="radio" name="s_date_method" value="eq" onclick="doSearch()">等于
+                    <input type="radio" name="s_date_method" value="re" onclick="doSearch()">正则
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="search_unit" id="search_t">
+        <p id="result_count">No Results</p>
+        <button class="search_go">Show Results</button>
+    </div>
+
+    <script>
+
+        function getMethod(key) {
+            const v = document.getElementsByName(`s_${key}_method`);
+            for (const k in v) {
+                if (v[k].checked) {
+                    return v[k].value
+                }
+            }
+        }
+
+        function doCheck(key, str, method) {
+            let re = false;
+
+            let r;
+            if (method === "in") {
+                re = str.indexOf(key) !== -1
+            } else if (method === "eq") {
+                re = key === str
+            } else if (method === "re") {
+                r = new RegExp(key)
+                re = r.test(str)
+            }
+            return re
+        }
+
+        function getValue(key) {
+            return $(`#s_${key}_key`).val()
+        }
+
+        function search() {
+            const result = [];
+
+            let pic;
+            for (const k in pics) {
+                pic = pics[k]
+                if (
+                    doCheck(getValue("title"), pic["p_title"], getMethod("title")) &&
+                    doCheck(getValue("content"), pic["p_content"], getMethod("content")) &&
+                    doCheck(getValue("user"), pic["username"], getMethod("user")) &&
+                    doCheck(getValue("pid"), pic["PID"], getMethod("pid")) &&
+                    doCheck(getValue("tid"), pic["TID"], getMethod("tid")) &&
+                    doCheck(getValue("tname"), pic["T_NAME"], getMethod("tname")) &&
+                    doCheck(getValue("date"), pic["p_date"], getMethod("date"))
+                ) {
+                    result.push(pic)
+                }
+            }
+
+            return result
+        }
+
+        function doSearch() {
+            const r = search();
+            $("#result_count").text(`Results: ${r.length}`)
+        }
+
+    </script>
+
+    <script id="pic_loader">
+        $("#search_box").hide()
+        $("#search_t").hide()
+
+        s_a = 3
+        s_d = 0
+
+        $.ajaxSetup({
+            async: false
+        });
+
+        /*获取所有图片*/
+        $.getJSON("https://tu.evax.top/today.json", (data, status, _) => {
+            for (const k in data) {
+                pics[data[k]['PID']] = data[k]
+                $.getJSON(`https://tu.evax.top/sort-${data[k]['TID']}.json`, (d, _) => {
+                    console.log(`[load]${data[k]['TID']}`)
+                    s_d++
+                    for (const kk in d) {
+                        d[kk]['T_NAME'] = data[k]['T_NAME']
+                        pics[d[kk]['PID']] = d[kk]
+                    }
+                })
+            }
+            $("#search_box").show()
+            $("#search_t").show()
+            $("#pic_loader").remove()
+            $("#pic_loading").remove()
+        })
+
+    </script>
+
+</body>
+
+</html>

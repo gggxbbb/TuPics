@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>橘子呀</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>橘子呀</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>春意盎然</h2>
+            <p>
+                <a href="9ad56ea6-767f-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-05 摄影 @橘子呀</small>
+            </p>
+            <img alt="春意盎然" data-src="https://s2.images.dailypics.cn/202004/55453a44a01cbe8da64c900fe3962996.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>万物复苏</h2>
+            <p>
+                <a href="8cf1f625-6e93-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-26 摄影 @橘子呀</small>
+            </p>
+            <img alt="万物复苏" data-src="https://s2.images.dailypics.cn/202003/3d171aefafef081a19dbe95dabfc7e0f.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>晚霞</h2>
+            <p>
+                <a href="fdaede52-6925-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-19 摄影 @橘子呀</small>
+            </p>
+            <img alt="晚霞" data-src="https://s2.images.dailypics.cn/202003/2c44a35a9c39d715cd4df04e7a886e54.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>俯视深圳</h2>
+            <p>
+                <a href="b9e5c52e-6564-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-16 摄影 @橘子呀</small>
+            </p>
+            <img alt="俯视深圳" data-src="https://s2.images.dailypics.cn/202003/6c132ed4ecfc2ef76fec398542816aa1.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>仰望高楼</h2>
+            <p>
+                <a href="86e819a6-6215-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-10 摄影 @橘子呀</small>
+            </p>
+            <img alt="仰望高楼" data-src="https://s2.images.dailypics.cn/202003/c7cdcf16e8ec4c1d268552b278a8bc02.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>夏日晚霞</h2>
+            <p>
+                <a href="7e4f183f-5e00-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-06 摄影 @橘子呀</small>
+            </p>
+            <img alt="夏日晚霞" data-src="https://s2.images.dailypics.cn/202003/8978a3b7436cc14fa6d086da022b05c0.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>云</h2>
+            <p>
+                <a href="64fcddcf-5881-11ea-b687-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-02-27 摄影 @橘子呀</small>
+            </p>
+            <img alt="云" data-src="https://s2.images.dailypics.cn/202002/5144178f8548b7b284ccd9f1e448de46.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>露天矿生态公园</h2>
+            <p>
+                <a href="0d445122-69f7-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-20 桌面 @橘子呀</small>
+            </p>
+            <img alt="露天矿生态公园" data-src="https://s2.images.dailypics.cn/202003/3d31c6d2f93e6300cc0e2d80ad66d879.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

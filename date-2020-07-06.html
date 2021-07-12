@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2020-07-06</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2020-07-06</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>天青色、雨</h2>
+            <p>
+                <a href="d9d3a1af-bed3-11ea-99eb-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-07-06 插画 @Createlite</small>
+            </p>
+            <img alt="天青色、雨" data-src="https://s2.images.dailypics.cn/202007/0455460f588d571368a9d8178d7a1059.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>逆光</h2>
+            <p>
+                <a href="57e9eed4-bed2-11ea-99eb-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-07-06 摄影 @Createlite</small>
+            </p>
+            <img alt="逆光" data-src="https://s2.images.dailypics.cn/202007/290f97273d9c652e0f2ad0dbe9fd31eb.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>碧蓝航线·谨贺三周年</h2>
+            <p>
+                <a href="7fad725e-bed5-11ea-99eb-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-07-06 桌面 @蕉灼の仓鼠</small>
+            </p>
+            <img alt="碧蓝航线·谨贺三周年" data-src="https://s2.images.dailypics.cn/202007/8ba548f833179d68438a159a8f282800.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

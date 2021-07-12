@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:11.8</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:11.8</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>瓶miku</h2>
+            <p>
+                <a href="b6d30d7c-b09c-11ea-afa7-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-06-18 插画 @Yori</small>
+            </p>
+            <img alt="瓶miku" data-src="https://s2.images.dailypics.cn/202006/b134667644e7dcc2cff7894543d8df42.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>定远</h2>
+            <p>
+                <a href="82b1b72e-9206-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-12 插画 @Createlite</small>
+            </p>
+            <img alt="定远" data-src="https://s2.images.dailypics.cn/202005/a99ac2bfadaade1ba0eb68634ea63baf.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>青</h2>
+            <p>
+                <a href="f1161d31-ffb4-11e9-8f1a-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-11-05 插画 @Chimon89</small>
+            </p>
+            <img alt="青" data-src="https://s2.images.dailypics.cn/201911/d9b321b11c030ac2e959fec5134a6f26.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>城市的霓虹也抵不住你指尖那丝花火</h2>
+            <p>
+                <a href="d902ee13-c042-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-17 插画 @神楽坂花火</small>
+            </p>
+            <img alt="城市的霓虹也抵不住你指尖那丝花火" data-src="https://s2.images.dailypics.cn/201908/0bad95472b42ac720a50d1f2325eaad2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>初音未来</h2>
+            <p>
+                <a href="b8c199b2-7664-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-15 插画 @Createlite</small>
+            </p>
+            <img alt="初音未来" data-src="https://s2.images.dailypics.cn/201905/2e9e7fedfae32d50d18378e4bce66020.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>泡泡</h2>
+            <p>
+                <a href="1a012bfa-69a0-11e9-ace4-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-28 插画 @Createlite</small>
+            </p>
+            <img alt="泡泡" data-src="https://s2.images.dailypics.cn/201904/039e9b6495d2a7b3c313f6f7d42930bf.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

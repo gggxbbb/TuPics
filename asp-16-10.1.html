@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>16:10.1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>16:10.1</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>云·二</h2>
+            <p>
+                <a href="8e6c76fc-d736-11ea-a19a-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-08-07 桌面 @Night</small>
+            </p>
+            <img alt="云·二" data-src="https://s2.images.dailypics.cn/202008/056184a368593f8fc1e725584f7ef199.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>人总分不清梦境与现实。</h2>
+            <p>
+                <a href="79fed96d-c56f-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-23 桌面 @神楽坂花火</small>
+            </p>
+            <img alt="人总分不清梦境与现实。" data-src="https://s2.images.dailypics.cn/201908/e391fb608ffee86a932cfb1cbcabaf85.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>杂图</h2>
+            <p>
+                <a href="c11b5469-1fde-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-24 桌面 @Createlite</small>
+            </p>
+            <img alt="杂图" data-src="https://s2.images.dailypics.cn/201901/8a727e6f673ea36c5aa03d7bc8b25e71.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

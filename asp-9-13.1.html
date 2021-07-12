@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:13.1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:13.1</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>こめいじ　さとり</h2>
+            <p>
+                <a href="31c425da-a598-11ea-a4bd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-06-04 插画 @Night</small>
+            </p>
+            <img alt="こめいじ　さとり" data-src="https://s2.images.dailypics.cn/202006/2deb4cc8dcf012464dcf851d319ca7c6.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>和服凯露</h2>
+            <p>
+                <a href="ddd0b5a9-87c1-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-28 插画 @Createlite</small>
+            </p>
+            <img alt="和服凯露" data-src="https://s2.images.dailypics.cn/202004/e1c5b364ac2c56b91e1c38c4a29875ee.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>不是猫</h2>
+            <p>
+                <a href="b39df610-7b38-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-11 插画 @Night</small>
+            </p>
+            <img alt="不是猫" data-src="https://s2.images.dailypics.cn/202004/ca5eb51ff26a165a2649cef01256549f.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>梅雨と面影</h2>
+            <p>
+                <a href="a424f92c-8ec2-11e9-af82-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-06-15 插画 @Createlite</small>
+            </p>
+            <img alt="梅雨と面影" data-src="https://s2.images.dailypics.cn/201906/45599d0f1e996ed08fc2c1412631bc52.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>圣人慧</h2>
+            <p>
+                <a href="13c2aa3e-3d47-11e9-9ea1-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-03 插画 @Galentwww</small>
+            </p>
+            <img alt="圣人慧" data-src="https://s2.images.dailypics.cn/201903/d9b1fb6f7824bc445484d6a5a78bf281.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>(=^・・^=)</h2>
+            <p>
+                <a href="dc7bac8c-ab98-11e8-a8ea-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-08-16 插画 @Galentwww</small>
+            </p>
+            <img alt="(=^・・^=)" data-src="https://s2.images.dailypics.cn/201808/ed795ed4210970e871b6a8b4fbebfa10.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

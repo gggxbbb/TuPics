@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>Recheast</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Recheast</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>欲穷千里目</h2>
+            <p>
+                <a href="c9a79530-23cd-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-29 插画 @Recheast</small>
+            </p>
+            <img alt="欲穷千里目" data-src="https://s2.images.dailypics.cn/201901/33dc9c25bc20f7c313be2d4e2ad787a2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>宁静</h2>
+            <p>
+                <a href="a5020975-2450-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-31 桌面 @Recheast</small>
+            </p>
+            <img alt="宁静" data-src="https://s2.images.dailypics.cn/201901/2811b60d7e2c2562126f222e121431e8.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>矿石展示馆</h2>
+            <p>
+                <a href="4f213bc5-2451-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-30 桌面 @Recheast</small>
+            </p>
+            <img alt="矿石展示馆" data-src="https://s2.images.dailypics.cn/201901/da588865871493e1ae397e7f3155802a.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

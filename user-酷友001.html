@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>酷友001</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>酷友001</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>两仪式</h2>
+            <p>
+                <a href="40fa48ea-d7f9-11eb-b308-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-06-28 插画 @酷友001</small>
+            </p>
+            <img alt="两仪式" data-src="https://s2.images.dailypics.cn/202106/3070ba02f86a3b07d3719f6d443d22f3.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>你是我的玫瑰吗？</h2>
+            <p>
+                <a href="b215eb65-d4eb-11eb-b308-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-06-24 插画 @酷友001</small>
+            </p>
+            <img alt="你是我的玫瑰吗？" data-src="https://s2.images.dailypics.cn/202106/9b60cb0ce9d3f1b39350c9fc5974e0d2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>德莉莎</h2>
+            <p>
+                <a href="60291dd2-7902-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-28 插画 @酷友001</small>
+            </p>
+            <img alt="德莉莎" data-src="https://s2.images.dailypics.cn/202102/2320c415066fa35e03380f8367070ef8.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>大乔</h2>
+            <p>
+                <a href="0ad0ba02-d4ec-11eb-b308-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-06-24 桌面 @酷友001</small>
+            </p>
+            <img alt="大乔" data-src="https://s2.images.dailypics.cn/202106/75b56808a843139fa32698318c93975f.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

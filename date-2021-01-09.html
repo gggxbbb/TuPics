@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>2021-01-09</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2021-01-09</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>fate</h2>
+            <p>
+                <a href="6b4cf763-51b7-11eb-aa49-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-01-09 插画 @TheJourneyRS</small>
+            </p>
+            <img src="favicon.ico" data-src="https://s2.images.dailypics.cn/202101/65e9a036356ca5d8a610931ab9916e8d.png!w1080"
+                alt="fate">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>house</h2>
+            <p>
+                <a href="efe323e9-51b7-11eb-aa49-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-01-09 桌面 @TheJourneyRS</small>
+            </p>
+            <img src="favicon.ico" data-src="https://s2.images.dailypics.cn/202101/594204a00fa037dfe9b65fb0916b02a2.jpg!w1080"
+                alt="house">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            var images = document.getElementsByTagName('img');
+            var len = images.length;
+            var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+            return function () {
+                var seeHeight = document.documentElement.clientHeight;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (var i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+        var loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>
