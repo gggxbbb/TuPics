@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:10.9</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:10.9</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>水葬</h2>
+            <p>
+                <a href="76a64114-e6b4-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-05 插画 @Yilin</small>
+            </p>
+            <img alt="水葬" data-src="https://s2.images.dailypics.cn/201910/c41aa4b1d2fc2ed6db0b2dff4e525f32.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>仙狐さん</h2>
+            <p>
+                <a href="cb2d4ebb-6d9f-11e9-a8ca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-04 插画 @Galentwww</small>
+            </p>
+            <img alt="仙狐さん" data-src="https://s2.images.dailypics.cn/201905/1d3aa9ba75206df62ebc54bcef869632.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

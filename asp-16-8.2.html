@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>16:8.2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>16:8.2</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>平潭</h2>
+            <p>
+                <a href="e7305413-6f64-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-27 摄影 @和氏璧不是玉</small>
+            </p>
+            <img alt="平潭" data-src="https://s2.images.dailypics.cn/202003/112b24b321ff28a2b3559dbedc7b1acb.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>大乔</h2>
+            <p>
+                <a href="0ad0ba02-d4ec-11eb-b308-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-06-24 桌面 @酷友001</small>
+            </p>
+            <img alt="大乔" data-src="https://s2.images.dailypics.cn/202106/75b56808a843139fa32698318c93975f.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>看！是灰机！2333</h2>
+            <p>
+                <a href="849f0dc9-8d57-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-05 桌面 @Night</small>
+            </p>
+            <img alt="看！是灰机！2333" data-src="https://s2.images.dailypics.cn/202005/d030898c0885d948a0b2fd1fab7665ec.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

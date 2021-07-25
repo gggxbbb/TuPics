@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>8:5</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>8:5</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>红茉莉</h2>
+            <p>
+                <a href="c1e11cb5-7f5f-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-03-08 摄影 @汪清</small>
+            </p>
+            <img alt="红茉莉" data-src="https://s2.images.dailypics.cn/202103/b4466aa07c975a0ce11c9743886cf835.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Jungle</h2>
+            <p>
+                <a href="a861970a-7a6e-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-10 桌面 @璬儒</small>
+            </p>
+            <img alt="Jungle" data-src="https://s2.images.dailypics.cn/202004/6502fe6a91916136553fab9b135f9e51.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>星尘</h2>
+            <p>
+                <a href="058f0bf8-9d42-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-03 桌面 @xkeyC</small>
+            </p>
+            <img alt="星尘" data-src="https://s2.images.dailypics.cn/201907/198b44b639de966aabb580fa99ce75a7.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>空星</h2>
+            <p>
+                <a href="2a06d4a0-6451-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-21 桌面 @乾，初九</small>
+            </p>
+            <img alt="空星" data-src="https://s2.images.dailypics.cn/201904/c6b52fa484740555d2b9df76e367a61d.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>杂图</h2>
+            <p>
+                <a href="cdf3c863-4d85-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-23 桌面 @Createlite</small>
+            </p>
+            <img alt="杂图" data-src="https://s2.images.dailypics.cn/201903/86459d99fafebcb0dc880a9882e84907.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>海 阳</h2>
+            <p>
+                <a href="3537807d-6774-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2018-04-27 桌面 @乾，初九</small>
+            </p>
+            <img alt="海 阳" data-src="https://s2.images.dailypics.cn/201804/a008ca0d4491d3b5e39469271ea95ca2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

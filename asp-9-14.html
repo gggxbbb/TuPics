@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:14</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:14</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>真夏の</h2>
+            <p>
+                <a href="7f4bffaa-fa6d-11e9-a65e-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-30 插画 @iiiiii</small>
+            </p>
+            <img alt="真夏の" data-src="https://s2.images.dailypics.cn/201910/5e510b90ded59d8a3f874143772c2df2.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>一条绫香</h2>
+            <p>
+                <a href="479e06bb-4977-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-19 插画 @xilin</small>
+            </p>
+            <img alt="一条绫香" data-src="https://s2.images.dailypics.cn/201903/f898dd038ada76c7cf0d777f41d41b5d.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>晚霞</h2>
+            <p>
+                <a href="756d4aaa-d732-11ea-a19a-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-08-06 摄影 @Night</small>
+            </p>
+            <img alt="晚霞" data-src="https://s2.images.dailypics.cn/202008/31b282bda05f1471dfd70a806b825dd9.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>街边</h2>
+            <p>
+                <a href="0fc203da-b5fb-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-05 摄影 @Createlite</small>
+            </p>
+            <img alt="街边" data-src="https://s2.images.dailypics.cn/201908/0a37215c49050c663e3f7f0a337b5c9e.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>高山</h2>
+            <p>
+                <a href="c58a1ea6-1b2f-11e9-a947-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-19 摄影 @Createlite</small>
+            </p>
+            <img alt="高山" data-src="https://s2.images.dailypics.cn/201901/4fee7602d545302a4a8ac474f65b3471.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

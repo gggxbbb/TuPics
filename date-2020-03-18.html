@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2020-03-18</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2020-03-18</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>春</h2>
+            <p>
+                <a href="14bfacba-6850-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-18 插画 @KFC0803</small>
+            </p>
+            <img alt="春" data-src="https://s2.images.dailypics.cn/202003/f95c723b627156d66adcb75ab2b55c91.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>凤凰古城</h2>
+            <p>
+                <a href="af33cb37-684f-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-18 摄影 @咸鱼沐风</small>
+            </p>
+            <img alt="凤凰古城" data-src="https://s2.images.dailypics.cn/202003/8605882d4846914a38cf1fc34ce4a9f3.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>叨叨本能寺</h2>
+            <p>
+                <a href="fcfc4ba3-6865-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-18 桌面 @Night</small>
+            </p>
+            <img alt="叨叨本能寺" data-src="https://s2.images.dailypics.cn/202003/4b7188b3e2b5c9eb5da78c53f67bc3e4.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

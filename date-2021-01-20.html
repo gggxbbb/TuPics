@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>2021-01-20</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2021-01-20</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>紫罗兰永恒花园-永远与自动手记人偶(Repaint)</h2>
+            <p>
+                <a href="51df987c-5727-11eb-aa49-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-01-20 插画 @TheJourneyRS</small>
+            </p>
+            <img src="favicon.ico" data-src="https://s2.images.dailypics.cn/202101/169b473f47aaa5e1c98e2146c8c8496c.jpg!w1080"
+                alt="紫罗兰永恒花园-永远与自动手记人偶(Repaint)">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            var images = document.getElementsByTagName('img');
+            var len = images.length;
+            var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+            return function () {
+                var seeHeight = document.documentElement.clientHeight;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (var i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+        var loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

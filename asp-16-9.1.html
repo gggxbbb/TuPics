@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>16:9.1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>16:9.1</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>雪解け</h2>
+            <p>
+                <a href="a8acd4a9-9206-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-11 桌面 @CXPLAY</small>
+            </p>
+            <img alt="雪解け" data-src="https://s2.images.dailypics.cn/202005/3abc899a2b5f3b1f0278c0758de3418e.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>生まれ変わる、音。</h2>
+            <p>
+                <a href="7458db24-8e16-11ea-9a19-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-05-08 桌面 @Night</small>
+            </p>
+            <img alt="生まれ変わる、音。" data-src="https://s2.images.dailypics.cn/202005/b692742da20db34fe13bd80bce33d978.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>向前进</h2>
+            <p>
+                <a href="1ea6563a-4b2f-11ea-9f69-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-02-10 桌面 @Galentwww</small>
+            </p>
+            <img alt="向前进" data-src="https://s2.images.dailypics.cn/202002/14cbf6392572ab0166e8a9e13a4050bc.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>星极</h2>
+            <p>
+                <a href="000ab88e-0a81-11ea-a93e-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-11-19 桌面 @ABC_user</small>
+            </p>
+            <img alt="星极" data-src="https://s2.images.dailypics.cn/201911/24c181c94d9208b28709b3530c2b7180.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>图书馆</h2>
+            <p>
+                <a href="a4f68c66-a0d0-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-08 桌面 @浦东吃西瓜</small>
+            </p>
+            <img alt="图书馆" data-src="https://s2.images.dailypics.cn/201907/51a9b5d8b603b077720ce2d84f18f7b5.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

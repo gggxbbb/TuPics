@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2020-03-28</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2020-03-28</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>水仙花胡桃酱</h2>
+            <p>
+                <a href="75d047da-7042-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-28 插画 @神楽坂花火</small>
+            </p>
+            <img alt="水仙花胡桃酱" data-src="https://s2.images.dailypics.cn/202003/f082ab1b2f6e0a6646e772109c4b6e84.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>致敬</h2>
+            <p>
+                <a href="08590558-7044-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-28 摄影 @Galentwww</small>
+            </p>
+            <img alt="致敬" data-src="https://s2.images.dailypics.cn/202003/061066ca891640caea865851d6855063.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>とある魔術の禁書目録-night</h2>
+            <p>
+                <a href="03c79c9e-7043-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-28 桌面 @xkeyC</small>
+            </p>
+            <img alt="とある魔術の禁書目録-night" data-src="https://s2.images.dailypics.cn/202003/4c98f7628021a62209119cd8c66ba757.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

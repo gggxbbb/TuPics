@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2019-02-02</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2019-02-02</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>寒い日</h2>
+            <p>
+                <a href="5d276e67-25fe-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-02 插画 @KFC0803</small>
+            </p>
+            <img alt="寒い日" data-src="https://s2.images.dailypics.cn/201902/a34077e8a15394545184f445bc5fc25a.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>山峰</h2>
+            <p>
+                <a href="f1407083-2626-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-02 摄影 @Galentwww</small>
+            </p>
+            <img alt="山峰" data-src="https://s2.images.dailypics.cn/201902/6c5ffd4a3d8be3eaf186b9bf66b282d2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Hello Summer!</h2>
+            <p>
+                <a href="1c61ceb9-2677-11e9-bb35-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-02-02 桌面 @adobe250</small>
+            </p>
+            <img alt="Hello Summer!" data-src="https://s2.images.dailypics.cn/201902/fcbe9f6f057d220655d2a029cd9dfb46.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

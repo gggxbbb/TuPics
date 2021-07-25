@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2019-08-25</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2019-08-25</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>2233娘</h2>
+            <p>
+                <a href="3ee1edba-c6de-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-25 插画 @不知名的田心</small>
+            </p>
+            <img alt="2233娘" data-src="https://s2.images.dailypics.cn/201908/fb2d9598dd3d8f0094e30a485bf32b94.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>林中之道</h2>
+            <p>
+                <a href="4c999b3c-c6de-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-25 摄影 @DT9025A</small>
+            </p>
+            <img alt="林中之道" data-src="https://s2.images.dailypics.cn/201908/eb90f96314bd76a4fd9758a533f4ca44.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Minecraft</h2>
+            <p>
+                <a href="c6a05538-c6dd-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-08-25 桌面 @Gadgetry</small>
+            </p>
+            <img alt="Minecraft" data-src="https://s2.images.dailypics.cn/201908/468aa542b93c000c93ed6afae0f76879.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

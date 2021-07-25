@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>浦东吃西瓜</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>浦东吃西瓜</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>可爱的女孩子</h2>
+            <p>
+                <a href="3cf2722f-4fcd-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-27 插画 @浦东吃西瓜</small>
+            </p>
+            <img alt="可爱的女孩子" data-src="https://s2.images.dailypics.cn/201903/d40d2c35c80d9d14e4765b59a763d846.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>SpaceX !</h2>
+            <p>
+                <a href="518a6f08-a0d1-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-09 摄影 @浦东吃西瓜</small>
+            </p>
+            <img alt="SpaceX !" data-src="https://s2.images.dailypics.cn/201907/46f872cc54599c1e5975fa0d5904c3b8.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>杭州又开始了…</h2>
+            <p>
+                <a href="f343d480-7584-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-14 摄影 @浦东吃西瓜</small>
+            </p>
+            <img alt="杭州又开始了…" data-src="https://s2.images.dailypics.cn/201905/d344bb4d0f35d6ef4bf361f57c6cbc13.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>上班路上的黄浦剧场</h2>
+            <p>
+                <a href="79a7e2fc-6f8a-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-06 摄影 @浦东吃西瓜</small>
+            </p>
+            <img alt="上班路上的黄浦剧场" data-src="https://s2.images.dailypics.cn/201905/69bebb00efbbcc45e98b44fe4dbd4631.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>建筑</h2>
+            <p>
+                <a href="b1d67102-61e6-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-19 摄影 @浦东吃西瓜</small>
+            </p>
+            <img alt="建筑" data-src="https://s2.images.dailypics.cn/201904/8ecab206ce13a6f1693efb6942f45d27.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>五缘湾的落日</h2>
+            <p>
+                <a href="1b06c8ee-ecfb-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-13 桌面 @浦东吃西瓜</small>
+            </p>
+            <img alt="五缘湾的落日" data-src="https://s2.images.dailypics.cn/201910/58364ff57e6b28e3cf1f25a3f41aaaab.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>图书馆</h2>
+            <p>
+                <a href="a4f68c66-a0d0-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-08 桌面 @浦东吃西瓜</small>
+            </p>
+            <img alt="图书馆" data-src="https://s2.images.dailypics.cn/201907/51a9b5d8b603b077720ce2d84f18f7b5.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

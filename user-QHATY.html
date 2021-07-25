@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>QHATY</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>QHATY</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>初音未来</h2>
+            <p>
+                <a href="622a992f-65e7-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-15 插画 @QHATY</small>
+            </p>
+            <img alt="初音未来" data-src="https://s2.images.dailypics.cn/202003/9618b3fcafe6d7a719607505997af6b2.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>狐狸姐姐好可爱</h2>
+            <p>
+                <a href="5bdeab4e-620d-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-10 插画 @QHATY</small>
+            </p>
+            <img alt="狐狸姐姐好可爱" data-src="https://s2.images.dailypics.cn/202003/0ed56736e88d662b9ef3dafb4f3a632a.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>婚纱真是太棒了</h2>
+            <p>
+                <a href="03100079-6148-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-09 插画 @QHATY</small>
+            </p>
+            <img alt="婚纱真是太棒了" data-src="https://s2.images.dailypics.cn/202003/6970caa7610b37050bcad2a949a47d32.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>中野三玖</h2>
+            <p>
+                <a href="baf6a5bf-6082-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-08 插画 @QHATY</small>
+            </p>
+            <img alt="中野三玖" data-src="https://s2.images.dailypics.cn/202003/fd67ba0ffd63c954ed6cb35415dbd125.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>ぱたぱたおみみ</h2>
+            <p>
+                <a href="0d0c8099-5c71-11ea-abd5-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-03 插画 @QHATY</small>
+            </p>
+            <img alt="ぱたぱたおみみ" data-src="https://s2.images.dailypics.cn/202003/a2bb79d40d05b8ae4cb4a2f27360db20.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>露天風呂</h2>
+            <p>
+                <a href="4909878d-5a1b-11ea-b687-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-02-29 插画 @QHATY</small>
+            </p>
+            <img alt="露天風呂" data-src="https://s2.images.dailypics.cn/202002/92497711e038b3d481a392f3c2a15eed.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>小清新</h2>
+            <p>
+                <a href="ffde4b74-80b4-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-18 桌面 @QHATY</small>
+            </p>
+            <img alt="小清新" data-src="https://s2.images.dailypics.cn/202004/506976d14a528a8821180df41a588231.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>高三清晨</h2>
+            <p>
+                <a href="69d51f7b-7d9a-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-14 桌面 @QHATY</small>
+            </p>
+            <img alt="高三清晨" data-src="https://s2.images.dailypics.cn/202004/e654d0dc095f918a2b89780963623d89.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

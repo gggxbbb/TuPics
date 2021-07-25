@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>16:11.6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>16:11.6</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>🐱🐱🐱</h2>
+            <p>
+                <a href="e3121570-3952-11eb-9ec1-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-12-09 桌面 @🐹</small>
+            </p>
+            <img alt="🐱🐱🐱" data-src="https://s2.images.dailypics.cn/202012/2912cc9168586e900e9654df02ed75a6.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>春·蜜</h2>
+            <p>
+                <a href="b3810436-888f-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-28 桌面 @咬树根的尼德霍格</small>
+            </p>
+            <img alt="春·蜜" data-src="https://s2.images.dailypics.cn/202004/8d437262c9058b22b4a1db53a8f453b6.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>在世界充满记忆之前</h2>
+            <p>
+                <a href="72ab436f-12b0-11ea-a93e-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-11-30 桌面 @ABC_user</small>
+            </p>
+            <img alt="在世界充满记忆之前" data-src="https://s2.images.dailypics.cn/201911/85e06eef9d42cb401ac7d82fe78961f8.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>白崎香织 &amp; 八重樫雫</h2>
+            <p>
+                <a href="cb5e5e1b-ee9b-11e9-aaa5-0202761b0196.html" target="_blank">详情</a>
+                <small>2019-10-15 桌面 @Sudhakar</small>
+            </p>
+            <img alt="白崎香织 &amp; 八重樫雫" data-src="https://s2.images.dailypics.cn/201910/6126a4501267bfeb1e05e606d7092f68.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

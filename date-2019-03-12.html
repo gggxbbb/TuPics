@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2019-03-12</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2019-03-12</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>响</h2>
+            <p>
+                <a href="e33e7f3b-440e-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-12 插画 @xilin</small>
+            </p>
+            <img alt="响" data-src="https://s2.images.dailypics.cn/201903/e11b93a310b8d569b1202e6390629992.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>建筑</h2>
+            <p>
+                <a href="c0793a4b-44ba-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-12 摄影 @Galentwww</small>
+            </p>
+            <img alt="建筑" data-src="https://s2.images.dailypics.cn/201903/a0991b928d4ead4867410d0044565640.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>地狱之刃：塞娜的献祭</h2>
+            <p>
+                <a href="9a8f807a-440e-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-12 桌面 @绝对零º</small>
+            </p>
+            <img alt="地狱之刃：塞娜的献祭" data-src="https://s2.images.dailypics.cn/201903/7bf3e60db3a1e08f0324b1b12f30da15.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>水平面的你</h2>
+            <p>
+                <a href="e6180820-458e-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-12 桌面 @绝对零º</small>
+            </p>
+            <img alt="水平面的你" data-src="https://s2.images.dailypics.cn/201903/3a363b9982a180aad12d35460642d941.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

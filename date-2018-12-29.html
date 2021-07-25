@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2018-12-29</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2018-12-29</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>杂图</h2>
+            <p>
+                <a href="a149def2-0ab2-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 插画 @Createlite</small>
+            </p>
+            <img alt="杂图" data-src="https://s2.images.dailypics.cn/201812/89eef618191e8f7069ffc1a104483330.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>无题</h2>
+            <p>
+                <a href="c54ab6ce-0aa9-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 摄影 @Chimon89</small>
+            </p>
+            <img alt="无题" data-src="https://s2.images.dailypics.cn/201812/a4f57534a3234a5bc640cecb25ea481a.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>手</h2>
+            <p>
+                <a href="e94486af-0ab2-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 摄影 @Createlite</small>
+            </p>
+            <img alt="手" data-src="https://s2.images.dailypics.cn/201812/1e487a32aa7ff7071248df3d0f15dc51.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>小清新</h2>
+            <p>
+                <a href="02cc1c2f-0aac-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 桌面 @Chimon89</small>
+            </p>
+            <img alt="小清新" data-src="https://s2.images.dailypics.cn/201812/292b97533752c91f64f4dee491d39e80.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>和式屋</h2>
+            <p>
+                <a href="0912ed6f-0aac-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 桌面 @Chimon89</small>
+            </p>
+            <img alt="和式屋" data-src="https://s2.images.dailypics.cn/201812/a8867ea11ab4137597ff8a0461280975.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Tengu 天狗 - p1</h2>
+            <p>
+                <a href="be60fb65-0aab-11e9-b158-0202761b0892.html" target="_blank">详情</a>
+                <small>2018-12-29 桌面 @Chimon89</small>
+            </p>
+            <img alt="Tengu 天狗 - p1" data-src="https://s2.images.dailypics.cn/201812/3a7e27fa1f7c7f71df13fe8381f4e2fc.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

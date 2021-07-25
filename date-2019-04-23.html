@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>2019-04-23</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2019-04-23</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>兔爷</h2>
+            <p>
+                <a href="5bcc201d-6451-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-23 插画 @流口水的兔子</small>
+            </p>
+            <img alt="兔爷" data-src="https://s2.images.dailypics.cn/201904/7b645f16ba5fec6674ff567867eedf7d.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Earth</h2>
+            <p>
+                <a href="95b35c99-6504-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-23 摄影 @Galentwww X 图鉴第三项目组（运营方面）</small>
+            </p>
+            <img alt="Earth" data-src="https://s2.images.dailypics.cn/201904/91d0814fcc61a963c282d0dc4f4779ca.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>梅雨季</h2>
+            <p>
+                <a href="627994e3-6503-11e9-a958-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-04-23 桌面 @粉白</small>
+            </p>
+            <img alt="梅雨季" data-src="https://s2.images.dailypics.cn/201904/9c5d5524fc609b7db51aa5c518fc0293.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

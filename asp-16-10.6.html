@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>16:10.6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>16:10.6</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>对决</h2>
+            <p>
+                <a href="caa3ef0f-51b7-11eb-aa49-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-01-11 插画 @TheJourneyRS</small>
+            </p>
+            <img alt="对决" data-src="https://s2.images.dailypics.cn/202101/b6e90d31e6e3334dca03fb796508a34f.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>黄昏 沙漠</h2>
+            <p>
+                <a href="85a4e8bd-8664-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-03-17 摄影 @Chimon89</small>
+            </p>
+            <img alt="黄昏 沙漠" data-src="https://s2.images.dailypics.cn/202103/dc5a638d210d95c9a99f92b965667d2e.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>风铃</h2>
+            <p>
+                <a href="a076b590-68f6-11eb-9ebd-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-02-09 摄影 @createlite</small>
+            </p>
+            <img alt="风铃" data-src="https://s2.images.dailypics.cn/202102/64ea36be9cb3a93e811c749c1f6d39a5.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>落書き</h2>
+            <p>
+                <a href="e3828314-4f64-11eb-aa49-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2021-01-06 桌面 @TheJourneyRS</small>
+            </p>
+            <img alt="落書き" data-src="https://s2.images.dailypics.cn/202101/479cc8c59dd4e3843b45d09eb951f28d.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>Animation background</h2>
+            <p>
+                <a href="d0d57809-3582-11eb-9ec1-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-12-05 桌面 @TheJourneyRS</small>
+            </p>
+            <img alt="Animation background" data-src="https://s2.images.dailypics.cn/202012/f7257a4401f73546b789939825cd5d2f.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>望</h2>
+            <p>
+                <a href="423ba68d-c327-11ea-99eb-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2020-07-12 桌面 @Createlite</small>
+            </p>
+            <img alt="望" data-src="https://s2.images.dailypics.cn/202007/6cc361cf1624771ab4c5d3d868ff3f66.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>暗  色  流  沙</h2>
+            <p>
+                <a href="e3081019-62df-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-03-11 桌面 @hinata hoshino</small>
+            </p>
+            <img alt="暗  色  流  沙" data-src="https://s2.images.dailypics.cn/202003/bed55a317899faf4c7896d29b36b04f5.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>阅兵</h2>
+            <p>
+                <a href="dbf7208b-e398-11e9-ac46-525400cf152d.html" target="_blank">详情</a>
+                <small>2019-10-01 桌面 @Createlite</small>
+            </p>
+            <img alt="阅兵" data-src="https://s2.images.dailypics.cn/201910/7f8d7e13c825f380d363bf58908a9efe.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>

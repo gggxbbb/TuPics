@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>9:13.6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>9:13.6</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>天使</h2>
+            <p>
+                <a href="85fe3829-d95e-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-09-18 插画 @Createlite</small>
+            </p>
+            <img alt="天使" data-src="https://s2.images.dailypics.cn/201909/b2353867b406fbafbaa2e2785fd29f65.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>雨</h2>
+            <p>
+                <a href="92219161-d0be-11e9-93b5-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-09-07 插画 @Createlite</small>
+            </p>
+            <img alt="雨" data-src="https://s2.images.dailypics.cn/201909/c51767571f457d45cea0dcf1d95f73a1.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>响</h2>
+            <p>
+                <a href="e33e7f3b-440e-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-12 插画 @xilin</small>
+            </p>
+            <img alt="响" data-src="https://s2.images.dailypics.cn/201903/e11b93a310b8d569b1202e6390629992.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>刀士</h2>
+            <p>
+                <a href="6e80c133-1422-11e9-ba22-0202761b0892.html" target="_blank">详情</a>
+                <small>2019-01-10 插画 @Createlite</small>
+            </p>
+            <img alt="刀士" data-src="https://s2.images.dailypics.cn/201901/cab3718c0f3e6517ace3a385bc06f2ad.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>空城</h2>
+            <p>
+                <a href="ad4cd863-7574-11ea-8f08-0202761b0196.html" target="_blank">详情</a>
+                <small>2020-04-04 摄影 @Createlite</small>
+            </p>
+            <img alt="空城" data-src="https://s2.images.dailypics.cn/202004/bd33a803ea442a6dd1119ad2b621dda8.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>夏</h2>
+            <p>
+                <a href="37708605-a06c-11e9-82f9-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-07-08 摄影 @Galentwww</small>
+            </p>
+            <img alt="夏" data-src="https://s2.images.dailypics.cn/201907/3d81c8dfc50807a5f9e6caa26684f684.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>星空</h2>
+            <p>
+                <a href="eda4999d-7339-11e9-a16e-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-05-12 摄影 @Gosick_Artoria</small>
+            </p>
+            <img alt="星空" data-src="https://s2.images.dailypics.cn/201905/d2dc5be08b98e48fdf75aec90c586529.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>搬运</h2>
+            <p>
+                <a href="2e72efcd-4e2c-11e9-8eca-f23c914b97eb.html" target="_blank">详情</a>
+                <small>2019-03-25 摄影 @zrj</small>
+            </p>
+            <img alt="搬运" data-src="https://s2.images.dailypics.cn/201903/00abc07bad629089adf4f34e3ab5e43c.jpg!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>
