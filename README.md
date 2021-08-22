@@ -1,6 +1,6 @@
 # TuPics
 
-[![Build Status](https://travis-ci.org/gggxbbb/TuPics.svg?branch=master)](https://travis-ci.org/gggxbbb/TuPics)  
+[![Build Pages](https://github.com/gggxbbb/TuPics/actions/workflows/tupics.yml/badge.svg)](https://github.com/gggxbbb/TuPics/actions/workflows/tupics.yml)  
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gggxbbb/TuPics)
 ![GitHub repo size](https://img.shields.io/github/repo-size/gggxbbb/TuPics)
 
