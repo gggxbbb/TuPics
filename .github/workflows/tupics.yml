@@ -35,7 +35,7 @@ jobs:
     - name: build page
       run: python3 run.py
     - name: build excel
-      run: python3 execl.py
+      run: python3 excel.py
     - name: build CNAME
       run: echo "tu.evax.top" > build/CNAME
     - run: cp static/* build
