@@ -1,0 +1,49 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Build Pages
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '0 21 * * *'
+  
+  
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - run: pip3 install Jinja2
+    - run: pip3 install pytz
+    - run: pip3 install xlwt
+    - run: pip3 install requests
+    - run: pip3 install markdown
+    - run: pip3 install pinyin
+    - run: pip3 install jieba
+    - run: git clone -b gh-pages https://github.com/gggxbbb/TuPics.git build
+    - name: build page
+      run: python3 run.py
+    - name: build excel
+      run: python3 execl.py
+    - name: build CNAME
+      run: echo "tu.evax.top" > build/CNAME
+    - run: cp static/* build
+    - name: Push to gh-pages
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        jekyll: false 
+        target_branch: gh-pages
+        build_dir: build
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
