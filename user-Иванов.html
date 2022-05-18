@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection,HtmlUnknownTarget -->
+<html lang="zh-cn">
+
+<head>
+    <title>Иванов</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        body {
+            max-width: 2048px;
+            padding: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .root {
+            display: grid;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        .item {
+            max-width: 98%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 512px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .root {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Иванов</h1>
+    <br />
+    <div class="root">
+        
+        <div class="item">
+            <h2>ただいまー！</h2>
+            <p>
+                <a href="f4c54d05-d65c-11ec-91d6-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2022-05-19 插画 @Иванов</small>
+            </p>
+            <img alt="ただいまー！" data-src="https://s2.images.dailypics.cn/202205/9ecec5c1adb5a98fe8998a91e84d12c2.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+        <div class="item">
+            <h2>深呼吸，闭好你的眼睛~</h2>
+            <p>
+                <a href="298fe88e-d65d-11ec-91d6-c07c56ee9ffc.html" target="_blank">详情</a>
+                <small>2022-05-18 插画 @Иванов</small>
+            </p>
+            <img alt="深呼吸，闭好你的眼睛~" data-src="https://s2.images.dailypics.cn/202205/b2023ca22f1df9195f3fa9414063d50c.png!w1080"
+                 src="favicon.ico">
+            <br />
+        </div>
+        
+    </div>
+    <script>
+        function lazyload() {
+            const images = document.getElementsByTagName('img');
+            const len = images.length;
+            let n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+            return function () {
+                const seeHeight = document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                for (let i = n; i < len; i++) {
+                    if (images[i].offsetTop < seeHeight + scrollTop) {
+                        if (images[i].getAttribute('src') === 'favicon.ico') {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
+                        n = n + 1;
+                    }
+                }
+            }
+        }
+
+        const loadImages = lazyload();
+        loadImages();          //初始化首页的页面图片
+        window.addEventListener('scroll', loadImages, false);
+    </script>
+</body>
+
+</html>
