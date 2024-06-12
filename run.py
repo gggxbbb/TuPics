@@ -39,7 +39,9 @@ ss = []
 
 for v in ua:
     # 实例化 session
-    s = requests.session()
+    s = requests.session(
+        verify=False,
+    )
     # 设置不同的 UA
     s.headers.update({'User-Agent': v})
     # 添加到 List
