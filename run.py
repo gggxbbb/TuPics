@@ -39,9 +39,7 @@ ss = []
 
 for v in ua:
     # 实例化 session
-    s = requests.session(
-        verify=False,
-    )
+    s = requests.session()
     # 设置不同的 UA
     s.headers.update({'User-Agent': v})
     # 添加到 List
@@ -55,7 +53,10 @@ def get_req(url) -> requests.Response:
     # 随机获取 session
     _s = ss[random.randint(0, len(ua) - 1)]
     # 获取 Response
-    req = _s.get(url)
+    req = _s.get(
+        url,
+        verify=False,
+        )
     # 判断是否获取成功
     if not req.status_code == 200:
         # 失败抛出输出错误
